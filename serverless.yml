@@ -20,11 +20,6 @@ provider:
     defaultStage: dev
     profiles:
       dev: devProfile
-    iamRoleStatements:
-	  - Effect: Allow
-	    Action:
-	      - lambda: InvokeFunction
-	    Resource: "*"
 
 environment: 
     DYNAMODB_TABLE: customer
@@ -42,6 +37,7 @@ environment:
         - dynamodb:Delete*
         - dynamodb:Update*
         - dynamodb:PutItem
+        - lambda:InvokeFunction
 Resource: arn:aws:dynamodb::*:table/${self:provider.environment.DYNAMODB_TABLE}
 Properties:
         AttributeDefinitions:
