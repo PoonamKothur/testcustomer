@@ -28,5 +28,6 @@ class CreateCustomerResources extends BaseHandler {
 }*/
 
 exports.createcustomerresources = async (event, context, callback) => {
-    return await new CreateCustomerResources().handler(event, context, callback);
+    console.log("in 2nd lambda function");
+    //return await new CreateCustomerResources().handler(event, context, callback);
 }
