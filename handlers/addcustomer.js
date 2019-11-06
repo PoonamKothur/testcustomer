@@ -99,7 +99,7 @@ class AddCustomer extends BaseHandler {
             //invoke lambda customerresources and pass cuid
             let params = {
                 FunctionName: 'serverless-customer-dynamodb-dev-createcustomerresources',
-                InvocationType: 'RequestResponse',
+                InvocationType: 'Event',
                 Payload: '{ "name" : "Yza" }'
             };
 
