@@ -11,14 +11,6 @@ class GetCustomerbyId extends BaseHandler {
         super();
     }
 
-    //validation for cid
-    getValidationSchema() {
-        //validate body schema
-        return Joi.object().keys({
-            cid: Joi.string().regex(/^[a-zA-Z0-9]*$/).required()
-        });
-    }
-
     async getCustomerBycid(cid) {
         const params = {
             Key:{

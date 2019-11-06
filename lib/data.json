@@ -3,6 +3,6 @@
     "httpMethod": "POST",    
     "queryStringParameters": null,
     "pathParameters": "{\"cid\":\"000005\"}",    
-    "body": "{\"cid\":\"000005\",\"type\":\"Consumer\",\"scope\":\"Direct\",\"customerEmail\":\"poonam@gmail.com\",\"primary\"=>{\"firstName\":\"test1\"}}",
+    "body": "{\"cid\":\"000006\",\"type\":\"Consumer\",\"scope\":\"Direct\",\"customerEmail\":\"poonam@gmail.com\"}",
     "isBase64Encoded": false
 }

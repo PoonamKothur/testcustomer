@@ -1,6 +1,6 @@
 service: serverless-customer-dynamodb
 
-stage: ${opt:stage}
+stage: ${self:provider.stage}
 
 custom:
     dynamodb:
