@@ -20,39 +20,32 @@ class GetCustomerbyId extends BaseHandler {
     }
 
     async getCustomerBycid(cid) {
-
         const params = {
-            cid: cid,
+            Key:{
+                "cid" : cid
+                },
             TableName: 'customer'
         };
-      
         return documentClient.get(params).promise();
-
-        /*let valRes = await this.dynamoDb.query(params).promise();
-        let flag = false;
-        if (valRes && 'Item' in valRes && valRes.Item && 'id' in valRes.Item && valRes.Item.id) {
-            flag = true;
-            return valRes;
-        } else {
-            return flag;
-        }*/
     }
 
     async process(event, context, callback) {
-
         try {
-            let body = event.body ? JSON.parse(event.body) : event;
-
-            // Validate the input
-            await utils.validate(body, this.getValidationSchema());
-
-            // Call to get customer
-            await this.getCustomerBycid(body.cid);
-            return responseHandler.callbackRespondWithSimpleMessage(200, ' Customer Returned Successfully ');
+            let body = event.body ? JSON.parse(event.body) : event;                  
+            if (event && 'pathParameters' in event && event.pathParameters && 'id' in event.pathParameters && event.pathParameters.id) {
+                let cid = event.pathParameters.id;
+                let res = await this.getCustomerBycid(cid);
+                if (res && 'Item' in res) {
+                    return responseHandler.callbackRespondWithJsonBody(200, res.Item);
+                }
+                return responseHandler.callbackRespondWithSimpleMessage(400, "No customer found !");
+            }
+            else{
+                return responseHandler.callbackRespondWithSimpleMessage(400,"Please provide Id");
+            }
         }
 
         catch (err) {
-            console.log(err);
             if (err.message) {
                 return responseHandler.callbackRespondWithSimpleMessage(400, err.message);
             } else {

@@ -56,7 +56,15 @@ functions:
     handler: handlers/getcustomerbyid.getcustomer
     events:
       - http:
-          path: /handlers/{cid}
+          path: /customers/{id}
           method: get
+          cors: true
+
+   createcustomer:
+    handler: handlers/addcustomer.createcustomer
+    events:
+      - http:
+          path: /customers/
+          method: post
           cors: true
         

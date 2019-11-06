@@ -16,10 +16,10 @@ module.exports = class BaseHandler {
     //instantiating base with subclass tag
     async handler(event, context, callback) {
         this.log.info("Inside BaseHandler", JSON.stringify(event));
+       
         context.callbackWaitsForEmptyEventLoop = false;
         try {
             this.log.info("Inside BaseHandler");
-           
             //calling process function of class instantiated
             let response = await this.process(event, context, callback);
             if (response) {
