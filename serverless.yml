@@ -20,6 +20,11 @@ provider:
     defaultStage: dev
     profiles:
       dev: devProfile
+    iamRoleStatements:
+	  - Effect: Allow
+	    Action:
+	      - lambda:InvokeFunction
+	    Resource: "*"
 
 environment: 
     DYNAMODB_TABLE: customer

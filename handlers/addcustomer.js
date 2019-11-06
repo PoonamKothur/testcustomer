@@ -104,13 +104,13 @@ class AddCustomer extends BaseHandler {
             };
 
             return await lambda.invoke(params, function (err, data) {
-                console.log("in mhere");
+                
                 if (err) {
-                    console.log("in mhere--error");
                     throw err;
                 } else {
-                    console.log("in mhere ----- nvoke");    
-                    console.log('LambdaB invoked: ' + data.Payload);
+                    //console.log("in mhere ----- nvoke");    
+                    //console.log(params);
+                    console.log('LambdaB invoked: ' + params.Payload);
                 }
             }).promise();
             //return responseHandler.callbackRespondWithSimpleMessage(200, ' Customer Created Successfully ');
