@@ -22,10 +22,11 @@ class GetCustomerbyId extends BaseHandler {
     async getCustomerBycid(cid) {
 
         const params = {
+            cid: cid,
             TableName: 'customer'
         };
       
-        return this.documentClient.get(params).promise();
+        return documentClient.get(params).promise();
 
         /*let valRes = await this.dynamoDb.query(params).promise();
         let flag = false;
