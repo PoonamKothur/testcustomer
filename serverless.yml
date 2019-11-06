@@ -67,4 +67,13 @@ functions:
           path: /customers/
           method: post
           cors: true
+          
+   createcustomerresources:
+    handler: handlers/createcustomerresources.createcustomerresources
+    events:
+      - http:
+          path: /customerresources/
+          method: post
+          cors: true
+          
         

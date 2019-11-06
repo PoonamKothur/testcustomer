@@ -1,7 +1,7 @@
-export function handler(event, context) {
+/*export function handler(event, context) {
     console.log('Lambda B Received event:', JSON.stringify(event, null, 2));
     context.succeed('Hello ' + event.name);
-  }
+  }*/
 
 /*const responseHandler = require("../common/responsehandler");
 const BaseHandler = require("../common/basehandler");
@@ -25,8 +25,8 @@ class CreateCustomerResources extends BaseHandler {
 
         }
     }
-}
+}*/
 
 exports.createcustomerresources = async (event, context, callback) => {
     return await new CreateCustomerResources().handler(event, context, callback);
-}*/
+}
