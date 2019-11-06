@@ -56,7 +56,7 @@ functions:
     handler: handlers/getcustomerbyid.getcustomer
     events:
       - http:
-          path: /handlers/{id}
+          path: /handlers/{cid}
           method: get
           cors: true
         
