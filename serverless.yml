@@ -23,7 +23,7 @@ provider:
     iamRoleStatements:
 	  - Effect: Allow
 	    Action:
-	      - lambda:InvokeFunction
+	      - lambda: InvokeFunction
 	    Resource: "*"
 
 environment: 
