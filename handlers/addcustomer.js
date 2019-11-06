@@ -71,18 +71,18 @@ class AddCustomer extends BaseHandler {
             customerEmail: body.customeremail,
             primary: { 
                 firstname: body.primary.firstname,
-                lastName: body.primary.lastName,
-                email: body.primary.email,
-                phone: body.primary.phone
+                //lastName: body.primary.lastName,
+                //email: body.primary.email,
+                //phone: body.primary.phone
             },
-            secondary: {
+            /*secondary: {
                 firstName: body.secondary.firstName,
                 lastName: body.secondary.lastName,
                 email: body.secondary.email,
                 phone: body.secondary.phone,
                 registration: body.secondary.registration,
                 lastUpdate: body.secondary.lastUpdate
-            }
+            }*/
         }
         const params = {
             // TableName: `customer-${process.env.STAGE}`,
