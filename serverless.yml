@@ -22,6 +22,7 @@ provider:
       dev: devProfile
 
 environment: 
+    
     DYNAMODB_TABLE: customer
     iamRoleStatements:
     - Effect: Allow

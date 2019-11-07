@@ -94,30 +94,23 @@ class AddCustomer extends BaseHandler {
                         // Call to insert customer
                         let cuid = await this.createCustomer(body);
                         */
+
             //invoke lambda customerresources
 
-            //invoke lambda customerresources and pass cuid
             let params = {
-                FunctionName: 'serverless-customer-dynamodb-dev-createcustomerresources',
+                FunctionName: 'createcustomerresources', //TODO get from process.env
                 InvocationType: 'Event',
-                Payload: '{ "name" : "Yza" }'
+                //Payload: JSON.stringify({cuid:cuid})
+                Payload: JSON.stringify({cuid:'abcd'})
             };
-
-            return await lambda.invoke(params, function (err, data) {
-                
-                if (err) {
-                    throw err;
-                } else {
-                    //console.log("in mhere ----- nvoke");    
-                    //console.log(params);
-                    console.log('LambdaB invoked: ' + params.Payload);
-                }
-            }).promise();
+            console.log("test lambda");
+            console.log(params);
+            await lambda.invoke(params).promise();
             //return responseHandler.callbackRespondWithSimpleMessage(200, ' Customer Created Successfully ');
         }
 
         catch (err) {
-            console.log(err);
+            
             if (err.message) {
                 return responseHandler.callbackRespondWithSimpleMessage(400, err.message);
             } else {

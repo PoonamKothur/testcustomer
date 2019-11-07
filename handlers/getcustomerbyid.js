@@ -18,7 +18,7 @@ class GetCustomerbyId extends BaseHandler {
                 },
             TableName: 'customer'
         };
-        return documentClient.get(params).promise();
+        return await documentClient.get(params).promise();
     }
 
     async process(event, context, callback) {

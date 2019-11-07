@@ -26,7 +26,6 @@ module.exports = class BaseHandler {
                 this.log.info("Process complete!:", response.body);
             }
             return response;
-
         } catch (e) {
             console.log("Inside base handler error", e);
             if('statusCode' in e && e.statusCode){
