@@ -10,7 +10,7 @@ class CreateCustomerResources extends BaseHandler {
     }
 
     async getAdminCustomerResources() {
-        console.log("getAdminCustomerResources");
+        //this.log.debug("getAdminCustomerResources");
         const params = {
             TableName: 'admin-customer-resources-stage'  //TODO: stage
         };
@@ -22,53 +22,26 @@ class CreateCustomerResources extends BaseHandler {
     }
 
     async process(event, context, callback) {
-        console.log("event.cuid:" + event.cuid);
-        let cuid = this.generateRandomcuid(2, 6); // TODO get from event
+        //console.log("event.cuid:" + event.cuid);
+        let cuid = this.generateRandomcuid(2, 6); // TODO get from addcustomer lambda function
         try {
-            //get 
             let resources = await this.getAdminCustomerResources();
-            //console.log("resources:" + JSON.stringify(resources));
+
             resources.Items.forEach(function (resource) {
-                
-                    if (resource && 'name' in resource && resource.name && 'type' in resource && resource.type) {
-                        console.log("resource:" + JSON.stringify(resource));
-                        if (resource.type === 'dynamodb') {
-                            console.log("in check dynamodb");
-                            let tableName = cuid + "-" + resource.name;
-                            let resCreate = dynamodbres.createTable(tableName, resource.attributes.hashkey, resource.attributes.sortkey);
-                            this.log.info("Resource created successfully");//TODO speific error
 
-                        }
-                    }
-                    else {
-                        this.log.info('admin-customer-resource not configured properly');//TODO speific error
-                        return responseHandler.callbackRespondWithSimpleMessage(400, " !");
-                    }
-            });
-
-            if (resources && 'Items' in resources) {
-                console.log("resources.Items.Count:" + resources.Items.length);
-                for (i = 0; i < resources.Items.length; i++) {   //TODO: for loop 
-                    
-                    let resource = resources.Items[i];
-                    console.log("resource:" + resource);
-                    if (resource && 'name' in resource && resource.name && 'type' in resource && resource.type) {
-                        console.log("resource.type:" + resource.type);
-                        if (resource.type === 'dynamodb') {
-                            console.log("in check dynamodb");
-                            let tableName = event.cuid + "-" + resource.name;
-                            let resCreate = await dynamodbres.createTable(tableName, resource.attributes.hashkey, resource.attributes.sortkey)
-                        }
-                    }
-                    else {
-                        this.log.info('admin-customer-resource not configured properly');//TODO speific error
-                        return responseHandler.callbackRespondWithSimpleMessage(400, " !");
+                if (resource && 'name' in resource && resource.name && 'type' in resource && resource.type) {
+                    //this.log.debug("resource:" + JSON.stringify(resource));
+                    if (resource.type === 'dynamodb') {
+                        let tableName = cuid + "-" + resource.name;
+                        let resCreate = dynamodbres.createTable(tableName, resource.attributes.hashkey, resource.attributes.sortkey);
+                        //this.log.info("Resource created successfully");
                     }
                 }
-            }
-            else {
-                return responseHandler.callbackRespondWithSimpleMessage(400, "No customer found !");
-            }
+                else {
+                    // this.log.info('admin-customer-resource not configured properly');//TODO how to check speific error
+                    return responseHandler.callbackRespondWithSimpleMessage(400, " !");
+                }
+            });
         }
         catch (err) {
             if (err.message) {
@@ -81,7 +54,6 @@ class CreateCustomerResources extends BaseHandler {
 }
 
 exports.createcustomerresources = async (event, context, callback) => {
-    console.log('Lambda B Received event:', JSON.stringify(event, null, 2));
-    context.succeed('Hello ' + event.cuid);
+
     return await new CreateCustomerResources().handler(event, context, callback);
 }

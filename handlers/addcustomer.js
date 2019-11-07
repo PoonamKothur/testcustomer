@@ -80,37 +80,36 @@ class AddCustomer extends BaseHandler {
 
         try {
             let body = event.body ? JSON.parse(event.body) : event;
-            /*
-                        // Validate the input
-                        await utils.validate(body, this.getValidationSchema());
-            
-                        // Check if cid already exists
-                        let customerExists = await this.checkIfCustomerExists(body.cid);
-                        this.log.debug("customerExists:" + customerExists);
-                        if (customerExists) {
-                            return responseHandler.callbackRespondWithSimpleMessage('400', 'Duplicate customer');
-                        }
-                        
-                        // Call to insert customer
-                        let cuid = await this.createCustomer(body);
-                        */
+
+            // Validate the input
+            await utils.validate(body, this.getValidationSchema());
+
+            // Check if cid already exists
+            let customerExists = await this.checkIfCustomerExists(body.cid);
+            this.log.debug("customerExists:" + customerExists);
+            if (customerExists) {
+                return responseHandler.callbackRespondWithSimpleMessage('400', 'Duplicate customer');
+            }
+
+            // Call to insert customer
+            let cuid = await this.createCustomer(body);
 
             //invoke lambda customerresources
 
-            let params = {
+            /*let params = {
                 FunctionName: 'createcustomerresources', //TODO get from process.env
                 InvocationType: 'Event',
                 //Payload: JSON.stringify({cuid:cuid})
-                Payload: JSON.stringify({cuid:'abcd'})
+                Payload: JSON.stringify({ cuid: 'abcd' })
             };
             console.log("test lambda");
             console.log(params);
             await lambda.invoke(params).promise();
+            */
             //return responseHandler.callbackRespondWithSimpleMessage(200, ' Customer Created Successfully ');
         }
-
         catch (err) {
-            
+
             if (err.message) {
                 return responseHandler.callbackRespondWithSimpleMessage(400, err.message);
             } else {
