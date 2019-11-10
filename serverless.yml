@@ -1,81 +1,66 @@
-service: serverless-customer-dynamodb
+service: cw-customers
 
 stage: ${self:provider.stage}
 
-custom:
-    dynamodb:
-        start:
-            port: 8000
-            inMemory: true
-            migrate: true
-            migration: 
-                dir: offline/migrations
-
 provider:
-    name: aws
-    runtime: nodejs10.x
-    timeout: 30
-    region: ${opt:region, 'ap-south-1'}
-    custom:
-    defaultStage: dev
-    profiles:
-      dev: devProfile
+  name: aws
+  runtime: nodejs10.x
+  timeout: 30
+  region: ${opt:region, 'us-east-1'}
 
-environment: 
+  environment: 
+    STAGE: ${opt:stage}
     
-    DYNAMODB_TABLE: customer
-    iamRoleStatements:
+  iamRoleStatements:
     - Effect: Allow
       Action:
-        - dynamodb:BatchGet*
-        - dynamodb:DescribeStream
-        - dynamodb:DescribeTable
         - dynamodb:Get*
         - dynamodb:Query
         - dynamodb:Scan
-        - dynamodb:BatchWrite*
         - dynamodb:CreateTable
-        - dynamodb:Delete*
         - dynamodb:Update*
         - dynamodb:PutItem
-        - lambda:InvokeFunction
-Resource: arn:aws:dynamodb::*:table/${self:provider.environment.DYNAMODB_TABLE}
-Properties:
-        AttributeDefinitions:
-          -
-            AttributeName: cid
-            AttributeType: s
-        KeySchema:
-          -
-            AttributeName: cid
-            KeyType: HASH
-        ProvisionedThroughput:
-          ReadCapacityUnits: 1
-          WriteCapacityUnits: 1
+      Resource: arn:aws:dynamodb::*:table/customer-${opt:stage}
+    - Effect: Allow
+      Action:
+        - lambda:Invoke
+      Resource: '*'
+
+
+      # Properties:
+      #   AttributeDefinitions:
+      #     -
+      #       AttributeName: cid
+      #       AttributeType: s
+      #   KeySchema:
+      #     -
+      #       AttributeName: cid
+      #       KeyType: HASH
+      #   ProvisionedThroughput:
+      #     ReadCapacityUnits: 1
+      #     WriteCapacityUnits: 1
 
 functions:
    getcustomerbyid:
     handler: handlers/getcustomerbyid.getcustomer
     events:
       - http:
-          path: /customers/{id}
+          path: customerid/{cid}
           method: get
           cors: true
 
    createcustomer:
     handler: handlers/addcustomer.createcustomer
+    enviroment:
+      CREATE_CR_LAMBDA_ARN: arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:function:cw-customers-${opt:stage}-createcustomerresources
     events:
       - http:
-          path: /customers/
+          path: customerid
           method: post
           cors: true
           
    createcustomerresources:
-    handler: handlers/createcustomerresources.createcustomerresources
-    events:
-      - http:
-          path: /customerresources/
-          method: post
-          cors: true
-          
-        
+    handler: handlers/createcustomerresources.createcustomerresources      
+
+plugins:
+  - serverless-pseudo-parameters

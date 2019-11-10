@@ -4,7 +4,7 @@ const utils = require('../common/utils');
 const Joi = require('joi');
 const AWS = require('aws-sdk');
 const dynamodb = new AWS.DynamoDB.DocumentClient();
-var lambda = new AWS.Lambda();
+const lambda = new AWS.Lambda();
 
 class AddCustomer extends BaseHandler {
     //this is main function
@@ -22,9 +22,9 @@ class AddCustomer extends BaseHandler {
         //validate body schema
         return Joi.object().keys({
             cid: Joi.string().required(),
-            type: Joi.string().valid(['Consumer', 'Enterprise']).required(),
-            scope: Joi.string().valid(['Direct', 'Reseller']).required(),
-            customerEmail: Joi.string().email().required(),
+            // type: Joi.string().valid(['Consumer', 'Enterprise']).required(),
+            // scope: Joi.string().valid(['Direct', 'Reseller']).required(),
+            // customerEmail: Joi.string().email().required(),
             /*primary: {
                 firstName: Joi.string().required(),
                 //lastName: Joi.string().required(),
@@ -68,8 +68,7 @@ class AddCustomer extends BaseHandler {
             cuid: cuid
         }
         const params = {
-            //TableName: 'customer-${process.env.STAGE}',
-            TableName: 'customer',
+            TableName: 'customer-${process.env.STAGE}',
             Item: Object.assign(item, body)
         };
         let valRes = await dynamodb.put(params).promise();
@@ -97,7 +96,7 @@ class AddCustomer extends BaseHandler {
             //invoke lambda customerresources
 
             /*let params = {
-                FunctionName: 'createcustomerresources', //TODO get from process.env
+                FunctionName: process.env.CREATE_CR_LAMBDA_ARN, //TODO get from process.env
                 InvocationType: 'Event',
                 //Payload: JSON.stringify({cuid:cuid})
                 Payload: JSON.stringify({ cuid: 'abcd' })
@@ -109,7 +108,6 @@ class AddCustomer extends BaseHandler {
             //return responseHandler.callbackRespondWithSimpleMessage(200, ' Customer Created Successfully ');
         }
         catch (err) {
-
             if (err.message) {
                 return responseHandler.callbackRespondWithSimpleMessage(400, err.message);
             } else {
