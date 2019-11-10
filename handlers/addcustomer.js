@@ -22,9 +22,9 @@ class AddCustomer extends BaseHandler {
         //validate body schema
         return Joi.object().keys({
             cid: Joi.string().required(),
-            // type: Joi.string().valid(['Consumer', 'Enterprise']).required(),
-            // scope: Joi.string().valid(['Direct', 'Reseller']).required(),
-            // customerEmail: Joi.string().email().required(),
+            type: Joi.string().valid(['Consumer', 'Enterprise']).required(),
+            scope: Joi.string().valid(['Direct', 'Reseller']).required(),
+            customerEmail: Joi.string().email().required(),
             /*primary: {
                 firstName: Joi.string().required(),
                 //lastName: Joi.string().required(),
