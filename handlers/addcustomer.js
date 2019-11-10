@@ -81,30 +81,31 @@ class AddCustomer extends BaseHandler {
             let body = event.body ? JSON.parse(event.body) : event;
 
             // Validate the input
-            await utils.validate(body, this.getValidationSchema());
-
+            //await utils.validate(body, this.getValidationSchema());
+            this.log.debug(body);
             // Check if cid already exists
-            let customerExists = await this.checkIfCustomerExists(body.cid);
-            this.log.debug("customerExists:" + customerExists);
-            if (customerExists) {
-                return responseHandler.callbackRespondWithSimpleMessage('400', 'Duplicate customer');
-            }
+            //let customerExists = await this.checkIfCustomerExists(body.cid);
+            // this.log.debug("");
+            // this.log.debug("customerExists:" + customerExists);
+            // if (customerExists) {
+            //     return responseHandler.callbackRespondWithSimpleMessage('400', 'Duplicate customer');
+            // }
 
-            // Call to insert customer
-            let cuid = await this.createCustomer(body);
+            // // Call to insert customer
+            // let cuid = await this.createCustomer(body);
 
-            //invoke lambda customerresources
+            // //invoke lambda customerresources
 
-            /*let params = {
-                FunctionName: process.env.CREATE_CR_LAMBDA_ARN, //TODO get from process.env
-                InvocationType: 'Event',
-                //Payload: JSON.stringify({cuid:cuid})
-                Payload: JSON.stringify({ cuid: 'abcd' })
-            };
-            console.log("test lambda");
-            console.log(params);
-            await lambda.invoke(params).promise();
-            */
+            // /*let params = {
+            //     FunctionName: process.env.CREATE_CR_LAMBDA_ARN, //TODO get from process.env
+            //     InvocationType: 'Event',
+            //     //Payload: JSON.stringify({cuid:cuid})
+            //     Payload: JSON.stringify({ cuid: 'abcd' })
+            // };
+            // console.log("test lambda");
+            // console.log(params);
+            // await lambda.invoke(params).promise();
+            // */
             return responseHandler.callbackRespondWithSimpleMessage(200, ' Customer Created Successfully ');
         }
         catch (err) {
