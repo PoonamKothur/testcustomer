@@ -16,13 +16,38 @@ class AddCustomer extends BaseHandler {
         return (Math.random().toString(36).substring(min, max) + Math.random().toString(36).substring(min, max)).toUpperCase();
     }
 
+    getValidationSchema() {
+        this.log.info('Inside getValidationSchema');
+
+        //validate body schema
+        return Joi.object().keys({
+            cid: Joi.string().required(),
+            // type: Joi.string().valid(['Consumer', 'Enterprise']).required(),
+            // scope: Joi.string().valid(['Direct', 'Reseller']).required(),
+            // customerEmail: Joi.string().email().required(),
+            /*primary: {
+                firstName: Joi.string().required(),
+                //lastName: Joi.string().required(),
+                //email: Joi.string().email().required(),
+                //phone: Joi.string().regex('[+]?\d{1,2}[.-\s]?)?(\d{3}[.-]?){2}\d{4}')
+            },
+            secondary: {
+                firstName: Joi.string().optional(),
+                lastName: Joi.string().optional(),
+                email: Joi.string().email().optional(),
+                phone: Joi.string().regex('[+]?\d{1,2}[.-\s]?)?(\d{3}[.-]?){2}\d{4}'),
+                registration: Joi.date().optional().optional(),
+                //lastUpdate: Joi.date().optional()
+            }*/
+        });
+    }
 
     // This function is used to get customer by cid
     async checkIfCustomerExists(cid) {
 
         let valRes = await dynamodb.get({
-            TableName: 'customer-${process.env.STAGE}',
-            //TableName: 'customer',
+            //TableName: 'customer-${process.env.STAGE}',
+            TableName: 'customer',
             Key: {
                 cid: cid
             },
@@ -56,31 +81,30 @@ class AddCustomer extends BaseHandler {
             let body = event.body ? JSON.parse(event.body) : event;
 
             // Validate the input
-            //await utils.validate(body, this.getValidationSchema());
-            this.log.debug(body);
+            await utils.validate(body, this.getValidationSchema());
+
             // Check if cid already exists
-            //let customerExists = await this.checkIfCustomerExists(body.cid);
-            // this.log.debug("");
+            // let customerExists = await this.checkIfCustomerExists(body.cid);
             // this.log.debug("customerExists:" + customerExists);
             // if (customerExists) {
             //     return responseHandler.callbackRespondWithSimpleMessage('400', 'Duplicate customer');
             // }
 
-            // // Call to insert customer
+            // Call to insert customer
             let cuid = await this.createCustomer(body);
 
-            // //invoke lambda customerresources
+            //invoke lambda customerresources
 
-            // /*let params = {
-            //     FunctionName: process.env.CREATE_CR_LAMBDA_ARN, //TODO get from process.env
-            //     InvocationType: 'Event',
-            //     //Payload: JSON.stringify({cuid:cuid})
-            //     Payload: JSON.stringify({ cuid: 'abcd' })
-            // };
-            // console.log("test lambda");
-            // console.log(params);
-            // await lambda.invoke(params).promise();
-            // */
+            /*let params = {
+                FunctionName: process.env.CREATE_CR_LAMBDA_ARN, //TODO get from process.env
+                InvocationType: 'Event',
+                //Payload: JSON.stringify({cuid:cuid})
+                Payload: JSON.stringify({ cuid: 'abcd' })
+            };
+            console.log("test lambda");
+            console.log(params);
+            await lambda.invoke(params).promise();
+            */
             return responseHandler.callbackRespondWithSimpleMessage(200, ' Customer Created Successfully ');
         }
         catch (err) {
