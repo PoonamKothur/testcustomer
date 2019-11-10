@@ -1,8 +1,8 @@
 {
   "service": {
-    "service": "serverless-customer-dynamodb",
+    "service": "cw-customers",
     "serviceObject": {
-      "name": "serverless-customer-dynamodb"
+      "name": "cw-customers"
     },
     "provider": {
       "stage": "dev",
@@ -10,12 +10,31 @@
       "name": "aws",
       "runtime": "nodejs10.x",
       "timeout": 30,
-      "region": "ap-south-1",
-      "custom": null,
-      "defaultStage": "dev",
-      "profiles": {
-        "dev": "devProfile"
+      "region": "us-east-1",
+      "environment": {
+        "STAGE": "dev"
       },
+      "iamRoleStatements": [
+        {
+          "Effect": "Allow",
+          "Action": [
+            "dynamodb:Get*",
+            "dynamodb:Query",
+            "dynamodb:Scan",
+            "dynamodb:CreateTable",
+            "dynamodb:Update*",
+            "dynamodb:PutItem"
+          ],
+          "Resource": "arn:aws:dynamodb::*:table/customer-dev"
+        },
+        {
+          "Effect": "Allow",
+          "Action": [
+            "lambda:Invoke"
+          ],
+          "Resource": "*"
+        }
+      ],
       "versionFunctions": true,
       "remoteFunctionData": null,
       "compiledCloudFormationTemplate": {
@@ -39,19 +58,19 @@
           "GetcustomerbyidLogGroup": {
             "Type": "AWS::Logs::LogGroup",
             "Properties": {
-              "LogGroupName": "/aws/lambda/serverless-customer-dynamodb-dev-getcustomerbyid"
+              "LogGroupName": "/aws/lambda/cw-customers-dev-getcustomerbyid"
             }
           },
           "CreatecustomerLogGroup": {
             "Type": "AWS::Logs::LogGroup",
             "Properties": {
-              "LogGroupName": "/aws/lambda/serverless-customer-dynamodb-dev-createcustomer"
+              "LogGroupName": "/aws/lambda/cw-customers-dev-createcustomer"
             }
           },
           "CreatecustomerresourcesLogGroup": {
             "Type": "AWS::Logs::LogGroup",
             "Properties": {
-              "LogGroupName": "/aws/lambda/serverless-customer-dynamodb-dev-createcustomerresources"
+              "LogGroupName": "/aws/lambda/cw-customers-dev-createcustomerresources"
             }
           },
           "IamRoleLambdaExecution": {
@@ -80,7 +99,7 @@
                       "-",
                       [
                         "dev",
-                        "serverless-customer-dynamodb",
+                        "cw-customers",
                         "lambda"
                       ]
                     ]
@@ -95,7 +114,7 @@
                         ],
                         "Resource": [
                           {
-                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/serverless-customer-dynamodb-dev*:*"
+                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/cw-customers-dev*:*"
                           }
                         ]
                       },
@@ -106,9 +125,15 @@
                         ],
                         "Resource": [
                           {
-                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/serverless-customer-dynamodb-dev*:*:*"
+                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/cw-customers-dev*:*:*"
                           }
                         ]
+                      },
+                      {
+                        "$ref": "$[\"service\"][\"provider\"][\"iamRoleStatements\"][0]"
+                      },
+                      {
+                        "$ref": "$[\"service\"][\"provider\"][\"iamRoleStatements\"][1]"
                       }
                     ]
                   }
@@ -119,7 +144,7 @@
                 "Fn::Join": [
                   "-",
                   [
-                    "serverless-customer-dynamodb",
+                    "cw-customers",
                     "dev",
                     {
                       "Ref": "AWS::Region"
@@ -137,9 +162,9 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/serverless-customer-dynamodb/dev/1573142935435-2019-11-07T16:08:55.435Z/serverless-customer-dynamodb.zip"
+                "S3Key": "serverless/cw-customers/dev/1573379739114-2019-11-10T09:55:39.114Z/cw-customers.zip"
               },
-              "FunctionName": "serverless-customer-dynamodb-dev-getcustomerbyid",
+              "FunctionName": "cw-customers-dev-getcustomerbyid",
               "Handler": "handlers/getcustomerbyid.getcustomer",
               "MemorySize": 1024,
               "Role": {
@@ -149,21 +174,26 @@
                 ]
               },
               "Runtime": "nodejs10.x",
-              "Timeout": 30
+              "Timeout": 30,
+              "Environment": {
+                "Variables": {
+                  "STAGE": "dev"
+                }
+              }
             },
             "DependsOn": [
               "GetcustomerbyidLogGroup",
               "IamRoleLambdaExecution"
             ]
           },
-          "GetcustomerbyidLambdaVersionGwtZoi8McoOo7TjIoqVAPU7t9C2hnxgV9iyEpDR04": {
+          "GetcustomerbyidLambdaVersionVoxH8hU4DEJSfnqI7aeWabtFOACzan9iDNXUsQ0FTs": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GetcustomerbyidLambdaFunction"
               },
-              "CodeSha256": "OgzqaFmSfiqvEWTQCEUfmlGM8870EOyRtXNroz7vdCY="
+              "CodeSha256": "se1pggt9N4O/mxoyFgdOrW9oSLIpZgfgHeQrvi6Y7MQ="
             }
           },
           "CreatecustomerLambdaFunction": {
@@ -173,9 +203,9 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/serverless-customer-dynamodb/dev/1573142935435-2019-11-07T16:08:55.435Z/serverless-customer-dynamodb.zip"
+                "S3Key": "serverless/cw-customers/dev/1573379739114-2019-11-10T09:55:39.114Z/cw-customers.zip"
               },
-              "FunctionName": "serverless-customer-dynamodb-dev-createcustomer",
+              "FunctionName": "cw-customers-dev-createcustomer",
               "Handler": "handlers/addcustomer.createcustomer",
               "MemorySize": 1024,
               "Role": {
@@ -185,21 +215,26 @@
                 ]
               },
               "Runtime": "nodejs10.x",
-              "Timeout": 30
+              "Timeout": 30,
+              "Environment": {
+                "Variables": {
+                  "STAGE": "dev"
+                }
+              }
             },
             "DependsOn": [
               "CreatecustomerLogGroup",
               "IamRoleLambdaExecution"
             ]
           },
-          "CreatecustomerLambdaVersionFGVEeBCGCCN8VsVLHAj3cmVyTt036EADSdX5vc4e0c": {
+          "CreatecustomerLambdaVersionJ7n74tB3LuxZcr3UH9NroDtt9ohY4taZUz2jb8E8uoQ": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "CreatecustomerLambdaFunction"
               },
-              "CodeSha256": "OgzqaFmSfiqvEWTQCEUfmlGM8870EOyRtXNroz7vdCY="
+              "CodeSha256": "se1pggt9N4O/mxoyFgdOrW9oSLIpZgfgHeQrvi6Y7MQ="
             }
           },
           "CreatecustomerresourcesLambdaFunction": {
@@ -209,9 +244,9 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/serverless-customer-dynamodb/dev/1573142935435-2019-11-07T16:08:55.435Z/serverless-customer-dynamodb.zip"
+                "S3Key": "serverless/cw-customers/dev/1573379739114-2019-11-10T09:55:39.114Z/cw-customers.zip"
               },
-              "FunctionName": "serverless-customer-dynamodb-dev-createcustomerresources",
+              "FunctionName": "cw-customers-dev-createcustomerresources",
               "Handler": "handlers/createcustomerresources.createcustomerresources",
               "MemorySize": 1024,
               "Role": {
@@ -221,27 +256,32 @@
                 ]
               },
               "Runtime": "nodejs10.x",
-              "Timeout": 30
+              "Timeout": 30,
+              "Environment": {
+                "Variables": {
+                  "STAGE": "dev"
+                }
+              }
             },
             "DependsOn": [
               "CreatecustomerresourcesLogGroup",
               "IamRoleLambdaExecution"
             ]
           },
-          "CreatecustomerresourcesLambdaVersionQ6mOqXympS46e84SZDKfOCPuUkBPsTBzFdz4zxb61E": {
+          "CreatecustomerresourcesLambdaVersionfrl39FDl6dHnDMC6XuAyYoCwkGmDQVrC0uBSVyFWI": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "CreatecustomerresourcesLambdaFunction"
               },
-              "CodeSha256": "OgzqaFmSfiqvEWTQCEUfmlGM8870EOyRtXNroz7vdCY="
+              "CodeSha256": "se1pggt9N4O/mxoyFgdOrW9oSLIpZgfgHeQrvi6Y7MQ="
             }
           },
           "ApiGatewayRestApi": {
             "Type": "AWS::ApiGateway::RestApi",
             "Properties": {
-              "Name": "dev-serverless-customer-dynamodb",
+              "Name": "dev-cw-customers",
               "EndpointConfiguration": {
                 "Types": [
                   "EDGE"
@@ -249,7 +289,7 @@
               }
             }
           },
-          "ApiGatewayResourceCustomers": {
+          "ApiGatewayResourceCustomerid": {
             "Type": "AWS::ApiGateway::Resource",
             "Properties": {
               "ParentId": {
@@ -258,40 +298,25 @@
                   "RootResourceId"
                 ]
               },
-              "PathPart": "customers",
+              "PathPart": "customerid",
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
               }
             }
           },
-          "ApiGatewayResourceCustomersIdVar": {
+          "ApiGatewayResourceCustomeridCidVar": {
             "Type": "AWS::ApiGateway::Resource",
             "Properties": {
               "ParentId": {
-                "Ref": "ApiGatewayResourceCustomers"
+                "Ref": "ApiGatewayResourceCustomerid"
               },
-              "PathPart": "{id}",
+              "PathPart": "{cid}",
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
               }
             }
           },
-          "ApiGatewayResourceCustomerresources": {
-            "Type": "AWS::ApiGateway::Resource",
-            "Properties": {
-              "ParentId": {
-                "Fn::GetAtt": [
-                  "ApiGatewayRestApi",
-                  "RootResourceId"
-                ]
-              },
-              "PathPart": "customerresources",
-              "RestApiId": {
-                "Ref": "ApiGatewayRestApi"
-              }
-            }
-          },
-          "ApiGatewayMethodCustomersIdVarOptions": {
+          "ApiGatewayMethodCustomeridCidVarOptions": {
             "Type": "AWS::ApiGateway::Method",
             "Properties": {
               "AuthorizationType": "NONE",
@@ -331,14 +356,14 @@
                 ]
               },
               "ResourceId": {
-                "Ref": "ApiGatewayResourceCustomersIdVar"
+                "Ref": "ApiGatewayResourceCustomeridCidVar"
               },
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
               }
             }
           },
-          "ApiGatewayMethodCustomersOptions": {
+          "ApiGatewayMethodCustomeridOptions": {
             "Type": "AWS::ApiGateway::Method",
             "Properties": {
               "AuthorizationType": "NONE",
@@ -378,67 +403,20 @@
                 ]
               },
               "ResourceId": {
-                "Ref": "ApiGatewayResourceCustomers"
+                "Ref": "ApiGatewayResourceCustomerid"
               },
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
               }
             }
           },
-          "ApiGatewayMethodCustomerresourcesOptions": {
-            "Type": "AWS::ApiGateway::Method",
-            "Properties": {
-              "AuthorizationType": "NONE",
-              "HttpMethod": "OPTIONS",
-              "MethodResponses": [
-                {
-                  "StatusCode": "200",
-                  "ResponseParameters": {
-                    "method.response.header.Access-Control-Allow-Origin": true,
-                    "method.response.header.Access-Control-Allow-Headers": true,
-                    "method.response.header.Access-Control-Allow-Methods": true,
-                    "method.response.header.Access-Control-Allow-Credentials": true
-                  },
-                  "ResponseModels": {}
-                }
-              ],
-              "RequestParameters": {},
-              "Integration": {
-                "Type": "MOCK",
-                "RequestTemplates": {
-                  "application/json": "{statusCode:200}"
-                },
-                "ContentHandling": "CONVERT_TO_TEXT",
-                "IntegrationResponses": [
-                  {
-                    "StatusCode": "200",
-                    "ResponseParameters": {
-                      "method.response.header.Access-Control-Allow-Origin": "'*'",
-                      "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
-                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'",
-                      "method.response.header.Access-Control-Allow-Credentials": "'false'"
-                    },
-                    "ResponseTemplates": {
-                      "application/json": "#set($origin = $input.params(\"Origin\"))\n#if($origin == \"\") #set($origin = $input.params(\"origin\")) #end\n#if($origin.matches(\".*\")) #set($context.responseOverride.header.Access-Control-Allow-Origin = $origin) #end"
-                    }
-                  }
-                ]
-              },
-              "ResourceId": {
-                "Ref": "ApiGatewayResourceCustomerresources"
-              },
-              "RestApiId": {
-                "Ref": "ApiGatewayRestApi"
-              }
-            }
-          },
-          "ApiGatewayMethodCustomersIdVarGet": {
+          "ApiGatewayMethodCustomeridCidVarGet": {
             "Type": "AWS::ApiGateway::Method",
             "Properties": {
               "HttpMethod": "GET",
               "RequestParameters": {},
               "ResourceId": {
-                "Ref": "ApiGatewayResourceCustomersIdVar"
+                "Ref": "ApiGatewayResourceCustomeridCidVar"
               },
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
@@ -475,13 +453,13 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayMethodCustomersPost": {
+          "ApiGatewayMethodCustomeridPost": {
             "Type": "AWS::ApiGateway::Method",
             "Properties": {
               "HttpMethod": "POST",
               "RequestParameters": {},
               "ResourceId": {
-                "Ref": "ApiGatewayResourceCustomers"
+                "Ref": "ApiGatewayResourceCustomerid"
               },
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
@@ -518,50 +496,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayMethodCustomerresourcesPost": {
-            "Type": "AWS::ApiGateway::Method",
-            "Properties": {
-              "HttpMethod": "POST",
-              "RequestParameters": {},
-              "ResourceId": {
-                "Ref": "ApiGatewayResourceCustomerresources"
-              },
-              "RestApiId": {
-                "Ref": "ApiGatewayRestApi"
-              },
-              "ApiKeyRequired": false,
-              "AuthorizationType": "NONE",
-              "Integration": {
-                "IntegrationHttpMethod": "POST",
-                "Type": "AWS_PROXY",
-                "Uri": {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:",
-                      {
-                        "Ref": "AWS::Partition"
-                      },
-                      ":apigateway:",
-                      {
-                        "Ref": "AWS::Region"
-                      },
-                      ":lambda:path/2015-03-31/functions/",
-                      {
-                        "Fn::GetAtt": [
-                          "CreatecustomerresourcesLambdaFunction",
-                          "Arn"
-                        ]
-                      },
-                      "/invocations"
-                    ]
-                  ]
-                }
-              },
-              "MethodResponses": []
-            }
-          },
-          "ApiGatewayDeployment1573142932713": {
+          "ApiGatewayDeployment1573379734748": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -570,12 +505,10 @@
               "StageName": "dev"
             },
             "DependsOn": [
-              "ApiGatewayMethodCustomersIdVarOptions",
-              "ApiGatewayMethodCustomersOptions",
-              "ApiGatewayMethodCustomerresourcesOptions",
-              "ApiGatewayMethodCustomersIdVarGet",
-              "ApiGatewayMethodCustomersPost",
-              "ApiGatewayMethodCustomerresourcesPost"
+              "ApiGatewayMethodCustomeridCidVarOptions",
+              "ApiGatewayMethodCustomeridOptions",
+              "ApiGatewayMethodCustomeridCidVarGet",
+              "ApiGatewayMethodCustomeridPost"
             ]
           },
           "GetcustomerbyidLambdaPermissionApiGateway": {
@@ -651,43 +584,6 @@
                 ]
               }
             }
-          },
-          "CreatecustomerresourcesLambdaPermissionApiGateway": {
-            "Type": "AWS::Lambda::Permission",
-            "Properties": {
-              "FunctionName": {
-                "Fn::GetAtt": [
-                  "CreatecustomerresourcesLambdaFunction",
-                  "Arn"
-                ]
-              },
-              "Action": "lambda:InvokeFunction",
-              "Principal": "apigateway.amazonaws.com",
-              "SourceArn": {
-                "Fn::Join": [
-                  "",
-                  [
-                    "arn:",
-                    {
-                      "Ref": "AWS::Partition"
-                    },
-                    ":execute-api:",
-                    {
-                      "Ref": "AWS::Region"
-                    },
-                    ":",
-                    {
-                      "Ref": "AWS::AccountId"
-                    },
-                    ":",
-                    {
-                      "Ref": "ApiGatewayRestApi"
-                    },
-                    "/*/*"
-                  ]
-                ]
-              }
-            }
           }
         },
         "Outputs": {
@@ -699,19 +595,19 @@
           "GetcustomerbyidLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetcustomerbyidLambdaVersionGwtZoi8McoOo7TjIoqVAPU7t9C2hnxgV9iyEpDR04"
+              "Ref": "GetcustomerbyidLambdaVersionVoxH8hU4DEJSfnqI7aeWabtFOACzan9iDNXUsQ0FTs"
             }
           },
           "CreatecustomerLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "CreatecustomerLambdaVersionFGVEeBCGCCN8VsVLHAj3cmVyTt036EADSdX5vc4e0c"
+              "Ref": "CreatecustomerLambdaVersionJ7n74tB3LuxZcr3UH9NroDtt9ohY4taZUz2jb8E8uoQ"
             }
           },
           "CreatecustomerresourcesLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "CreatecustomerresourcesLambdaVersionQ6mOqXympS46e84SZDKfOCPuUkBPsTBzFdz4zxb61E"
+              "Ref": "CreatecustomerresourcesLambdaVersionfrl39FDl6dHnDMC6XuAyYoCwkGmDQVrC0uBSVyFWI"
             }
           },
           "ServiceEndpoint": {
@@ -768,18 +664,9 @@
       },
       "vpc": {}
     },
-    "custom": {
-      "dynamodb": {
-        "start": {
-          "port": 8000,
-          "inMemory": true,
-          "migrate": true,
-          "migration": {
-            "dir": "offline/migrations"
-          }
-        }
-      }
-    },
+    "plugins": [
+      "serverless-pseudo-parameters"
+    ],
     "pluginsData": {},
     "functions": {
       "getcustomerbyid": {
@@ -787,7 +674,7 @@
         "events": [
           {
             "http": {
-              "path": "customers/{id}",
+              "path": "customerid/{cid}",
               "method": "get",
               "cors": {
                 "origins": [
@@ -812,7 +699,7 @@
             }
           }
         ],
-        "name": "serverless-customer-dynamodb-dev-getcustomerbyid",
+        "name": "cw-customers-dev-getcustomerbyid",
         "package": {},
         "memory": 1024,
         "timeout": 30,
@@ -821,10 +708,13 @@
       },
       "createcustomer": {
         "handler": "handlers/addcustomer.createcustomer",
+        "enviroment": {
+          "CREATE_CR_LAMBDA_ARN": "arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:function:cw-customers-dev-createcustomerresources"
+        },
         "events": [
           {
             "http": {
-              "path": "customers",
+              "path": "customerid",
               "method": "post",
               "cors": {
                 "origins": [
@@ -849,7 +739,7 @@
             }
           }
         ],
-        "name": "serverless-customer-dynamodb-dev-createcustomer",
+        "name": "cw-customers-dev-createcustomer",
         "package": {},
         "memory": 1024,
         "timeout": 30,
@@ -858,35 +748,8 @@
       },
       "createcustomerresources": {
         "handler": "handlers/createcustomerresources.createcustomerresources",
-        "events": [
-          {
-            "http": {
-              "path": "customerresources",
-              "method": "post",
-              "cors": {
-                "origins": [
-                  "*"
-                ],
-                "origin": "*",
-                "methods": [
-                  "OPTIONS",
-                  "POST"
-                ],
-                "headers": [
-                  "Content-Type",
-                  "X-Amz-Date",
-                  "Authorization",
-                  "X-Api-Key",
-                  "X-Amz-Security-Token",
-                  "X-Amz-User-Agent"
-                ],
-                "allowCredentials": false
-              },
-              "integration": "AWS_PROXY"
-            }
-          }
-        ],
-        "name": "serverless-customer-dynamodb-dev-createcustomerresources",
+        "events": [],
+        "name": "cw-customers-dev-createcustomerresources",
         "package": {},
         "memory": 1024,
         "timeout": 30,
@@ -896,10 +759,10 @@
     },
     "serviceFilename": "serverless.yml",
     "layers": {},
-    "artifact": "/home/poonam/CodeBlock/Projects/CecureCloud/Code/cecurecloud/apis/.serverless/serverless-customer-dynamodb.zip"
+    "artifact": "/home/poonam/CodeBlock/Projects/CecureCloud/Code/cecurecloud/apis/.serverless/cw-customers.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/serverless-customer-dynamodb/dev/1573142935435-2019-11-07T16:08:55.435Z",
-    "artifact": "serverless-customer-dynamodb.zip"
+    "artifactDirectoryName": "serverless/cw-customers/dev/1573379739114-2019-11-10T09:55:39.114Z",
+    "artifact": "cw-customers.zip"
   }
 }
