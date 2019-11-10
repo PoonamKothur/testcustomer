@@ -1,7 +1,6 @@
 const responseHandler = require("../common/responsehandler");
 const BaseHandler = require("../common/basehandler");
-const utils = require('../common/utils');
-//const Joi = require('joi');
+
 const AWS = require('aws-sdk');
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 const lambda = new AWS.Lambda();
@@ -16,31 +15,7 @@ class AddCustomer extends BaseHandler {
         return (Math.random().toString(36).substring(min, max) + Math.random().toString(36).substring(min, max)).toUpperCase();
     }
 
-    getValidationSchema() {
-        this.log.info('Inside getValidationSchema');
-
-        //validate body schema
-        return Joi.object().keys({
-            cid: Joi.string().required(),
-            // type: Joi.string().valid(['Consumer', 'Enterprise']).required(),
-            // scope: Joi.string().valid(['Direct', 'Reseller']).required(),
-            // customerEmail: Joi.string().email().required(),
-            /*primary: {
-                firstName: Joi.string().required(),
-                //lastName: Joi.string().required(),
-                //email: Joi.string().email().required(),
-                //phone: Joi.string().regex('[+]?\d{1,2}[.-\s]?)?(\d{3}[.-]?){2}\d{4}')
-            },
-            secondary: {
-                firstName: Joi.string().optional(),
-                lastName: Joi.string().optional(),
-                email: Joi.string().email().optional(),
-                phone: Joi.string().regex('[+]?\d{1,2}[.-\s]?)?(\d{3}[.-]?){2}\d{4}'),
-                registration: Joi.date().optional().optional(),
-                //lastUpdate: Joi.date().optional()
-            }*/
-        });
-    }
+    
 
     // This function is used to get customer by cid
     async checkIfCustomerExists(cid) {
@@ -81,7 +56,7 @@ class AddCustomer extends BaseHandler {
             let body = event.body ? JSON.parse(event.body) : event;
 
             // Validate the input
-            //await utils.validate(body, this.getValidationSchema());
+           
             this.log.debug(body);
             // Check if cid already exists
             //let customerExists = await this.checkIfCustomerExists(body.cid);
