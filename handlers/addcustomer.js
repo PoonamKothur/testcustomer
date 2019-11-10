@@ -1,7 +1,7 @@
 const responseHandler = require("../common/responsehandler");
 const BaseHandler = require("../common/basehandler");
 const utils = require('../common/utils');
-const Joi = require('joi');
+//const Joi = require('joi');
 const AWS = require('aws-sdk');
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 const lambda = new AWS.Lambda();
