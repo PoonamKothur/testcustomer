@@ -27,18 +27,6 @@ provider:
       Resource: '*'
 
 
-      # Properties:
-      #   AttributeDefinitions:
-      #     -
-      #       AttributeName: cid
-      #       AttributeType: s
-      #   KeySchema:
-      #     -
-      #       AttributeName: cid
-      #       KeyType: HASH
-      #   ProvisionedThroughput:
-      #     ReadCapacityUnits: 1
-      #     WriteCapacityUnits: 1
 
 functions:
    getcustomerbyid:
@@ -61,6 +49,19 @@ functions:
           
    createcustomerresources:
     handler: handlers/createcustomerresources.createcustomerresources      
-
+ 
+resources:
+  Resources:
+    CustomerTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: customer-${opt:stage}
+        AttributeDefinitions:
+          - AttributeName: cid
+            AttributeType: S
+        KeySchema:
+          - AttributeName: cid
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
 plugins:
   - serverless-pseudo-parameters

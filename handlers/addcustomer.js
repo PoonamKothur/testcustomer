@@ -16,14 +16,13 @@ class AddCustomer extends BaseHandler {
         return (Math.random().toString(36).substring(min, max) + Math.random().toString(36).substring(min, max)).toUpperCase();
     }
 
-    
 
     // This function is used to get customer by cid
     async checkIfCustomerExists(cid) {
 
         let valRes = await dynamodb.get({
-            //TableName: 'customer-${process.env.STAGE}',
-            TableName: 'customer',
+            TableName: 'customer-${process.env.STAGE}',
+            //TableName: 'customer',
             Key: {
                 cid: cid
             },
@@ -68,7 +67,7 @@ class AddCustomer extends BaseHandler {
             // }
 
             // // Call to insert customer
-            // let cuid = await this.createCustomer(body);
+            let cuid = await this.createCustomer(body);
 
             // //invoke lambda customerresources
 
