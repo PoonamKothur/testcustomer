@@ -1,6 +1,7 @@
 const responseHandler = require("../common/responsehandler");
 const BaseHandler = require("../common/basehandler");
-
+const utils = require('../common/utils');
+const Joi = require('joi');
 const AWS = require('aws-sdk');
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 const lambda = new AWS.Lambda();
@@ -56,7 +57,7 @@ class AddCustomer extends BaseHandler {
             let body = event.body ? JSON.parse(event.body) : event;
 
             // Validate the input
-           
+            //await utils.validate(body, this.getValidationSchema());
             this.log.debug(body);
             // Check if cid already exists
             //let customerExists = await this.checkIfCustomerExists(body.cid);
