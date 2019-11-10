@@ -43,7 +43,7 @@ class AddCustomer extends BaseHandler {
             cuid: cuid
         }
         const params = {
-            TableName: 'customer-${process.env.STAGE}',
+            TableName: 'customer-dev',
             Item: Object.assign(item, body)
         };
         let valRes = await dynamodb.put(params).promise();
