@@ -33,7 +33,7 @@ class CreateCustomerResources extends BaseHandler {
                 //     createdResources.push({ name: resourceName, 'cuid': cuid, type: resource.type, status: "completed" });
                 //     break;
                 case 'userpool':
-                    let poolResponse =  await awsmanager.createUserPool_inAWS(resourceName);
+                    let poolResponse =  await awsmanager.createpoolin_AWS(resourceName);
                     console.log("poolResponse....check if pool id "+ poolResponse);
                     //createdResources.push({ name: resourceName, 'cuid': cuid, type: resource.type, status: "completed"});
                    // console.log("created resources array after push in userpool" + createdResources);

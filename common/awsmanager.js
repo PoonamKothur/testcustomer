@@ -30,7 +30,7 @@ exports.createDynamoTable = async (tablename, resource) => {
     });
 }
 
-exports.createUserPoolinAWS = async (poolName) => {
+exports.createpoolin_AWS = async (poolName) => {
     let params = {
         PoolName: poolName, /* required */
     };
