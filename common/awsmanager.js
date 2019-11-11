@@ -30,7 +30,7 @@ exports.createDynamoTable = async (tablename, resource) => {
     });
 }
 
-exports.createUserPool = async (poolName) => {
+exports.createUserPoolinAWS = async (poolName) => {
     let params = {
         PoolName: poolName, /* required */
     };
@@ -41,18 +41,17 @@ exports.createUserPool = async (poolName) => {
             return null;
         }
         else {
-            console.log("'" + params.PoolName + "' User Pool created successfully");
+            //console.log("'" + params.PoolName + "' User Pool created successfully");
             log.debug("'" + params.PoolName + "' User Pool created successfully");
             log.debug("User Pool description JSON:", JSON.stringify(data, null, 2));
+            console.log("userpoolid...... in aws manager" + data.UserPool.Id);
             //createUserGroup("TestGroup-123", data.UserPool.Id);
-            console.log("uder pool id.............")
-            console.log(data.UserPool.Id);
             return data.UserPool.Id;
         }
-    }).promise();
+    });
 }
 
-exports.createUserGroup = async (groupName, userPoolId) => {
+createUserGroup = async (groupName, userPoolId) => {
     let params = {
         GroupName: groupName, /* required */
         UserPoolId: userPoolId       /* required */

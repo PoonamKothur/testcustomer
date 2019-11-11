@@ -32,29 +32,34 @@ class CreateCustomerResources extends BaseHandler {
                     createdResources.push({ name: resourceName, 'cuid': cuid, type: resource.type, status: "completed" });
                     break;
                 case 'userpool':
-                    let poolResponse = await awsmanager.createUserPool(resourceName);
-                    createdResources.push({ name: resourceName, 'cuid': cuid, type: resource.type, status: "completed" });
-                    break;
+                    let poolResponse = await awsmanager.createUserPoolinAWS(resourceName);
+                    console.log("poolResponse....check if pool id "+ poolResponse);
+                    createdResources.push({ name: resourceName, 'cuid': cuid, type: resource.type, status: "completed"});
+                    console.log("crested resources array after push in userpool" + createdResources);
+                    break;      
                 case 'usergroup':
                     //First get pool id from created resources
-
-                    let userPoolDetails = createdResources.filter(f => f.type === 'userpool');
-                    let resGroupId = await awsmanager.createUserGroup(resourceName, userPoolDetails[0].attributes.pool_id);
-                    createdResources.push({ name: resourceName, 'cuid': cuid, type: resource.type, status: "completed", attributes: { group_id: resGroupId } });
-                    break;
+                    // console.log("createdResources..........");
+                    // console.log(createdResources);
+                    //  let userPoolDetails = createdResources.filter(f => f.type === 'userpool');
+                    //  console.log("userPoolDetails ....................");
+                    // console.log(userPoolDetails);
+                    // // let resGroupId = await awsmanager.createUserGroup(resourceName, userPoolDetails[0].attributes.pool_id);
+                    // createdResources.push({ name: resourceName, 'cuid': cuid, type: resource.type, status: "completed", attributes: { group_id: resGroupId } });
+                 break;
             }
         }
 
         // check if created resources
         if (createdResources && createdResources.length > 0) {
             for (let resource of createdResources) {
-                log.debug(JSON.stringify(resource));
+                this.log.debug(JSON.stringify(resource));
                 // Simply use batch post to add to customers-resources-<stage>
                 const params = {
                     TableName: `customer-resources-${process.env.STAGE}`,
                     Item: resource
                 };
-                let valRes = await documentClient.put(params).promise();
+                //let valRes = await documentClient.put(params).promise();
             }
         }
     }
@@ -63,7 +68,7 @@ class CreateCustomerResources extends BaseHandler {
         try {
             // Check if cuid is present
             let resources = await this.getAdminCustomerResources();
-            log.debug(resources);
+            this.log.debug(resources);
             if (resources && resources.length > 0) {
                 await this.createResources(resources, event.cuid);
             }
