@@ -73,33 +73,18 @@ resources:
         AttributeDefinitions:
           - AttributeName: name
             AttributeType: S
-        KeySchema:
-          - AttributeName: name
-            KeyType: HASH
-
-        AttributeDefinitions:
           - AttributeName: sequence
             AttributeType: N
-        
-        AttributeDefinitions:
           - AttributeName: type
             AttributeType: S
-        KeySchema:
-          - AttributeName: name
-            KeyType: HASH
-
-        AttributeDefinitions:
           - AttributeName: type
             AttributeType: S
-        KeySchema:
-          - AttributeName: name
-            KeyType: HASH  
-        
-        AttributeDefinitions:
           - AttributeName: attributes
             AttributeType: Map
         KeySchema:
-          - AttributeName: attributes
+          - AttributeName: name
+            KeyType: HASH
+
         BillingMode: PAY_PER_REQUEST
 
     CustomerResourcesTable:
