@@ -48,7 +48,7 @@ exports.createUserPoolinAWS = async (poolName) => {
             //createUserGroup("TestGroup-123", data.UserPool.Id);
             return data.UserPool.Id;
         }
-    });
+    }).promise();
 }
 
 createUserGroup = async (groupName, userPoolId) => {

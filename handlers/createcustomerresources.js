@@ -35,20 +35,23 @@ class CreateCustomerResources extends BaseHandler {
                     let poolResponse = await awsmanager.createUserPoolinAWS(resourceName);
                     console.log("poolResponse....check if pool id "+ poolResponse);
                     createdResources.push({ name: resourceName, 'cuid': cuid, type: resource.type, status: "completed"});
-                    console.log("crested resources array after push in userpool" + createdResources);
+                    console.log("created resources array after push in userpool" + createdResources);
                     break;      
-                case 'usergroup':
-                    //First get pool id from created resources
-                    // console.log("createdResources..........");
-                    // console.log(createdResources);
-                    //  let userPoolDetails = createdResources.filter(f => f.type === 'userpool');
-                    //  console.log("userPoolDetails ....................");
-                    // console.log(userPoolDetails);
-                    // // let resGroupId = await awsmanager.createUserGroup(resourceName, userPoolDetails[0].attributes.pool_id);
-                    // createdResources.push({ name: resourceName, 'cuid': cuid, type: resource.type, status: "completed", attributes: { group_id: resGroupId } });
-                 break;
+                // case 'usergroup':
+                //     //First get pool id from created resources
+                //     // console.log("createdResources..........");
+                //     // console.log(createdResources);
+                //     //  let userPoolDetails = createdResources.filter(f => f.type === 'userpool');
+                //     //  console.log("userPoolDetails ....................");
+                //     // console.log(userPoolDetails);
+                //     // // let resGroupId = await awsmanager.createUserGroup(resourceName, userPoolDetails[0].attributes.pool_id);
+                //     // createdResources.push({ name: resourceName, 'cuid': cuid, type: resource.type, status: "completed", attributes: { group_id: resGroupId } });
+                //  break;
             }
+
         }
+
+        console.log('outside switch case');
 
         // check if created resources
         if (createdResources && createdResources.length > 0) {
