@@ -136,7 +136,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/cw-customers/dev/1573456715795-2019-11-11T07:18:35.795Z/cw-customers.zip"
+          "S3Key": "serverless/cw-customers/dev/1573456990894-2019-11-11T07:23:10.894Z/cw-customers.zip"
         },
         "FunctionName": "cw-customers-dev-getcustomerbyid",
         "Handler": "handlers/getcustomerbyid.getcustomer",
@@ -177,7 +177,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/cw-customers/dev/1573456715795-2019-11-11T07:18:35.795Z/cw-customers.zip"
+          "S3Key": "serverless/cw-customers/dev/1573456990894-2019-11-11T07:23:10.894Z/cw-customers.zip"
         },
         "FunctionName": "cw-customers-dev-createcustomer",
         "Handler": "handlers/addcustomer.createcustomer",
@@ -218,7 +218,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/cw-customers/dev/1573456715795-2019-11-11T07:18:35.795Z/cw-customers.zip"
+          "S3Key": "serverless/cw-customers/dev/1573456990894-2019-11-11T07:23:10.894Z/cw-customers.zip"
         },
         "FunctionName": "cw-customers-dev-createcustomerresources",
         "Handler": "handlers/createcustomerresources.createcustomerresources",
@@ -572,7 +572,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1573456712896": {
+    "ApiGatewayDeployment1573456988029": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -741,7 +741,7 @@
     "CustomerResourcesTable": {
       "Type": "AWS::DynamoDB::Table",
       "Properties": {
-        "TableName": "customers-resources-dev",
+        "TableName": "customer-resources-dev",
         "AttributeDefinitions": [
           {
             "AttributeName": "name",

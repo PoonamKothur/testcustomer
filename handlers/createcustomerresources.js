@@ -28,21 +28,26 @@ class CreateCustomerResources extends BaseHandler {
             let resourceName = `${cuid}-${resource.name}`;
             switch (resource.type) {
                 case 'dynamodb':
-                    //await awsmanager.createDynamoTable(resourceName, resource);
+                    await awsmanager.createDynamoTable(resourceName, resource);
                     //createdResources.push({ 'cuid': cuid, name: resourceName, type: resource.type, status: "completed" });
-                    createdResources.push({ name: resourceName, type: resource.type, status: "completed" });
+                    createdResources.push({ name: resourceName, 'cuid': cuid, type: resource.type, status: "completed" });
                     break;
                 case 'userpool':
-                    //let poolResponse = await awsmanager.createUserPool(resourceName);
+                    let poolResponse = await awsmanager.createUserPool(resourceName);
                     //createdResources.push({ 'cuid': cuid, name: resourceName, type: resource.type, status: "completed", attributes: poolResponse });
-                    createdResources.push({ name: resourceName, type: resource.type, status: "completed" });
+                    createdResources.push({ name: resourceName, 'cuid': cuid, type: resource.type, status: "completed" });
                     break;
-                // case 'usergroup':
-                //     //First get pool id from created resources
-                //     let userPoolDetails = createdResources.filter(f => f.type === 'userpool');
-                //     let resGroupId = await awsmanager.createUserGroup(resourceName, userPoolDetails[0].attributes.pool_id);
-                //     createdResources.push({ 'cuid': cuid, name: resourceName, type: resource.type, status: "completed", attributes: { group_id: resGroupId } });
-                //     break;
+                case 'usergroup':
+                    //First get pool id from created resources
+
+                    // let userPoolDetails = createdResources.filter(f => f.type === 'userpool');
+                    // console.log (userPoolDetails);
+                    // console.log(userPoolDetails[0].attributes.pool_id);
+
+                    // let resGroupId = await awsmanager.createUserGroup(resourceName, userPoolDetails[0].attributes.pool_id);
+                    // //createdResources.push({ 'cuid': cuid, name: resourceName, type: resource.type, status: "completed", attributes: { group_id: resGroupId } });
+                    // createdResources.push({ name: resourceName, type: resource.type, status: "completed", attributes: { group_id: resGroupId } });
+                    // break;
 
             }
         }

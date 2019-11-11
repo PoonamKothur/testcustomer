@@ -6,7 +6,7 @@ provider:
   name: aws
   runtime: nodejs10.x
   timeout: 30
-  region: ${opt:region, 'ap-south-1'}
+  region: ${opt:region, 'us-east-1'}
 
   environment: 
     STAGE: ${opt:stage}
@@ -25,8 +25,6 @@ provider:
       Action:
         - lambda:Invoke
       Resource: '*'
-
-
 
 functions:
    getcustomerbyid:
@@ -78,7 +76,32 @@ resources:
         KeySchema:
           - AttributeName: name
             KeyType: HASH
+
+        AttributeDefinitions:
+          - AttributeName: sequence
+            AttributeType: N
+        
+        AttributeDefinitions:
+          - AttributeName: type
+            AttributeType: S
+        KeySchema:
+          - AttributeName: name
+            KeyType: HASH
+
+        AttributeDefinitions:
+          - AttributeName: type
+            AttributeType: S
+        KeySchema:
+          - AttributeName: name
+            KeyType: HASH  
+        
+        AttributeDefinitions:
+          - AttributeName: attributes
+            AttributeType: Map
+        KeySchema:
+          - AttributeName: attributes
         BillingMode: PAY_PER_REQUEST
+
     CustomerResourcesTable:
       Type: AWS::DynamoDB::Table
       Properties:
