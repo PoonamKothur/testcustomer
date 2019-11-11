@@ -41,7 +41,7 @@ exports.createUserPoolinAWS = async (poolName) => {
             return null;
         }
         else {
-            //console.log("'" + params.PoolName + "' User Pool created successfully");
+            console.log("'" + params.PoolName + "' User Pool created successfully");
             log.debug("'" + params.PoolName + "' User Pool created successfully");
             log.debug("User Pool description JSON:", JSON.stringify(data, null, 2));
             console.log("userpoolid...... in aws manager" + data.UserPool.Id);

@@ -21,21 +21,23 @@ class CreateCustomerResources extends BaseHandler {
     }
 
     // This function is used to create customer specific resources
-    async createResources(resources, cuid) {
+     createResources(resources, cuid) {
         let createdResources = [];
         for (let resource of resources) {
             this.log.debug("resource.type:" + resource.type);
+            console.log("resource.type:" + resource.type);
             let resourceName = `${cuid}-${resource.name}`;
             switch (resource.type) {
-                case 'dynamodb':
-                    await awsmanager.createDynamoTable(resourceName, resource);
-                    createdResources.push({ name: resourceName, 'cuid': cuid, type: resource.type, status: "completed" });
-                    break;
+                // case 'dynamodb':
+                //     await awsmanager.createDynamoTable(resourceName, resource);
+                //     createdResources.push({ name: resourceName, 'cuid': cuid, type: resource.type, status: "completed" });
+                //     break;
                 case 'userpool':
-                    let poolResponse = await awsmanager.createUserPoolinAWS(resourceName);
+
+                    let poolResponse =  awsmanager.createUserPoolinAWS(resourceName);
                     console.log("poolResponse....check if pool id "+ poolResponse);
-                    createdResources.push({ name: resourceName, 'cuid': cuid, type: resource.type, status: "completed"});
-                    console.log("created resources array after push in userpool" + createdResources);
+                    //createdResources.push({ name: resourceName, 'cuid': cuid, type: resource.type, status: "completed"});
+                   // console.log("created resources array after push in userpool" + createdResources);
                     break;      
                 // case 'usergroup':
                 //     //First get pool id from created resources
@@ -48,23 +50,22 @@ class CreateCustomerResources extends BaseHandler {
                 //     // createdResources.push({ name: resourceName, 'cuid': cuid, type: resource.type, status: "completed", attributes: { group_id: resGroupId } });
                 //  break;
             }
-
         }
 
         console.log('outside switch case');
 
-        // check if created resources
-        if (createdResources && createdResources.length > 0) {
-            for (let resource of createdResources) {
-                this.log.debug(JSON.stringify(resource));
-                // Simply use batch post to add to customers-resources-<stage>
-                const params = {
-                    TableName: `customer-resources-${process.env.STAGE}`,
-                    Item: resource
-                };
-                //let valRes = await documentClient.put(params).promise();
-            }
-        }
+        // // check if created resources
+        // if (createdResources && createdResources.length > 0) {
+        //     for (let resource of createdResources) {
+        //         this.log.debug(JSON.stringify(resource));
+        //         // Simply use batch post to add to customers-resources-<stage>
+        //         const params = {
+        //             TableName: `customer-resources-${process.env.STAGE}`,
+        //             Item: resource
+        //         };
+        //         //let valRes = await documentClient.put(params).promise();
+        //     }
+        // }
     }
 
     async process(event, context, callback) {
