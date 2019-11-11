@@ -85,11 +85,9 @@ resources:
         TableName: customer-resources-${opt:stage}
         AttributeDefinitions:
           - AttributeName: cuid
-            AttributeType: S        
-          - AttributeName: name
-            AttributeType: S
+            AttributeType: S          
         KeySchema:
-          - AttributeName: name
+          - AttributeName: cuid
             KeyType: HASH
         BillingMode: PAY_PER_REQUEST
   
