@@ -21,7 +21,7 @@ class CreateCustomerResources extends BaseHandler {
     }
 
     // This function is used to create customer specific resources
-     createResources(resources, cuid) {
+    async createResources(resources, cuid) {
         let createdResources = [];
         for (let resource of resources) {
             this.log.debug("resource.type:" + resource.type);
@@ -33,8 +33,7 @@ class CreateCustomerResources extends BaseHandler {
                 //     createdResources.push({ name: resourceName, 'cuid': cuid, type: resource.type, status: "completed" });
                 //     break;
                 case 'userpool':
-
-                    let poolResponse =  awsmanager.createUserPoolinAWS(resourceName);
+                    let poolResponse =  await awsmanager.createUserPool_inAWS(resourceName);
                     console.log("poolResponse....check if pool id "+ poolResponse);
                     //createdResources.push({ name: resourceName, 'cuid': cuid, type: resource.type, status: "completed"});
                    // console.log("created resources array after push in userpool" + createdResources);
