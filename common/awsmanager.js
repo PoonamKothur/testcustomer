@@ -35,42 +35,42 @@ exports.createUserPool = async (poolName) => {
         PoolName: poolName, /* required */
     };
 
-    const promiseFn = userpoolId => {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
+    // const promiseFn = userpoolId => {
+    //     return new Promise((resolve, reject) => {
+    //         setTimeout(() => {
 
-                cognitoidentityserviceprovider.createUserPool(params, function (err, data) {
-                    if (err) {
-                        console.log(err, err.stack); // an error occurred
-                        reject(new Error('no first name passed in!'))
-                        return null;
-                    }
-                    else {
-                        console.log("'" + params.PoolName + "' User Pool created successfully");
-                        log.debug("'" + params.PoolName + "' User Pool created successfully");
-                        log.debug("User Pool description JSON:", JSON.stringify(data, null, 2));
-                        resolve(data.UserPool.Id)
-                        //  createUserGroup("TestGroup-123", data.UserPool.Id);
-                        //  return data.UserPool.Id;
-                    }
-                })
-            }, 2000)
-        })
-    };
+    //             cognitoidentityserviceprovider.createUserPool(params, function (err, data) {
+    //                 if (err) {
+    //                     console.log(err, err.stack); // an error occurred
+    //                     reject(new Error('no first name passed in!'))
+    //                     return null;
+    //                 }
+    //                 else {
+    //                     console.log("'" + params.PoolName + "' User Pool created successfully");
+    //                     log.debug("'" + params.PoolName + "' User Pool created successfully");
+    //                     log.debug("User Pool description JSON:", JSON.stringify(data, null, 2));
+    //                     resolve(data.UserPool.Id)
+    //                     //  createUserGroup("TestGroup-123", data.UserPool.Id);
+    //                     //  return data.UserPool.Id;
+    //                 }
+    //             })
+    //         }, 2000)
+    //     })
+    // };
 
-    // await cognitoidentityserviceprovider.createUserPool(params, function (err, data) {
-    //     if (err) {
-    //         console.log(err, err.stack); // an error occurred
-    //         return null;
-    //     }
-    //     else {
-    //         console.log("'" + params.PoolName + "' User Pool created successfully");
-    //         log.debug("'" + params.PoolName + "' User Pool created successfully");
-    //         log.debug("User Pool description JSON:", JSON.stringify(data, null, 2));
-    //         //  createUserGroup("TestGroup-123", data.UserPool.Id);
-    //         //  return data.UserPool.Id;
-    //     }
-    // });
+    await cognitoidentityserviceprovider.createUserPool(params, function (err, data) {
+        if (err) {
+            console.log(err, err.stack); // an error occurred
+            return null;
+        }
+        else {
+            console.log("'" + params.PoolName + "' User Pool created successfully");
+            log.debug("'" + params.PoolName + "' User Pool created successfully");
+            log.debug("User Pool description JSON:", JSON.stringify(data, null, 2));
+            //  createUserGroup("TestGroup-123", data.UserPool.Id);
+            //  return data.UserPool.Id;
+        }
+    });
 }
 
 exports.createUserGroup = async (groupName, userPoolId) => {
