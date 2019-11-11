@@ -162,7 +162,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/cw-customers/dev/1573456575791-2019-11-11T07:16:15.791Z/cw-customers.zip"
+                "S3Key": "serverless/cw-customers/dev/1573456715795-2019-11-11T07:18:35.795Z/cw-customers.zip"
               },
               "FunctionName": "cw-customers-dev-getcustomerbyid",
               "Handler": "handlers/getcustomerbyid.getcustomer",
@@ -203,7 +203,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/cw-customers/dev/1573456575791-2019-11-11T07:16:15.791Z/cw-customers.zip"
+                "S3Key": "serverless/cw-customers/dev/1573456715795-2019-11-11T07:18:35.795Z/cw-customers.zip"
               },
               "FunctionName": "cw-customers-dev-createcustomer",
               "Handler": "handlers/addcustomer.createcustomer",
@@ -244,7 +244,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/cw-customers/dev/1573456575791-2019-11-11T07:16:15.791Z/cw-customers.zip"
+                "S3Key": "serverless/cw-customers/dev/1573456715795-2019-11-11T07:18:35.795Z/cw-customers.zip"
               },
               "FunctionName": "cw-customers-dev-createcustomerresources",
               "Handler": "handlers/createcustomerresources.createcustomerresources",
@@ -598,7 +598,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1573456572941": {
+          "ApiGatewayDeployment1573456712896": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -767,7 +767,7 @@
           "CustomerResourcesTable": {
             "Type": "AWS::DynamoDB::Table",
             "Properties": {
-              "TableName": "customer-resources-dev",
+              "TableName": "customers-resources-dev",
               "AttributeDefinitions": [
                 {
                   "AttributeName": "name",
@@ -1025,7 +1025,7 @@
         "CustomerResourcesTable": {
           "Type": "AWS::DynamoDB::Table",
           "Properties": {
-            "TableName": "customer-resources-dev",
+            "TableName": "customers-resources-dev",
             "AttributeDefinitions": [
               {
                 "AttributeName": "name",
@@ -1049,7 +1049,7 @@
     "artifact": "/home/poonam/CodeBlock/Projects/CecureCloud/Code/cecurecloud/apis/.serverless/cw-customers.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/cw-customers/dev/1573456575791-2019-11-11T07:16:15.791Z",
+    "artifactDirectoryName": "serverless/cw-customers/dev/1573456715795-2019-11-11T07:18:35.795Z",
     "artifact": "cw-customers.zip"
   }
 }

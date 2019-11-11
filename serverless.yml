@@ -6,7 +6,7 @@ provider:
   name: aws
   runtime: nodejs10.x
   timeout: 30
-  region: ${opt:region, 'us-east-1'}
+  region: ${opt:region, 'ap-south-1'}
 
   environment: 
     STAGE: ${opt:stage}
@@ -82,7 +82,7 @@ resources:
     CustomerResourcesTable:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: customers-resources-${opt:stage}
+        TableName: customer-resources-${opt:stage}
         AttributeDefinitions:
           - AttributeName: name
             AttributeType: S          
