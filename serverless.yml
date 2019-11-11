@@ -86,6 +86,8 @@ resources:
         AttributeDefinitions:
           - AttributeName: cuid
             AttributeType: S        
+          - AttributeName: name
+            AttributeType: S
         KeySchema:
           - AttributeName: name
             KeyType: HASH
