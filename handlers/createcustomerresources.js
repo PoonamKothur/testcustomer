@@ -28,12 +28,14 @@ class CreateCustomerResources extends BaseHandler {
             let resourceName = `${cuid}-${resource.name}`;
             switch (resource.type) {
                 case 'dynamodb':
-                    await awsmanager.createDynamoTable(resourceName, resource);
-                    createdResources.push({ 'cuid': cuid, name: resourceName, type: resource.type, status: "completed" });
+                    //await awsmanager.createDynamoTable(resourceName, resource);
+                    //createdResources.push({ 'cuid': cuid, name: resourceName, type: resource.type, status: "completed" });
+                    createdResources.push({ name: resourceName, type: resource.type, status: "completed" });
                     break;
                 case 'userpool':
-                    let poolResponse = await awsmanager.createUserPool(resourceName);
-                    createdResources.push({ 'cuid': cuid, name: resourceName, type: resource.type, status: "completed", attributes: poolResponse });
+                    //let poolResponse = await awsmanager.createUserPool(resourceName);
+                    //createdResources.push({ 'cuid': cuid, name: resourceName, type: resource.type, status: "completed", attributes: poolResponse });
+                    createdResources.push({ name: resourceName, type: resource.type, status: "completed" });
                     break;
                 // case 'usergroup':
                 //     //First get pool id from created resources
@@ -47,12 +49,16 @@ class CreateCustomerResources extends BaseHandler {
 
         // check if created resources
         if (createdResources && createdResources.length > 0) {
-            // Simply use batch post to add to customers-resources-<stage>
-            const params = {
-                TableName: `customer-resources-${process.env.STAGE}`,
-                Item: Object.assign(item, createdResources)
-            };
-            let valRes = await dynamodb.put(params).promise();
+            for (let resource of createdResources) {
+                console.log("aaaaa");
+                console.log(JSON.stringify(resource));
+                // Simply use batch post to add to customers-resources-<stage>
+                const params = {
+                    TableName: `customer-resources-${process.env.STAGE}`,
+                    Item: resource
+                };
+                let valRes = await documentClient.put(params).promise();
+            }
         }
     }
 
