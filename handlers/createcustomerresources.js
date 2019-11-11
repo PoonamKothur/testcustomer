@@ -3,69 +3,66 @@ const BaseHandler = require("../common/basehandler");
 const AWS = require('aws-sdk');
 const documentClient = new AWS.DynamoDB.DocumentClient();
 const awsmanager = require('../common/awsmanager');
-let cuid = "";
-let poolId = "";
 
 class CreateCustomerResources extends BaseHandler {
     constructor() {
         super();
     }
 
-    generateRandomcuid(min, max) {
-        return (Math.random().toString(36).substring(min, max) + Math.random().toString(36).substring(min, max)).toUpperCase();
-    }
-
+    // This function gets list of resources to be created for a customer
     async getAdminCustomerResources() {
         this.log.debug("getAdminCustomerResources");
         const params = {
-            TableName: 'admin-customer-resources-stage'  //TODO: stage
+            TableName: `admin-customer-resources-${process.env.STAGE}`  
         };
         let data = await documentClient.scan(params).promise();
         return data.Items.sort((a, b) => (a.sequence > b.sequence) ? 1 : -1);
     }
 
-    async createResources(resources) {
+    // This function is used to create customer specific resources
+    async createResources(resources,cuid) {
+        let createdResources=[];
         for (let resource of resources) {
-            console.log("resource.type:" + resource.type);
+            this.log.debug("resource.type:" + resource.type);
+            let resourceName = `${cuid}-${resource.name}`;
             switch (resource.type) {
                 case 'dynamodb':
-                    let tableName = cuid + "-" + resource.name;
-                    let resTable = await awsmanager.createDynamoTable(tableName, resource);
+                    await awsmanager.createDynamoTable(resourceName, resource);
+                    createdResources.push({'cuid':cuid,name:resourceName,type:resource.type,status:"completed"});
                     break;
-                case 'userpool':
-                    let poolName = cuid + "-" + resource.name;
-                        
-                    let resPoolId = await (awsmanager.createUserPool(poolName)).promise(resPoolId);
-                    console.log("resPoolId:" + resPoolId);
-                    if (resPoolId)
-                        poolId = resPoolId;
+                /*case 'userpool':
+                    let poolResponse = await awsmanager.createUserPool(resourceName);
+                    createdResources.push({'cuid':cuid,name:resourceName,type:resource.type,status:"completed",attributes:poolResponse});
                     break;
                 case 'usergroup':
-                    let groupName = cuid + "-" + resource.name;
-                    let resGroupId = await awsmanager.createUserGroup(groupName, poolId);
-                    console.log("resGroupId:" + resGroupId);
-                    if (resPoolId)
-                        poolId = resPoolId;
+                    // First get pool id from created resources
+                    let userPoolDetails = createdResources.filter(f=>f.type === 'userpool');
+                    let resGroupId = await awsmanager.createUserGroup(resourceName, userPoolDetails[0].attributes.pool_id);
+                    createdResources.push({'cuid':cuid,name:resourceName,type:resource.type,status:"completed",attributes:{group_id:resGroupId}});
                     break;
+                    */
             }
+        }
+        
+        // check if created resources
+        if(createdResources && createdResources.length>0){
+            // Simply use batch post to add to customers-resources-<stage>
         }
     }
 
     async process(event, context, callback) {
-        cuid = this.generateRandomcuid(2, 6); // TODO get from addcustomer lambda function
-
         try {
+            // Check if cuid is present
             let resources = await this.getAdminCustomerResources();
-            await this.createResources(resources);
+            if(resources && resources.length > 0){
+                await this.createResources(resources,event.cuid);
+            }
         }
         catch (err) {
             console.log(err);
-            if (err.message) {
-                return false;
-            } else {
-                return true;
-            }
         }
+        
+        return 'done';
     }
 }
 

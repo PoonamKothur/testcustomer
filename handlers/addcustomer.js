@@ -84,11 +84,11 @@ class AddCustomer extends BaseHandler {
             await utils.validate(body, this.getValidationSchema());
 
             // Check if cid already exists
-            // let customerExists = await this.checkIfCustomerExists(body.cid);
-            // this.log.debug("customerExists:" + customerExists);
-            // if (customerExists) {
-            //     return responseHandler.callbackRespondWithSimpleMessage('400', 'Duplicate customer');
-            // }
+            let customerExists = await this.checkIfCustomerExists(body.cid);
+            this.log.debug("customerExists:" + customerExists);
+            if (customerExists) {
+                 return responseHandler.callbackRespondWithSimpleMessage('400', 'Duplicate customer');
+             }
 
             // Call to insert customer
             let cuid = await this.createCustomer(body);
