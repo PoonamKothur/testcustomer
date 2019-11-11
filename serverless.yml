@@ -73,12 +73,10 @@ resources:
         AttributeDefinitions:
           - AttributeName: name
             AttributeType: S
+          - AttributeName: type
+            AttributeType: S
           - AttributeName: sequence
             AttributeType: N
-          - AttributeName: type
-            AttributeType: S
-          - AttributeName: type
-            AttributeType: S
           - AttributeName: attributes
             AttributeType: Map
         KeySchema:
