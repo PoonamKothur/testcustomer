@@ -48,7 +48,12 @@ functions:
           cors: true
           
    createcustomerresources:
-    handler: handlers/createcustomerresources.createcustomerresources      
+    handler: handlers/createcustomerresources.createcustomerresources
+    events:
+      - http:
+          path: customerid/createcustomerresources
+          method: post
+          cors: true
  
 resources:
   Resources:
