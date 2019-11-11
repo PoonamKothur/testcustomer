@@ -85,19 +85,7 @@ resources:
         TableName: customer-resources-${opt:stage}
         AttributeDefinitions:
           - AttributeName: cuid
-            AttributeType: S
-        AttributeDefinitions:
-          - AttributeName: name
-            AttributeType: S
-        AttributeDefinitions:
-          - AttributeName: type
-            AttributeType: S
-        AttributeDefinitions:
-          - AttributeName: status
-            AttributeType: S
-        AttributeDefinitions:
-          - AttributeName: attributes
-            AttributeType: S
+            AttributeType: S        
         KeySchema:
           - AttributeName: name
             KeyType: HASH
