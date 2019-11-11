@@ -82,7 +82,7 @@ resources:
     CustomerResourcesTable:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: customer-resources-${opt:stage}
+        TableName: customers-resources-${opt:stage}
         AttributeDefinitions:
           - AttributeName: name
             AttributeType: S          
