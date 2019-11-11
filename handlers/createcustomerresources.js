@@ -11,6 +11,7 @@ class CreateCustomerResources extends BaseHandler {
 
     // This function gets list of resources to be created for a customer
     async getAdminCustomerResources() {
+        console.log("getAdminCustomerResources");
         this.log.debug("getAdminCustomerResources");
         const params = {
             TableName: `admin-customer-resources-${process.env.STAGE}`  
@@ -52,8 +53,10 @@ class CreateCustomerResources extends BaseHandler {
 
     async process(event, context, callback) {
         try {
+            console.log("test i proces");
             // Check if cuid is present
             let resources = await this.getAdminCustomerResources();
+            console.log(resources);
             if(resources && resources.length > 0){
                 await this.createResources(resources,event.cuid);
             }
@@ -67,6 +70,6 @@ class CreateCustomerResources extends BaseHandler {
 }
 
 exports.createcustomerresources = async (event, context, callback) => {
-
+console.log("in process");
     return await new CreateCustomerResources().handler(event, context, callback);
 }

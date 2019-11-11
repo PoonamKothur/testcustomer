@@ -68,5 +68,17 @@ resources:
           - AttributeName: cid
             KeyType: HASH
         BillingMode: PAY_PER_REQUEST
+    AdminCustomerResourcesTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: admin-customer-resources-${opt:stage}
+        AttributeDefinitions:
+          - AttributeName: name
+            AttributeType: S
+        KeySchema:
+          - AttributeName: name
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+  
 plugins:
   - serverless-pseudo-parameters
