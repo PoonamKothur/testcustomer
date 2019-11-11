@@ -87,24 +87,21 @@ class AddCustomer extends BaseHandler {
             let customerExists = await this.checkIfCustomerExists(body.cid);
             this.log.debug("customerExists:" + customerExists);
             if (customerExists) {
-                 return responseHandler.callbackRespondWithSimpleMessage('400', 'Duplicate customer');
-             }
+                return responseHandler.callbackRespondWithSimpleMessage('400', 'Duplicate customer');
+            }
 
             // Call to insert customer
             let cuid = await this.createCustomer(body);
 
             //invoke lambda customerresources
 
-            /*let params = {
+            let params = {
                 FunctionName: process.env.CREATE_CR_LAMBDA_ARN, //TODO get from process.env
                 InvocationType: 'Event',
-                //Payload: JSON.stringify({cuid:cuid})
-                Payload: JSON.stringify({ cuid: 'abcd' })
+                Payload: JSON.stringify({ cuid: cuid })
             };
-            console.log("test lambda");
-            console.log(params);
+
             await lambda.invoke(params).promise();
-            */
             return responseHandler.callbackRespondWithSimpleMessage(200, ' Customer Created Successfully ');
         }
         catch (err) {

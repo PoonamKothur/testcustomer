@@ -11,7 +11,7 @@ class CreateCustomerResources extends BaseHandler {
 
     // This function gets list of resources to be created for a customer
     async getAdminCustomerResources() {
-        console.log("getAdminCustomerResources");
+
         this.log.debug("getAdminCustomerResources");
         const params = {
             TableName: `admin-customer-resources-${process.env.STAGE}`
@@ -29,34 +29,26 @@ class CreateCustomerResources extends BaseHandler {
             switch (resource.type) {
                 case 'dynamodb':
                     await awsmanager.createDynamoTable(resourceName, resource);
-                    //createdResources.push({ 'cuid': cuid, name: resourceName, type: resource.type, status: "completed" });
                     createdResources.push({ name: resourceName, 'cuid': cuid, type: resource.type, status: "completed" });
                     break;
                 case 'userpool':
                     let poolResponse = await awsmanager.createUserPool(resourceName);
-                    //createdResources.push({ 'cuid': cuid, name: resourceName, type: resource.type, status: "completed", attributes: poolResponse });
                     createdResources.push({ name: resourceName, 'cuid': cuid, type: resource.type, status: "completed" });
                     break;
                 case 'usergroup':
                     //First get pool id from created resources
 
-                    // let userPoolDetails = createdResources.filter(f => f.type === 'userpool');
-                    // console.log (userPoolDetails);
-                    // console.log(userPoolDetails[0].attributes.pool_id);
-
-                    // let resGroupId = await awsmanager.createUserGroup(resourceName, userPoolDetails[0].attributes.pool_id);
-                    // //createdResources.push({ 'cuid': cuid, name: resourceName, type: resource.type, status: "completed", attributes: { group_id: resGroupId } });
-                    // createdResources.push({ name: resourceName, type: resource.type, status: "completed", attributes: { group_id: resGroupId } });
-                    // break;
-
+                    let userPoolDetails = createdResources.filter(f => f.type === 'userpool');
+                    let resGroupId = await awsmanager.createUserGroup(resourceName, userPoolDetails[0].attributes.pool_id);
+                    createdResources.push({ name: resourceName, 'cuid': cuid, type: resource.type, status: "completed", attributes: { group_id: resGroupId } });
+                    break;
             }
         }
 
         // check if created resources
         if (createdResources && createdResources.length > 0) {
             for (let resource of createdResources) {
-                console.log("aaaaa");
-                console.log(JSON.stringify(resource));
+                log.debug(JSON.stringify(resource));
                 // Simply use batch post to add to customers-resources-<stage>
                 const params = {
                     TableName: `customer-resources-${process.env.STAGE}`,
@@ -69,23 +61,21 @@ class CreateCustomerResources extends BaseHandler {
 
     async process(event, context, callback) {
         try {
-            console.log("test i proces");
             // Check if cuid is present
             let resources = await this.getAdminCustomerResources();
-            console.log(resources);
+            log.debug(resources);
             if (resources && resources.length > 0) {
                 await this.createResources(resources, event.cuid);
             }
         }
         catch (err) {
             console.log(err);
+            this.log.debug(err);
         }
-
         return 'done';
     }
 }
 
 exports.createcustomerresources = async (event, context, callback) => {
-    console.log("in process");
     return await new CreateCustomerResources().handler(event, context, callback);
 }

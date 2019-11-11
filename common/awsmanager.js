@@ -44,8 +44,10 @@ exports.createUserPool = async (poolName) => {
             console.log("'" + params.PoolName + "' User Pool created successfully");
             log.debug("'" + params.PoolName + "' User Pool created successfully");
             log.debug("User Pool description JSON:", JSON.stringify(data, null, 2));
-            //  createUserGroup("TestGroup-123", data.UserPool.Id);
-            //  return data.UserPool.Id;
+            //createUserGroup("TestGroup-123", data.UserPool.Id);
+            console.log("uder pool id.............")
+            console.log(data.UserPool.Id);
+            return data.UserPool.Id;
         }
     }).promise();
 }

@@ -6,7 +6,7 @@ provider:
   name: aws
   runtime: nodejs10.x
   timeout: 30
-  region: ${opt:region, 'us-east-1'}
+  region: ${opt:region, 'ap-south-1'}
 
   environment: 
     STAGE: ${opt:stage}
@@ -73,18 +73,10 @@ resources:
         AttributeDefinitions:
           - AttributeName: name
             AttributeType: S
-          - AttributeName: type
-            AttributeType: S
-          - AttributeName: sequence
-            AttributeType: N
-          - AttributeName: attributes
-            AttributeType: Map
         KeySchema:
           - AttributeName: name
             KeyType: HASH
-
         BillingMode: PAY_PER_REQUEST
-
     CustomerResourcesTable:
       Type: AWS::DynamoDB::Table
       Properties:

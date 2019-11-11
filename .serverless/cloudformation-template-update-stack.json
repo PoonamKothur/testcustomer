@@ -136,7 +136,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/cw-customers/dev/1573460213728-2019-11-11T08:16:53.728Z/cw-customers.zip"
+          "S3Key": "serverless/cw-customers/dev/1573460311334-2019-11-11T08:18:31.334Z/cw-customers.zip"
         },
         "FunctionName": "cw-customers-dev-getcustomerbyid",
         "Handler": "handlers/getcustomerbyid.getcustomer",
@@ -177,7 +177,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/cw-customers/dev/1573460213728-2019-11-11T08:16:53.728Z/cw-customers.zip"
+          "S3Key": "serverless/cw-customers/dev/1573460311334-2019-11-11T08:18:31.334Z/cw-customers.zip"
         },
         "FunctionName": "cw-customers-dev-createcustomer",
         "Handler": "handlers/addcustomer.createcustomer",
@@ -218,7 +218,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/cw-customers/dev/1573460213728-2019-11-11T08:16:53.728Z/cw-customers.zip"
+          "S3Key": "serverless/cw-customers/dev/1573460311334-2019-11-11T08:18:31.334Z/cw-customers.zip"
         },
         "FunctionName": "cw-customers-dev-createcustomerresources",
         "Handler": "handlers/createcustomerresources.createcustomerresources",
@@ -572,7 +572,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1573460210783": {
+    "ApiGatewayDeployment1573460308414": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -729,16 +729,12 @@
             "AttributeType": "S"
           },
           {
+            "AttributeName": "type",
+            "AttributeType": "S"
+          },
+          {
             "AttributeName": "sequence",
             "AttributeType": "N"
-          },
-          {
-            "AttributeName": "type",
-            "AttributeType": "S"
-          },
-          {
-            "AttributeName": "type",
-            "AttributeType": "S"
           },
           {
             "AttributeName": "attributes",
