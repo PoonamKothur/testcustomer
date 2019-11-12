@@ -47,12 +47,7 @@ functions:
           
    createcustomerresources:
     handler: handlers/createcustomerresources.createcustomerresources
-    events:
-      - http:
-          path: customerid/createcustomerresources
-          method: post
-          cors: true
- 
+
 resources:
   Resources:
     CustomerTable:
