@@ -14,13 +14,14 @@ provider:
   iamRoleStatements:
     - Effect: Allow
       Action:
-        - dynamodb:Get*
+        - dynamodb:DescribeTable
         - dynamodb:Query
         - dynamodb:Scan
-        - dynamodb:CreateTable
-        - dynamodb:Update*
+        - dynamodb:GetItem
         - dynamodb:PutItem
-      Resource: arn:aws:dynamodb::*:table/*
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: 'arn:aws:dynamodb:ap-south-1:*:*'
     - Effect: Allow
       Action:
         - lambda:Invoke
