@@ -136,7 +136,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/cw-customers/dev/1573534127055-2019-11-12T04:48:47.055Z/cw-customers.zip"
+          "S3Key": "serverless/cw-customers/dev/1573534210956-2019-11-12T04:50:10.956Z/cw-customers.zip"
         },
         "FunctionName": "cw-customers-dev-getcustomerbyid",
         "Handler": "handlers/getcustomerbyid.getcustomer",
@@ -177,7 +177,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/cw-customers/dev/1573534127055-2019-11-12T04:48:47.055Z/cw-customers.zip"
+          "S3Key": "serverless/cw-customers/dev/1573534210956-2019-11-12T04:50:10.956Z/cw-customers.zip"
         },
         "FunctionName": "cw-customers-dev-createcustomer",
         "Handler": "handlers/addcustomer.createcustomer",
@@ -218,7 +218,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/cw-customers/dev/1573534127055-2019-11-12T04:48:47.055Z/cw-customers.zip"
+          "S3Key": "serverless/cw-customers/dev/1573534210956-2019-11-12T04:50:10.956Z/cw-customers.zip"
         },
         "FunctionName": "cw-customers-dev-createcustomerresources",
         "Handler": "handlers/createcustomerresources.createcustomerresources",
@@ -285,18 +285,6 @@
           "Ref": "ApiGatewayResourceCustomerid"
         },
         "PathPart": "{cid}",
-        "RestApiId": {
-          "Ref": "ApiGatewayRestApi"
-        }
-      }
-    },
-    "ApiGatewayResourceCustomeridCreatecustomerresources": {
-      "Type": "AWS::ApiGateway::Resource",
-      "Properties": {
-        "ParentId": {
-          "Ref": "ApiGatewayResourceCustomerid"
-        },
-        "PathPart": "createcustomerresources",
         "RestApiId": {
           "Ref": "ApiGatewayRestApi"
         }
@@ -396,53 +384,6 @@
         }
       }
     },
-    "ApiGatewayMethodCustomeridCreatecustomerresourcesOptions": {
-      "Type": "AWS::ApiGateway::Method",
-      "Properties": {
-        "AuthorizationType": "NONE",
-        "HttpMethod": "OPTIONS",
-        "MethodResponses": [
-          {
-            "StatusCode": "200",
-            "ResponseParameters": {
-              "method.response.header.Access-Control-Allow-Origin": true,
-              "method.response.header.Access-Control-Allow-Headers": true,
-              "method.response.header.Access-Control-Allow-Methods": true,
-              "method.response.header.Access-Control-Allow-Credentials": true
-            },
-            "ResponseModels": {}
-          }
-        ],
-        "RequestParameters": {},
-        "Integration": {
-          "Type": "MOCK",
-          "RequestTemplates": {
-            "application/json": "{statusCode:200}"
-          },
-          "ContentHandling": "CONVERT_TO_TEXT",
-          "IntegrationResponses": [
-            {
-              "StatusCode": "200",
-              "ResponseParameters": {
-                "method.response.header.Access-Control-Allow-Origin": "'*'",
-                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
-                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'",
-                "method.response.header.Access-Control-Allow-Credentials": "'false'"
-              },
-              "ResponseTemplates": {
-                "application/json": "#set($origin = $input.params(\"Origin\"))\n#if($origin == \"\") #set($origin = $input.params(\"origin\")) #end\n#if($origin.matches(\".*\")) #set($context.responseOverride.header.Access-Control-Allow-Origin = $origin) #end"
-              }
-            }
-          ]
-        },
-        "ResourceId": {
-          "Ref": "ApiGatewayResourceCustomeridCreatecustomerresources"
-        },
-        "RestApiId": {
-          "Ref": "ApiGatewayRestApi"
-        }
-      }
-    },
     "ApiGatewayMethodCustomeridCidVarGet": {
       "Type": "AWS::ApiGateway::Method",
       "Properties": {
@@ -529,50 +470,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayMethodCustomeridCreatecustomerresourcesPost": {
-      "Type": "AWS::ApiGateway::Method",
-      "Properties": {
-        "HttpMethod": "POST",
-        "RequestParameters": {},
-        "ResourceId": {
-          "Ref": "ApiGatewayResourceCustomeridCreatecustomerresources"
-        },
-        "RestApiId": {
-          "Ref": "ApiGatewayRestApi"
-        },
-        "ApiKeyRequired": false,
-        "AuthorizationType": "NONE",
-        "Integration": {
-          "IntegrationHttpMethod": "POST",
-          "Type": "AWS_PROXY",
-          "Uri": {
-            "Fn::Join": [
-              "",
-              [
-                "arn:",
-                {
-                  "Ref": "AWS::Partition"
-                },
-                ":apigateway:",
-                {
-                  "Ref": "AWS::Region"
-                },
-                ":lambda:path/2015-03-31/functions/",
-                {
-                  "Fn::GetAtt": [
-                    "CreatecustomerresourcesLambdaFunction",
-                    "Arn"
-                  ]
-                },
-                "/invocations"
-              ]
-            ]
-          }
-        },
-        "MethodResponses": []
-      }
-    },
-    "ApiGatewayDeployment1573534123305": {
+    "ApiGatewayDeployment1573534208083": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -583,10 +481,8 @@
       "DependsOn": [
         "ApiGatewayMethodCustomeridCidVarOptions",
         "ApiGatewayMethodCustomeridOptions",
-        "ApiGatewayMethodCustomeridCreatecustomerresourcesOptions",
         "ApiGatewayMethodCustomeridCidVarGet",
-        "ApiGatewayMethodCustomeridPost",
-        "ApiGatewayMethodCustomeridCreatecustomerresourcesPost"
+        "ApiGatewayMethodCustomeridPost"
       ]
     },
     "GetcustomerbyidLambdaPermissionApiGateway": {
@@ -632,43 +528,6 @@
         "FunctionName": {
           "Fn::GetAtt": [
             "CreatecustomerLambdaFunction",
-            "Arn"
-          ]
-        },
-        "Action": "lambda:InvokeFunction",
-        "Principal": "apigateway.amazonaws.com",
-        "SourceArn": {
-          "Fn::Join": [
-            "",
-            [
-              "arn:",
-              {
-                "Ref": "AWS::Partition"
-              },
-              ":execute-api:",
-              {
-                "Ref": "AWS::Region"
-              },
-              ":",
-              {
-                "Ref": "AWS::AccountId"
-              },
-              ":",
-              {
-                "Ref": "ApiGatewayRestApi"
-              },
-              "/*/*"
-            ]
-          ]
-        }
-      }
-    },
-    "CreatecustomerresourcesLambdaPermissionApiGateway": {
-      "Type": "AWS::Lambda::Permission",
-      "Properties": {
-        "FunctionName": {
-          "Fn::GetAtt": [
-            "CreatecustomerresourcesLambdaFunction",
             "Arn"
           ]
         },

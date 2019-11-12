@@ -20,7 +20,7 @@ provider:
         - dynamodb:CreateTable
         - dynamodb:Update*
         - dynamodb:PutItem
-      Resource: arn:aws:dynamodb::*:table/customer-${opt:stage}
+      Resource: arn:aws:dynamodb::*:table/*
     - Effect: Allow
       Action:
         - lambda:Invoke
