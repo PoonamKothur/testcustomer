@@ -93,14 +93,15 @@
                 {
                   "Effect": "Allow",
                   "Action": [
-                    "dynamodb:Get*",
+                    "dynamodb:DescribeTable",
                     "dynamodb:Query",
                     "dynamodb:Scan",
-                    "dynamodb:CreateTable",
-                    "dynamodb:Update*",
-                    "dynamodb:PutItem"
+                    "dynamodb:GetItem",
+                    "dynamodb:PutItem",
+                    "dynamodb:UpdateItem",
+                    "dynamodb:DeleteItem"
                   ],
-                  "Resource": "arn:aws:dynamodb::*:table/*"
+                  "Resource": "arn:aws:dynamodb:ap-south-1:*:*"
                 },
                 {
                   "Effect": "Allow",
@@ -136,7 +137,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/cw-customers/dev/1573534885068-2019-11-12T05:01:25.068Z/cw-customers.zip"
+          "S3Key": "serverless/cw-customers/dev/1573535231744-2019-11-12T05:07:11.744Z/cw-customers.zip"
         },
         "FunctionName": "cw-customers-dev-getcustomerbyid",
         "Handler": "handlers/getcustomerbyid.getcustomer",
@@ -177,7 +178,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/cw-customers/dev/1573534885068-2019-11-12T05:01:25.068Z/cw-customers.zip"
+          "S3Key": "serverless/cw-customers/dev/1573535231744-2019-11-12T05:07:11.744Z/cw-customers.zip"
         },
         "FunctionName": "cw-customers-dev-createcustomer",
         "Handler": "handlers/addcustomer.createcustomer",
@@ -218,7 +219,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/cw-customers/dev/1573534885068-2019-11-12T05:01:25.068Z/cw-customers.zip"
+          "S3Key": "serverless/cw-customers/dev/1573535231744-2019-11-12T05:07:11.744Z/cw-customers.zip"
         },
         "FunctionName": "cw-customers-dev-createcustomerresources",
         "Handler": "handlers/createcustomerresources.createcustomerresources",
@@ -470,7 +471,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1573534881814": {
+    "ApiGatewayDeployment1573535228726": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {

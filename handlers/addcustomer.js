@@ -46,8 +46,7 @@ class AddCustomer extends BaseHandler {
     async checkIfCustomerExists(cid) {
 
         let valRes = await dynamodb.get({
-            //TableName: 'customer-${process.env.STAGE}',
-            TableName: 'customer',
+            TableName: `customers-${process.env.STAGE}`,
             Key: {
                 cid: cid
             },
@@ -68,7 +67,7 @@ class AddCustomer extends BaseHandler {
             cuid: cuid
         }
         const params = {
-            TableName: 'customer-dev',
+            TableName: `customers-${process.env.STAGE}`,
             Item: Object.assign(item, body)
         };
         let valRes = await dynamodb.put(params).promise();
