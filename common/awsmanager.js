@@ -23,49 +23,66 @@ exports.createDynamoTable = async (tablename, resource) => {
         if (err) {
             console.error("Unable to create table. Error JSON:", JSON.stringify(err, null, 2)); //TODO speific error
         } else {
-            console.log("'" + params.TableName + "' Table created successfully");
-            log.debug("'" + params.TableName + "' Table created successfully");
+            console.log("Table created successfully. Table Name: " + params.TableName);
+            log.debug("Table created successfully. Table Name: " + params.TableName);
             log.debug("Created table. Table description JSON:", JSON.stringify(data, null, 2));
         }
     });
 }
 
-exports.createpoolin_AWS = async (poolName) => {
-    let params = {
-        PoolName: poolName, /* required */
-    };
-
-    await cognitoidentityserviceprovider.createUserPool(params, function (err, data) {
-        if (err) {
-            console.log(err, err.stack); // an error occurred
-            return null;
-        }
-        else {
-            console.log("'" + params.PoolName + "' User Pool created successfully");
-            log.debug("'" + params.PoolName + "' User Pool created successfully");
-            log.debug("User Pool description JSON:", JSON.stringify(data, null, 2));
-            console.log("userpoolid...... in aws manager" + data.UserPool.Id);
-            // createUserGroup("TestGroup-123", data.UserPool.Id);
-            return data.UserPool.Id;
-        }
-    }).promise();
-}
-
-createUserGroup = async (groupName, userPoolId) => {
-    let params = {
-        GroupName: groupName, /* required */
-        UserPoolId: userPoolId       /* required */
-    };
-    cognitoidentityserviceprovider.createGroup(params, function (err, data) {
-        if (err) {
-            console.log(err, err.stack); // an error occurred
-            return null;
-        }
-        else {
-            console.log("'" + params.GroupName + "' User Group created successfully");
-            log.debug("'" + params.GroupName + "' User Group created successfully");
-            log.debug("User Group description JSON:", JSON.stringify(data, null, 2));
-            return params.GroupName;
+exports.createUserPool = async (poolName) => {
+    var promise = new Promise(function (resolve, reject) {
+        console.log("Started User Pool creation...");
+        log.debug("Started User Pool creation...");
+        try {
+            let params = {
+                PoolName: poolName, /* required */
+            };
+            cognitoidentityserviceprovider.createUserPool(params, function (err, data) {
+                if (err) {
+                    console.error(err);
+                    log.error(err);
+                    reject(err);
+                } else {
+                    console.log("User Pool created successfully. Pool_Name: " + params.PoolName + ", Pool_Id" + data.UserPool.Id);
+                    log.debug("User Pool created successfully. Pool_Name: " + params.PoolName + ", Pool_Id" + data.UserPool.Id);
+                    log.debug("User Pool description JSON:", JSON.stringify(data, null, 2));
+                    resolve(data);
+                }
+            });
+        } catch (cupE) {
+            log.error(cupE);
+            reject(cupE);
         }
     });
+    return promise;
+}
+
+exports.createUserGroup = async (groupName, userPoolId) => {
+    var promise = new Promise(function (resolve, reject) {
+        console.log("Started User Group creation...");
+        log.debug("Started User Group creation...");
+        try {
+            let params = {
+                GroupName: groupName, /* required */
+                UserPoolId: userPoolId       /* required */
+            };
+            cognitoidentityserviceprovider.createGroup(params, function (err, data) {
+                if (err) {
+                    console.error(err);
+                    log.error(err);
+                    reject(err);
+                } else {
+                    console.log("User Group created successfully. Pool_Name: " + params.GroupName);
+                    log.debug("User Group created successfully. Pool_Name: " + params.GroupName);
+                    log.debug("User Group description JSON:", JSON.stringify(data, null, 2));
+                    resolve(data);
+                }
+            });
+        } catch (cupE) {
+            log.error(cupE);
+            reject(cupE);
+        }
+    });
+    return promise;
 }
