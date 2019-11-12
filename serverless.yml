@@ -53,7 +53,7 @@ resources:
     CustomerTable:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: customer-${opt:stage}
+        TableName: customers-${opt:stage}
         AttributeDefinitions:
           - AttributeName: cid
             AttributeType: S
