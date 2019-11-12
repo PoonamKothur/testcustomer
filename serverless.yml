@@ -25,6 +25,7 @@ provider:
     - Effect: Allow
       Action:
         - lambda:InvokeFunction
+        - lambda:Invoke
       Resource: '*'
 
 functions:

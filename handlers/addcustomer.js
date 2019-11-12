@@ -92,6 +92,7 @@ class AddCustomer extends BaseHandler {
 
             // Call to insert customer
             let cuid = await this.createCustomer(body);
+
             //invoke lambda customerresources
 
             let params = {
