@@ -25,12 +25,13 @@ class AddCustomer extends BaseHandler {
             type: Joi.string().valid(['Consumer', 'Enterprise']).required(),
             scope: Joi.string().valid(['Direct', 'Reseller']).required(),
             customerEmail: Joi.string().email().required(),
-            /*primary: {
+            primary: {
                 firstName: Joi.string().required(),
-                //lastName: Joi.string().required(),
-                //email: Joi.string().email().required(),
-                //phone: Joi.string().regex('[+]?\d{1,2}[.-\s]?)?(\d{3}[.-]?){2}\d{4}')
-            },
+                lastName: Joi.string().required(),
+                email: Joi.string().email().required(),
+                phone: Joi.string().regex('[+]?\d{1,2}[.-\s]?)?(\d{3}[.-]?){2}\d{4}')
+            }
+            /*,
             secondary: {
                 firstName: Joi.string().optional(),
                 lastName: Joi.string().optional(),

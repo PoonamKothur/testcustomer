@@ -31,9 +31,10 @@
         {
           "Effect": "Allow",
           "Action": [
+            "lambda:InvokeFunction",
             "lambda:Invoke"
           ],
-          "Resource": "*"
+          "Resource": "arn:aws:dynamodb:ap-south-1:*:*"
         }
       ],
       "versionFunctions": true,
@@ -163,7 +164,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/cw-customers/dev/1573536183273-2019-11-12T05:23:03.273Z/cw-customers.zip"
+                "S3Key": "serverless/cw-customers/dev/1573536517844-2019-11-12T05:28:37.844Z/cw-customers.zip"
               },
               "FunctionName": "cw-customers-dev-getcustomerbyid",
               "Handler": "handlers/getcustomerbyid.getcustomer",
@@ -204,7 +205,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/cw-customers/dev/1573536183273-2019-11-12T05:23:03.273Z/cw-customers.zip"
+                "S3Key": "serverless/cw-customers/dev/1573536517844-2019-11-12T05:28:37.844Z/cw-customers.zip"
               },
               "FunctionName": "cw-customers-dev-createcustomer",
               "Handler": "handlers/addcustomer.createcustomer",
@@ -245,7 +246,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/cw-customers/dev/1573536183273-2019-11-12T05:23:03.273Z/cw-customers.zip"
+                "S3Key": "serverless/cw-customers/dev/1573536517844-2019-11-12T05:28:37.844Z/cw-customers.zip"
               },
               "FunctionName": "cw-customers-dev-createcustomerresources",
               "Handler": "handlers/createcustomerresources.createcustomerresources",
@@ -497,7 +498,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1573536180395": {
+          "ApiGatewayDeployment1573536514950": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -882,7 +883,7 @@
     "artifact": "/home/poonam/CodeBlock/Projects/CecureCloud/Code/cecurecloud/apis/.serverless/cw-customers.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/cw-customers/dev/1573536183273-2019-11-12T05:23:03.273Z",
+    "artifactDirectoryName": "serverless/cw-customers/dev/1573536517844-2019-11-12T05:28:37.844Z",
     "artifact": "cw-customers.zip"
   }
 }
