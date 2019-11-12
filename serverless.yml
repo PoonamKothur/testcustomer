@@ -56,7 +56,7 @@ functions:
     handler: handlers/updatecustomer.updatecustomerbyid
     events:
       - http:
-          path: customerid/{cid}
+          path: customerid
           method: put
           cors: true
 
