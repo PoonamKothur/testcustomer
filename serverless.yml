@@ -24,8 +24,9 @@ provider:
       Resource: 'arn:aws:dynamodb:ap-south-1:*:*'
     - Effect: Allow
       Action:
-        - lambda:Invoke
-      Resource: '*'
+        - lambda:InvokeFunction
+        - lambda:Invoke        
+      Resource: 'arn:aws:dynamodb:ap-south-1:*:*'
 
 functions:
    getcustomerbyid:
