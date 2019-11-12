@@ -51,7 +51,15 @@ functions:
           path: customerid
           method: post
           cors: true
-          
+  
+    updatecustomer:
+    handler: handlers/updatecustomer.updatecustomerbyid
+    events:
+      - http:
+          path: customerid/{cid}
+          method: get
+          cors: true
+
    createcustomerresources:
     handler: handlers/createcustomerresources.createcustomerresources
 
