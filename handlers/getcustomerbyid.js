@@ -14,7 +14,7 @@ class GetCustomerbyId extends BaseHandler {
             Key:{
                 "cid" : cid
                 },
-            TableName: `customer-${process.env.STAGE}`
+            TableName: `customers-${process.env.STAGE}`
         };
         return await documentClient.get(params).promise();
     }
