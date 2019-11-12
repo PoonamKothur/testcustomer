@@ -35,7 +35,7 @@ class AddCustomer extends BaseHandler {
                 firstName: Joi.string().optional(),
                 lastName: Joi.string().optional(),
                 email: Joi.string().email().optional(),
-                phone: Joi.string().regex('^(\([0-9]{3}\)|[0-9]{3}-)[0-9]{3}-[0-9]{4})').optional(),
+                //phone: Joi.string().regex('^(\([0-9]{3}\)|[0-9]{3}-)[0-9]{3}-[0-9]{4})').optional(),
                 registration: Joi.date().optional().optional(),
                 lastUpdate: Joi.date().optional()
             }
