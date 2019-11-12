@@ -57,7 +57,7 @@ functions:
     events:
       - http:
           path: customerid/{cid}
-          method: get
+          method: put
           cors: true
 
    createcustomerresources:
