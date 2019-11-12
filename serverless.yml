@@ -52,13 +52,13 @@ functions:
           method: post
           cors: true
   
-    updatecustomer:
-    handler: handlers/updatecustomer.updatecustomerbyid
-    events:
-      - http:
-          path: customerid
-          method: put
-          cors: true
+   updatecustomer:
+     handler: handlers/updatecustomer.updatecustomerbyid
+     events:
+     - http:
+         path: customerid/{cid}
+         method: put
+         cors: true
 
    createcustomerresources:
     handler: handlers/createcustomerresources.createcustomerresources
