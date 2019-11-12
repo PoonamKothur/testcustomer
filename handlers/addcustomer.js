@@ -29,7 +29,7 @@ class AddCustomer extends BaseHandler {
                 firstName: Joi.string().required(),
                 lastName: Joi.string().required(),
                 email: Joi.string().email().required(),
-                phone: Joi.string().regex('[0][1-9]\d{9}$|^[1-9]\d{9}$')
+                phone: Joi.string().regex('^[0][1-9]\d{9}$|^[1-9]\d{9}$')
             }
             /*,
             secondary: {
