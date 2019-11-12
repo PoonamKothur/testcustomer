@@ -26,7 +26,7 @@ class CreateCustomerResources extends BaseHandler {
         let poolId = "";
         for (let resource of resources) {
             this.log.debug("resource.type:" + resource.type);
-            console.log("resource.type:" + resource.type);
+
             let resourceName = `${cuid}-${resource.name}`;
             switch (resource.type) {
                 case 'dynamodb':
@@ -42,14 +42,11 @@ class CreateCustomerResources extends BaseHandler {
                     //First get pool id from created resources
                     // let userPoolDetails = createdResources.filter(f => f.type === 'userpool');
                     let groupResponse = await awsmanager.createUserGroup(resourceName, poolId);
-                    console.log(JSON.stringify(groupResponse));
+                    this.log.debug(JSON.stringify(groupResponse));
                     createdResources.push({ name: resourceName, 'cuid': cuid, type: resource.type, status: "completed" });
                     break;
             }
         }
-
-        console.log('outside switch case');
-
         // check if created resources
         if (createdResources && createdResources.length > 0) {
             for (let resource of createdResources) {
@@ -74,7 +71,6 @@ class CreateCustomerResources extends BaseHandler {
             }
         }
         catch (err) {
-            console.log(err);
             this.log.debug(err);
         }
         return 'done';

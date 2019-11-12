@@ -29,14 +29,13 @@ class AddCustomer extends BaseHandler {
                 firstName: Joi.string().required(),
                 lastName: Joi.string().required(),
                 email: Joi.string().email().required(),
-              //  phone: Joi.string().regex('^[0][1-9]\d{9}$|^[1-9]\d{9}$')
-              phone: Joi.string().regex('^(\([0-9]{3}\)|[0-9]{3}-)[0-9]{3}-[0-9]{4})')
+                phone: Joi.string().regex('^(\([0-9]{3}\)|[0-9]{3}-)[0-9]{3}-[0-9]{4})')
             },
             secondary: {
                 firstName: Joi.string().optional(),
                 lastName: Joi.string().optional(),
                 email: Joi.string().email().optional(),
-                phone: Joi.string().regex('[+]?\d{1,2}[.-\s]?)?(\d{3}[.-]?){2}\d{4}').optional(),
+                phone: Joi.string().regex('^(\([0-9]{3}\)|[0-9]{3}-)[0-9]{3}-[0-9]{4})').optional(),
                 registration: Joi.date().optional().optional(),
                 lastUpdate: Joi.date().optional()
             }
@@ -102,8 +101,14 @@ class AddCustomer extends BaseHandler {
                 Payload: JSON.stringify({ cuid: cuid })
             };
 
+            let resp ={
+                cid: body.cid,
+                cuid: cuid,
+                msg:"Customer Created Successfully"
+            }
+
             await lambda.invoke(params).promise();
-            return responseHandler.callbackRespondWithSimpleMessage(200, ' Customer Created Successfully ');
+            return responseHandler.callbackRespondWithSimpleMessage(200, resp);
         }
         catch (err) {
             if (err.message) {

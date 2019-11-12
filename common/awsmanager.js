@@ -23,7 +23,6 @@ exports.createDynamoTable = async (tablename, resource) => {
         if (err) {
             console.error("Unable to create table. Error JSON:", JSON.stringify(err, null, 2)); //TODO speific error
         } else {
-            console.log("Table created successfully. Table Name: " + params.TableName);
             log.debug("Table created successfully. Table Name: " + params.TableName);
             log.debug("Created table. Table description JSON:", JSON.stringify(data, null, 2));
         }
@@ -32,7 +31,7 @@ exports.createDynamoTable = async (tablename, resource) => {
 
 exports.createUserPool = async (poolName) => {
     var promise = new Promise(function (resolve, reject) {
-        console.log("Started User Pool creation...");
+       
         log.debug("Started User Pool creation...");
         try {
             let params = {
@@ -44,7 +43,6 @@ exports.createUserPool = async (poolName) => {
                     log.error(err);
                     reject(err);
                 } else {
-                    console.log("User Pool created successfully. Pool_Name: " + params.PoolName + ", Pool_Id" + data.UserPool.Id);
                     log.debug("User Pool created successfully. Pool_Name: " + params.PoolName + ", Pool_Id" + data.UserPool.Id);
                     log.debug("User Pool description JSON:", JSON.stringify(data, null, 2));
                     resolve(data);
@@ -60,7 +58,7 @@ exports.createUserPool = async (poolName) => {
 
 exports.createUserGroup = async (groupName, userPoolId) => {
     var promise = new Promise(function (resolve, reject) {
-        console.log("Started User Group creation...");
+
         log.debug("Started User Group creation...");
         try {
             let params = {
@@ -73,7 +71,6 @@ exports.createUserGroup = async (groupName, userPoolId) => {
                     log.error(err);
                     reject(err);
                 } else {
-                    console.log("User Group created successfully. Pool_Name: " + params.GroupName);
                     log.debug("User Group created successfully. Pool_Name: " + params.GroupName);
                     log.debug("User Group description JSON:", JSON.stringify(data, null, 2));
                     resolve(data);
