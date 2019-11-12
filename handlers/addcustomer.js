@@ -28,18 +28,18 @@ class AddCustomer extends BaseHandler {
             primary: {
                 firstName: Joi.string().required(),
                 lastName: Joi.string().required(),
-                email: Joi.string().email().required()
-                //phone: Joi.string().regex('^[0][1-9]\d{9}$|^[1-9]\d{9}$')
-            }
-            /*,
+                email: Joi.string().email().required(),
+              //  phone: Joi.string().regex('^[0][1-9]\d{9}$|^[1-9]\d{9}$')
+              phone: Joi.string().regex('?<!\d)\d{10}(?!\d')
+            },
             secondary: {
                 firstName: Joi.string().optional(),
                 lastName: Joi.string().optional(),
                 email: Joi.string().email().optional(),
-                phone: Joi.string().regex('[+]?\d{1,2}[.-\s]?)?(\d{3}[.-]?){2}\d{4}'),
+                phone: Joi.string().regex('[+]?\d{1,2}[.-\s]?)?(\d{3}[.-]?){2}\d{4}').optional(),
                 registration: Joi.date().optional().optional(),
-                //lastUpdate: Joi.date().optional()
-            }*/
+                lastUpdate: Joi.date().optional()
+            }
         });
     }
 
@@ -91,18 +91,18 @@ class AddCustomer extends BaseHandler {
             }
 
             // Call to insert customer
-            let cuid = await this.createCustomer(body);
+            //let cuid = await this.createCustomer(body);
 
             //invoke lambda customerresources
 
-            let params = {
-                //FunctionName: process.env.CREATE_CR_LAMBDA_ARN, //TODO get from process.env
-                FunctionName: 'cw-customers-dev-createcustomerresources',
-                InvocationType: 'Event',
-                Payload: JSON.stringify({ cuid: cuid })
-            };
+            // let params = {
+            //     //FunctionName: process.env.CREATE_CR_LAMBDA_ARN, //TODO get from process.env
+            //     FunctionName: 'cw-customers-dev-createcustomerresources',
+            //     InvocationType: 'Event',
+            //     Payload: JSON.stringify({ cuid: cuid })
+            // };
 
-            await lambda.invoke(params).promise();
+            // await lambda.invoke(params).promise();
             return responseHandler.callbackRespondWithSimpleMessage(200, ' Customer Created Successfully ');
         }
         catch (err) {
