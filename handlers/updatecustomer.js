@@ -26,13 +26,11 @@ class UpdateCustomerbyId extends BaseHandler {
             Key: {
                 "cid": cid
             },
-            UpdateExpression='SET name = :name',
-          
-            ExpressionAttributeValues={
-                ':name' : 'live',
-                ':del'    : False
-            }
-    
+            UpdateExpression: "set type :type",
+            ExpressionAttributeValues:{
+                ":type": 'Enterprise'
+            },
+            ReturnValues:"UPDATED_NEW"
         };
     }
 
