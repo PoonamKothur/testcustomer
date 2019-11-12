@@ -71,16 +71,16 @@
               "LogGroupName": "/aws/lambda/cw-customers-dev-getcustomerbyid"
             }
           },
-          "CreatecustomerLogGroup": {
-            "Type": "AWS::Logs::LogGroup",
-            "Properties": {
-              "LogGroupName": "/aws/lambda/cw-customers-dev-createcustomer"
-            }
-          },
           "UpdatecustomerLogGroup": {
             "Type": "AWS::Logs::LogGroup",
             "Properties": {
               "LogGroupName": "/aws/lambda/cw-customers-dev-updatecustomer"
+            }
+          },
+          "CreatecustomerLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/cw-customers-dev-createcustomer"
             }
           },
           "CreatecustomerresourcesLogGroup": {
@@ -181,7 +181,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/cw-customers/dev/1573549359740-2019-11-12T09:02:39.740Z/cw-customers.zip"
+                "S3Key": "serverless/cw-customers/dev/1573550164204-2019-11-12T09:16:04.204Z/cw-customers.zip"
               },
               "FunctionName": "cw-customers-dev-getcustomerbyid",
               "Handler": "handlers/getcustomerbyid.getcustomer",
@@ -205,55 +205,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "GetcustomerbyidLambdaVersionQopH0ja7UKOq6wmwmA84IohT5GlFZA0hRRmj2lXJeXc": {
+          "GetcustomerbyidLambdaVersion5mX4A3DHSjWoKPwFUcOtsvb8C24KeVCi7pnUzVzn60": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GetcustomerbyidLambdaFunction"
               },
-              "CodeSha256": "mp/5LxH1lAgPdzDKR+J07gSH8VbEMQAlgpewHz2O+cs="
-            }
-          },
-          "CreatecustomerLambdaFunction": {
-            "Type": "AWS::Lambda::Function",
-            "Properties": {
-              "Code": {
-                "S3Bucket": {
-                  "Ref": "ServerlessDeploymentBucket"
-                },
-                "S3Key": "serverless/cw-customers/dev/1573549359740-2019-11-12T09:02:39.740Z/cw-customers.zip"
-              },
-              "FunctionName": "cw-customers-dev-createcustomer",
-              "Handler": "handlers/addcustomer.createcustomer",
-              "MemorySize": 1024,
-              "Role": {
-                "Fn::GetAtt": [
-                  "IamRoleLambdaExecution",
-                  "Arn"
-                ]
-              },
-              "Runtime": "nodejs10.x",
-              "Timeout": 30,
-              "Environment": {
-                "Variables": {
-                  "STAGE": "dev"
-                }
-              }
-            },
-            "DependsOn": [
-              "CreatecustomerLogGroup",
-              "IamRoleLambdaExecution"
-            ]
-          },
-          "CreatecustomerLambdaVersion69uh59VVDL5g6360z9EKIOMSKrJAVCBVv1J2WyEqwg": {
-            "Type": "AWS::Lambda::Version",
-            "DeletionPolicy": "Retain",
-            "Properties": {
-              "FunctionName": {
-                "Ref": "CreatecustomerLambdaFunction"
-              },
-              "CodeSha256": "mp/5LxH1lAgPdzDKR+J07gSH8VbEMQAlgpewHz2O+cs="
+              "CodeSha256": "ojlbmdbFQHrAzio4EoS00IMvAS22lQ2jfrGGBnxE6gM="
             }
           },
           "UpdatecustomerLambdaFunction": {
@@ -263,7 +222,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/cw-customers/dev/1573549359740-2019-11-12T09:02:39.740Z/cw-customers.zip"
+                "S3Key": "serverless/cw-customers/dev/1573550164204-2019-11-12T09:16:04.204Z/cw-customers.zip"
               },
               "FunctionName": "cw-customers-dev-updatecustomer",
               "Handler": "handlers/updatecustomer.updatecustomerbyid",
@@ -287,14 +246,55 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "UpdatecustomerLambdaVersionGrHIAbmKSC0COWMkZT3VlTK6l4oEKrIIl5Sn3ZltI": {
+          "UpdatecustomerLambdaVersionbKwVVGC0yCPi1je1MRqTv8haSyx1zSnSt03ifrsGBpU": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "UpdatecustomerLambdaFunction"
               },
-              "CodeSha256": "mp/5LxH1lAgPdzDKR+J07gSH8VbEMQAlgpewHz2O+cs="
+              "CodeSha256": "ojlbmdbFQHrAzio4EoS00IMvAS22lQ2jfrGGBnxE6gM="
+            }
+          },
+          "CreatecustomerLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/cw-customers/dev/1573550164204-2019-11-12T09:16:04.204Z/cw-customers.zip"
+              },
+              "FunctionName": "cw-customers-dev-createcustomer",
+              "Handler": "handlers/addcustomer.createcustomer",
+              "MemorySize": 1024,
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              },
+              "Runtime": "nodejs10.x",
+              "Timeout": 30,
+              "Environment": {
+                "Variables": {
+                  "STAGE": "dev"
+                }
+              }
+            },
+            "DependsOn": [
+              "CreatecustomerLogGroup",
+              "IamRoleLambdaExecution"
+            ]
+          },
+          "CreatecustomerLambdaVersionvxDeKYetfTlBqbRIVcR692mZQfZAwmgqcRMVCp5rY": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "CreatecustomerLambdaFunction"
+              },
+              "CodeSha256": "ojlbmdbFQHrAzio4EoS00IMvAS22lQ2jfrGGBnxE6gM="
             }
           },
           "CreatecustomerresourcesLambdaFunction": {
@@ -304,7 +304,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/cw-customers/dev/1573549359740-2019-11-12T09:02:39.740Z/cw-customers.zip"
+                "S3Key": "serverless/cw-customers/dev/1573550164204-2019-11-12T09:16:04.204Z/cw-customers.zip"
               },
               "FunctionName": "cw-customers-dev-createcustomerresources",
               "Handler": "handlers/createcustomerresources.createcustomerresources",
@@ -328,14 +328,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "CreatecustomerresourcesLambdaVersionzsOS2jL5BgMqYvEwEO5jaF2rWPzjondWWDIpPo07ufc": {
+          "CreatecustomerresourcesLambdaVersion6CRf4L5KJahXVIfNOKStc2FItTkDdKy1pNCfN6KNs": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "CreatecustomerresourcesLambdaFunction"
               },
-              "CodeSha256": "mp/5LxH1lAgPdzDKR+J07gSH8VbEMQAlgpewHz2O+cs="
+              "CodeSha256": "ojlbmdbFQHrAzio4EoS00IMvAS22lQ2jfrGGBnxE6gM="
             }
           },
           "ApiGatewayRestApi": {
@@ -513,49 +513,6 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayMethodCustomeridPost": {
-            "Type": "AWS::ApiGateway::Method",
-            "Properties": {
-              "HttpMethod": "POST",
-              "RequestParameters": {},
-              "ResourceId": {
-                "Ref": "ApiGatewayResourceCustomerid"
-              },
-              "RestApiId": {
-                "Ref": "ApiGatewayRestApi"
-              },
-              "ApiKeyRequired": false,
-              "AuthorizationType": "NONE",
-              "Integration": {
-                "IntegrationHttpMethod": "POST",
-                "Type": "AWS_PROXY",
-                "Uri": {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:",
-                      {
-                        "Ref": "AWS::Partition"
-                      },
-                      ":apigateway:",
-                      {
-                        "Ref": "AWS::Region"
-                      },
-                      ":lambda:path/2015-03-31/functions/",
-                      {
-                        "Fn::GetAtt": [
-                          "CreatecustomerLambdaFunction",
-                          "Arn"
-                        ]
-                      },
-                      "/invocations"
-                    ]
-                  ]
-                }
-              },
-              "MethodResponses": []
-            }
-          },
           "ApiGatewayMethodCustomeridCidVarPut": {
             "Type": "AWS::ApiGateway::Method",
             "Properties": {
@@ -599,7 +556,50 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1573549356529": {
+          "ApiGatewayMethodCustomeridPost": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "HttpMethod": "POST",
+              "RequestParameters": {},
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceCustomerid"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "ApiKeyRequired": false,
+              "AuthorizationType": "NONE",
+              "Integration": {
+                "IntegrationHttpMethod": "POST",
+                "Type": "AWS_PROXY",
+                "Uri": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":apigateway:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":lambda:path/2015-03-31/functions/",
+                      {
+                        "Fn::GetAtt": [
+                          "CreatecustomerLambdaFunction",
+                          "Arn"
+                        ]
+                      },
+                      "/invocations"
+                    ]
+                  ]
+                }
+              },
+              "MethodResponses": []
+            }
+          },
+          "ApiGatewayDeployment1573550160432": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -611,8 +611,8 @@
               "ApiGatewayMethodCustomeridCidVarOptions",
               "ApiGatewayMethodCustomeridOptions",
               "ApiGatewayMethodCustomeridCidVarGet",
-              "ApiGatewayMethodCustomeridPost",
-              "ApiGatewayMethodCustomeridCidVarPut"
+              "ApiGatewayMethodCustomeridCidVarPut",
+              "ApiGatewayMethodCustomeridPost"
             ]
           },
           "GetcustomerbyidLambdaPermissionApiGateway": {
@@ -652,12 +652,12 @@
               }
             }
           },
-          "CreatecustomerLambdaPermissionApiGateway": {
+          "UpdatecustomerLambdaPermissionApiGateway": {
             "Type": "AWS::Lambda::Permission",
             "Properties": {
               "FunctionName": {
                 "Fn::GetAtt": [
-                  "CreatecustomerLambdaFunction",
+                  "UpdatecustomerLambdaFunction",
                   "Arn"
                 ]
               },
@@ -689,12 +689,12 @@
               }
             }
           },
-          "UpdatecustomerLambdaPermissionApiGateway": {
+          "CreatecustomerLambdaPermissionApiGateway": {
             "Type": "AWS::Lambda::Permission",
             "Properties": {
               "FunctionName": {
                 "Fn::GetAtt": [
-                  "UpdatecustomerLambdaFunction",
+                  "CreatecustomerLambdaFunction",
                   "Arn"
                 ]
               },
@@ -793,25 +793,25 @@
           "GetcustomerbyidLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetcustomerbyidLambdaVersionQopH0ja7UKOq6wmwmA84IohT5GlFZA0hRRmj2lXJeXc"
-            }
-          },
-          "CreatecustomerLambdaFunctionQualifiedArn": {
-            "Description": "Current Lambda function version",
-            "Value": {
-              "Ref": "CreatecustomerLambdaVersion69uh59VVDL5g6360z9EKIOMSKrJAVCBVv1J2WyEqwg"
+              "Ref": "GetcustomerbyidLambdaVersion5mX4A3DHSjWoKPwFUcOtsvb8C24KeVCi7pnUzVzn60"
             }
           },
           "UpdatecustomerLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "UpdatecustomerLambdaVersionGrHIAbmKSC0COWMkZT3VlTK6l4oEKrIIl5Sn3ZltI"
+              "Ref": "UpdatecustomerLambdaVersionbKwVVGC0yCPi1je1MRqTv8haSyx1zSnSt03ifrsGBpU"
+            }
+          },
+          "CreatecustomerLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "CreatecustomerLambdaVersionvxDeKYetfTlBqbRIVcR692mZQfZAwmgqcRMVCp5rY"
             }
           },
           "CreatecustomerresourcesLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "CreatecustomerresourcesLambdaVersionzsOS2jL5BgMqYvEwEO5jaF2rWPzjondWWDIpPo07ufc"
+              "Ref": "CreatecustomerresourcesLambdaVersion6CRf4L5KJahXVIfNOKStc2FItTkDdKy1pNCfN6KNs"
             }
           },
           "ServiceEndpoint": {
@@ -910,6 +910,43 @@
         "runtime": "nodejs10.x",
         "vpc": {}
       },
+      "updatecustomer": {
+        "handler": "handlers/updatecustomer.updatecustomerbyid",
+        "events": [
+          {
+            "http": {
+              "path": "customerid/{cid}",
+              "method": "put",
+              "cors": {
+                "origins": [
+                  "*"
+                ],
+                "origin": "*",
+                "methods": [
+                  "OPTIONS",
+                  "PUT"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "X-Amz-Date",
+                  "Authorization",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token",
+                  "X-Amz-User-Agent"
+                ],
+                "allowCredentials": false
+              },
+              "integration": "AWS_PROXY"
+            }
+          }
+        ],
+        "name": "cw-customers-dev-updatecustomer",
+        "package": {},
+        "memory": 1024,
+        "timeout": 30,
+        "runtime": "nodejs10.x",
+        "vpc": {}
+      },
       "createcustomer": {
         "handler": "handlers/addcustomer.createcustomer",
         "enviroment": {
@@ -944,43 +981,6 @@
           }
         ],
         "name": "cw-customers-dev-createcustomer",
-        "package": {},
-        "memory": 1024,
-        "timeout": 30,
-        "runtime": "nodejs10.x",
-        "vpc": {}
-      },
-      "updatecustomer": {
-        "handler": "handlers/updatecustomer.updatecustomerbyid",
-        "events": [
-          {
-            "http": {
-              "path": "customerid/{cid}",
-              "method": "put",
-              "cors": {
-                "origins": [
-                  "*"
-                ],
-                "origin": "*",
-                "methods": [
-                  "OPTIONS",
-                  "PUT"
-                ],
-                "headers": [
-                  "Content-Type",
-                  "X-Amz-Date",
-                  "Authorization",
-                  "X-Api-Key",
-                  "X-Amz-Security-Token",
-                  "X-Amz-User-Agent"
-                ],
-                "allowCredentials": false
-              },
-              "integration": "AWS_PROXY"
-            }
-          }
-        ],
-        "name": "cw-customers-dev-updatecustomer",
         "package": {},
         "memory": 1024,
         "timeout": 30,
@@ -1065,7 +1065,7 @@
     "artifact": "/home/poonam/CodeBlock/Projects/CecureCloud/Code/cecurecloud/apis/.serverless/cw-customers.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/cw-customers/dev/1573549359740-2019-11-12T09:02:39.740Z",
+    "artifactDirectoryName": "serverless/cw-customers/dev/1573550164204-2019-11-12T09:16:04.204Z",
     "artifact": "cw-customers.zip"
   }
 }

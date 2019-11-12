@@ -66,5 +66,6 @@ class UpdateCustomerbyId extends BaseHandler {
 }
 
 exports.updatecustomer = async (event, context, callback) => {
+    console.log("in export function");
     return await new UpdateCustomerbyId().handler(event, context, callback);
 }
