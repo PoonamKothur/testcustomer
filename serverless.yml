@@ -21,13 +21,11 @@ provider:
         - dynamodb:PutItem
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
-        - lambda:InvokeFunction
       Resource: 'arn:aws:dynamodb:ap-south-1:*:*'
-    # - Effect: Allow
-    #   Action:
-    #     - lambda:InvokeFunction
-    #     - lambda:Invoke        
-    #   Resource: 'arn:aws:dynamodb:ap-south-1:*:*'
+    - Effect: Allow
+      Action:
+        - lambda:InvokeFunction
+      Resource: '*'
 
 functions:
    getcustomerbyid:
