@@ -82,33 +82,32 @@ class AddCustomer extends BaseHandler {
             await utils.validate(body, this.getValidationSchema());
 
             // Check if cid already exists
-            // let customerExists = await this.checkIfCustomerExists(body.cid);
-            // this.log.debug("customerExists:" + customerExists);
-            // if (customerExists) {
-            //     return responseHandler.callbackRespondWithSimpleMessage('400', 'Duplicate customer');
-            // }
+            let customerExists = await this.checkIfCustomerExists(body.cid);
+            this.log.debug("customerExists:" + customerExists);
+            if (customerExists) {
+                return responseHandler.callbackRespondWithSimpleMessage('400', 'Duplicate customer');
+            }
 
             // Call to insert customer
-            //let cuid = await this.createCustomer(body);
+            let cuid = await this.createCustomer(body);
 
             //invoke lambda customerresources
-            console.log(process.env.CREATE_CR_LAMBDA_ARN);
 
-            // let params = {
-            //     FunctionName: process.env.CREATE_CR_LAMBDA_ARN, //TODO get from process.env
-            //     //FunctionName: 'cw-customers-dev-createcustomerresources',
-            //     InvocationType: 'Event',
-            //     Payload: JSON.stringify({ cuid: cuid })
-            // };
+            let params = {
+                //FunctionName: process.env.CREATE_CR_LAMBDA_ARN, //TODO get from process.env
+                FunctionName: 'cw-customers-dev-createcustomerresources',
+                InvocationType: 'Event',
+                Payload: JSON.stringify({ cuid: cuid })
+            };
 
-            // let resp ={
-            //     cid: body.cid,
-            //     cuid: cuid,
-            //     message:"Customer Created Successfully"
-            // }
+            let resp ={
+                cid: body.cid,
+                cuid: cuid,
+                message:"Customer Created Successfully"
+            }
 
-            // await lambda.invoke(params).promise();
-            return responseHandler.callbackRespondWithSimpleMessage(200, "Customer Created Successfully");
+            await lambda.invoke(params).promise();
+            return responseHandler.callbackRespondWithSimpleMessage(200, resp);
         }
         catch (err) {
             if (err.message) {

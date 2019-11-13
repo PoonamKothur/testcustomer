@@ -44,7 +44,7 @@ functions:
   
    createcustomer:
     handler: handlers/addcustomer.createcustomer
-    enviroment:
+    environment:
       CREATE_CR_LAMBDA_ARN: arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:function:cw-customers-${opt:stage}-createcustomerresources
     events:
       - http:
@@ -62,6 +62,9 @@ functions:
           path: customerid
           method: put
           cors: true
+          
+   createcustomerresources:
+    handler: handlers/loaddata.customerresourcesdata
 
 resources:
   Resources:

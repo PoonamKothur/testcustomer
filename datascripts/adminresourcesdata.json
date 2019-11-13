@@ -1,0 +1,9 @@
+{
+    "attributes": {
+      "hashkey": "cid",
+      "sortkey": "name"
+    },
+    "name": "role-membership",
+    "sequence": 1,
+    "type": "dynamodb"
+  }
