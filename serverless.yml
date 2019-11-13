@@ -25,8 +25,8 @@ provider:
       Resource: '*'
     - Effect: Allow
       Action:
-        - lambda:InvokeFunction
         - lambda:Invoke
+        - lambda:InvokeFunction
       Resource: '*'
     - Effect: Allow
       Action: 
@@ -41,14 +41,6 @@ functions:
           path: customerid/{cid}
           method: get
           cors: true
-            
-   updatecustomer:
-    handler: handlers/updatecustomer.updatecustomerbyid
-    events:
-      - http:
-          path: customerid
-          method: put
-          cors: true
   
    createcustomer:
     handler: handlers/addcustomer.createcustomer
@@ -60,9 +52,16 @@ functions:
           method: post
           cors: true
 
-
    createcustomerresources:
     handler: handlers/createcustomerresources.createcustomerresources
+
+   updatecustomer:
+    handler: handlers/updatecustomer.updatecustomer
+    events:
+      - http:
+          path: customerid
+          method: put
+          cors: true
 
 resources:
   Resources:

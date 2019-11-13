@@ -1,0 +1,8 @@
+{
+    "path": "/", 
+    "httpMethod": "PUT",    
+    "queryStringParameters": null,
+    "pathParameters": "{\"cid\":\"000005\"}",    
+    "body": "{\"cid\":\"000004\",\"cuid\":\"WXMWVRDY\",\"customerEmail\":\"poonam_test_01@gmail.com\",\"primary\":{\"email\":\"testprim_01@gmail.com\",\"firstName\":\"testprim_01\",\"lastName\":\"testprim last 01\"},\"scope\":\"Direct\",\"type\":\"Consumer\"}",
+    "isBase64Encoded": false
+}
