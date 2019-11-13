@@ -62,8 +62,8 @@ functions:
           path: customerid
           method: put
           cors: true
-          
-   createcustomerresources:
+
+   admincustomerresources:
     handler: handlers/loaddata.customerresourcesdata
 
 resources:
