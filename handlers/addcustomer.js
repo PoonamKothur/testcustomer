@@ -92,10 +92,9 @@ class AddCustomer extends BaseHandler {
             let cuid = await this.createCustomer(body);
 
             //invoke lambda customerresources
-
             let params = {
-                //FunctionName: process.env.CREATE_CR_LAMBDA_ARN, //TODO get from process.env
-                FunctionName: 'cw-customers-dev-createcustomerresources',
+                FunctionName: process.env.CREATE_CR_LAMBDA_ARN, //TODO get from process.env
+                //FunctionName: 'cw-customers-dev-createcustomerresources',
                 InvocationType: 'Event',
                 Payload: JSON.stringify({ cuid: cuid })
             };

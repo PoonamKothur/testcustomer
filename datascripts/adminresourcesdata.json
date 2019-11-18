@@ -1,9 +1,37 @@
-{
-    "attributes": {
-      "hashkey": "cid",
-      "sortkey": "name"
+[
+    {
+        "name": "role-membership_test",
+        "attributes": {
+            "hashkey": "cid",
+            "sortkey": "name"
+        },
+        "sequence": 1,
+        "type": "dynamodb"
     },
-    "name": "role-membership",
-    "sequence": 1,
-    "type": "dynamodb"
-  }
+    {
+        "attributes": {},
+        "name": "super-admin",
+        "sequence": 3,
+        "type": "usergroup"
+    },
+    {
+        "name": "account-group-manager",
+        "sequence": 4,
+        "type": "usergroup"
+    },
+    {
+        "name": "account-manager",
+        "sequence": 5,
+        "type": "usergroup"
+    },
+    {
+        "name": "support-manager",
+        "sequence": 6,
+        "type": "usergroup"
+    },
+    {
+        "name": "support",
+        "sequence": 7,
+        "type": "usergroup"
+    }
+]

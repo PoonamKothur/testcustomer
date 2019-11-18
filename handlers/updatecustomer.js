@@ -54,7 +54,7 @@ class UpdateCustomerbyId extends BaseHandler {
         }
     }
 
-    /*async updateCustomer(cid, data) {
+    async updateCustomer(cid, data) {
         let item = {
             cid: cid
         }
@@ -66,7 +66,7 @@ class UpdateCustomerbyId extends BaseHandler {
         let valRes = await dynamodb.put(params).promise();
         console.log(JSON.stringify(valRes));
         return valRes;
-    }*/
+    }
 
     /*async updateCustomer(cid, data) {
       
