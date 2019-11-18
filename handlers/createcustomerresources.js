@@ -11,6 +11,7 @@ class CreateCustomerResources extends BaseHandler {
 
     // This function gets list of resources to be created for a customer
     async getAdminCustomerResources() {
+        console.log("getAdminCustomerResources");
         this.log.debug("getAdminCustomerResources");
         const params = {
             TableName: `admin-customer-resources-${process.env.STAGE}`
@@ -85,5 +86,6 @@ class CreateCustomerResources extends BaseHandler {
 }
 
 exports.createcustomerresources = async (event, context, callback) => {
+    console.log("in lambda function");
     return await new CreateCustomerResources().handler(event, context, callback);
 }
