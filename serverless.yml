@@ -75,9 +75,13 @@ resources:
         AttributeDefinitions:
           - AttributeName: cid
             AttributeType: S
+          - AttributeName: cuid
+            AttributeType: S
         KeySchema:
           - AttributeName: cid
             KeyType: HASH
+          - AttributeName: cuid
+            KeyType: RANGE
         BillingMode: PAY_PER_REQUEST
     AdminCustomerResourcesTable:
       Type: AWS::DynamoDB::Table
