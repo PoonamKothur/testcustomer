@@ -9,7 +9,7 @@ provider:
   region: ${opt:region, 'ap-south-1'}
 
   environment: 
-    STAGE: ${opt:stage,dev}
+    STAGE: ${opt:stage}
     
   iamRoleStatements:
     - Effect: Allow

@@ -5,7 +5,7 @@ const log4js = require("log4js");
 const log = log4js.getLogger();
 
 exports.createDynamoTable = async (params) => {           
-    dynamodb.createTable(params, function (err, data) {
+  await  dynamodb.createTable(params, function (err, data) {
         if (err) {
             console.error("Unable to create table. Error JSON:", JSON.stringify(err, null, 2)); //TODO speific error
         } else {
@@ -14,7 +14,7 @@ exports.createDynamoTable = async (params) => {
             log.debug("Table created successfully. Table Name: " + params.TableName);
             log.debug("Created table. Table description JSON:", JSON.stringify(data, null, 2));
         }
-    });
+    }).promise();
 }
 
 // exports.createDynamoTable = async (tablename, resource) => {

@@ -47,18 +47,18 @@ class CreateCustomerResources extends BaseHandler {
                         return responseHandler.callbackRespondWithSimpleMessage('404', 'Table schema not defined');
                     }
                     break;
-                case 'userpool':
-                    let poolResponse = await awsmanager.createUserPool(resourceName);
-                    poolId = poolResponse.UserPool.Id;
-                    createdResources.push({ name: resourceName, 'cuid': cuid, type: resource.type, status: "completed", attributes: poolResponse.UserPool.Id });
-                    break;
-                case 'usergroup':
-                    //First get pool id from created resources
-                    // let userPoolDetails = createdResources.filter(f => f.type === 'userpool');
-                    let groupResponse = await awsmanager.createUserGroup(resourceName, poolId);
-                    this.log.debug(JSON.stringify(groupResponse));
-                    createdResources.push({ name: resourceName, 'cuid': cuid, type: resource.type, status: "completed" });
-                    break;
+                // case 'userpool':
+                //     let poolResponse = await awsmanager.createUserPool(resourceName);
+                //     poolId = poolResponse.UserPool.Id;
+                //     createdResources.push({ name: resourceName, 'cuid': cuid, type: resource.type, status: "completed", attributes: poolResponse.UserPool.Id });
+                //     break;
+                // case 'usergroup':
+                //     //First get pool id from created resources
+                //     // let userPoolDetails = createdResources.filter(f => f.type === 'userpool');
+                //     let groupResponse = await awsmanager.createUserGroup(resourceName, poolId);
+                //     this.log.debug(JSON.stringify(groupResponse));
+                //     createdResources.push({ name: resourceName, 'cuid': cuid, type: resource.type, status: "completed" });
+                //     break;
             }
         }
         // check if created resources
