@@ -2,7 +2,6 @@ const responseHandler = require("../common/responsehandler");
 const BaseHandler = require("../common/basehandler");
 const AWS = require('aws-sdk');
 const dynamodb = new AWS.DynamoDB.DocumentClient();
-const lambda = new AWS.Lambda();
 const fs = require('fs');
 
 class CustomerResourcesData extends BaseHandler {

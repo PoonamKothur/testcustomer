@@ -3,6 +3,7 @@ const BaseHandler = require("../common/basehandler");
 const AWS = require('aws-sdk');
 const documentClient = new AWS.DynamoDB.DocumentClient();
 const awsmanager = require('../common/awsmanager');
+const fs = require('fs');
 
 class CreateCustomerResources extends BaseHandler {
     constructor() {
@@ -11,48 +12,53 @@ class CreateCustomerResources extends BaseHandler {
 
     // This function gets list of resources to be created for a customer
     async getAdminCustomerResources() {
-        console.log("getAdminCustomerResources");
         this.log.debug("getAdminCustomerResources");
         const params = {
             TableName: `admin-customer-resources-${process.env.STAGE}`
         };
         let data = await documentClient.scan(params).promise();
+
         return data.Items.sort((a, b) => (a.sequence > b.sequence) ? 1 : -1);
+        // let file = fs.readFileSync('./datascripts/customerResources.json');
+        // let data = JSON.parse(file);
+        // return data;
     }
 
     // This function is used to create customer specific resources
     async createResources(resources, cuid) {
         let createdResources = [];
         let poolId = "";
-        console.log("in create resources");
+        //console.log(resources);
         for (let resource of resources) {
             this.log.debug("resource.type:" + resource.type);
-
             let resourceName = `${cuid}-${resource.name}`;
-            console.log(resourceName);
+
+            //console.log(resourceName);
             switch (resource.type) {
                 case 'dynamodb':
-                    if(resource.name == 'entity')
-                    {
-                        console.log(resourceName + "------------------");
-                        resourceName = `${resource.name}-${cuid}`;
-                        console.log(resourceName );
+                    if ('attributes' in resource && resource.attributes && 'dynamodbparams' in resource.attributes && resource.attributes.dynamodbparams) {
+                        let dynamodbparams = resource.attributes.dynamodbparams;
+                        let tablename = dynamodbparams.TableName;
+                        dynamodbparams.TableName = tablename.replace("{{cuid}}", cuid);
+                        await awsmanager.createDynamoTable(dynamodbparams);
                     }
-                    await awsmanager.createDynamoTable(resourceName, resource);
+                    else {
+                        //console.log("table schema not defined ");
+                        return responseHandler.callbackRespondWithSimpleMessage('404', 'Table schema not defined');
+                    }
+                    break;
+                case 'userpool':
+                    let poolResponse = await awsmanager.createUserPool(resourceName);
+                    poolId = poolResponse.UserPool.Id;
+                    createdResources.push({ name: resourceName, 'cuid': cuid, type: resource.type, status: "completed", attributes: poolResponse.UserPool.Id });
+                    break;
+                case 'usergroup':
+                    //First get pool id from created resources
+                    // let userPoolDetails = createdResources.filter(f => f.type === 'userpool');
+                    let groupResponse = await awsmanager.createUserGroup(resourceName, poolId);
+                    this.log.debug(JSON.stringify(groupResponse));
                     createdResources.push({ name: resourceName, 'cuid': cuid, type: resource.type, status: "completed" });
                     break;
-                // case 'userpool':
-                //     let poolResponse = await awsmanager.createUserPool(resourceName);
-                //     poolId = poolResponse.UserPool.Id;
-                //     createdResources.push({ name: resourceName, 'cuid': cuid, type: resource.type, status: "completed", attributes: poolResponse.UserPool.Id });
-                //     break;
-                // case 'usergroup':
-                //     //First get pool id from created resources
-                //     // let userPoolDetails = createdResources.filter(f => f.type === 'userpool');
-                //     let groupResponse = await awsmanager.createUserGroup(resourceName, poolId);
-                //     this.log.debug(JSON.stringify(groupResponse));
-                //     createdResources.push({ name: resourceName, 'cuid': cuid, type: resource.type, status: "completed" });
-                //     break;
             }
         }
         // check if created resources
@@ -79,6 +85,7 @@ class CreateCustomerResources extends BaseHandler {
             }
         }
         catch (err) {
+            //console.log(err);
             this.log.debug(err);
         }
         return 'done';
@@ -86,6 +93,5 @@ class CreateCustomerResources extends BaseHandler {
 }
 
 exports.createcustomerresources = async (event, context, callback) => {
-    console.log("in lambda function");
     return await new CreateCustomerResources().handler(event, context, callback);
 }
