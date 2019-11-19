@@ -158,7 +158,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/cw-customers/dev/1574186523223-2019-11-19T18:02:03.223Z/cw-customers.zip"
+          "S3Key": "serverless/cw-customers/dev/1574191425421-2019-11-19T19:23:45.421Z/cw-customers.zip"
         },
         "FunctionName": "cw-customers-dev-getcustomerbyid",
         "Handler": "handlers/getcustomerbyid.getcustomer",
@@ -182,14 +182,14 @@
         "IamRoleLambdaExecution"
       ]
     },
-    "GetcustomerbyidLambdaVersionbEQn1JxGqUKuPpTURQ4NR8RZUkY9Sr5BLoyQTGM74": {
+    "GetcustomerbyidLambdaVersionY4Rq4Ogprv8QRVhxp4obO5WBpO20MA1xL6ATohhqzU": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "GetcustomerbyidLambdaFunction"
         },
-        "CodeSha256": "udktNqcBT4/BPQifmtotHS3OpId/uAGCy46pazlySJQ="
+        "CodeSha256": "i8OIy+VcbuHbWAz++4NvXCsq/jcE63DY/WKrlallBPA="
       }
     },
     "CreatecustomerLambdaFunction": {
@@ -199,7 +199,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/cw-customers/dev/1574186523223-2019-11-19T18:02:03.223Z/cw-customers.zip"
+          "S3Key": "serverless/cw-customers/dev/1574191425421-2019-11-19T19:23:45.421Z/cw-customers.zip"
         },
         "FunctionName": "cw-customers-dev-createcustomer",
         "Handler": "handlers/addcustomer.createcustomer",
@@ -226,14 +226,14 @@
         "IamRoleLambdaExecution"
       ]
     },
-    "CreatecustomerLambdaVersiondWiDvejQ2gXRCYL4BwXZYnudqRrAdfvt5wJc6FCJ6JE": {
+    "CreatecustomerLambdaVersionG838oCsPqIBRIpRECU7XJqub7wvm65qs4zGoO6Wom8M": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "CreatecustomerLambdaFunction"
         },
-        "CodeSha256": "udktNqcBT4/BPQifmtotHS3OpId/uAGCy46pazlySJQ="
+        "CodeSha256": "i8OIy+VcbuHbWAz++4NvXCsq/jcE63DY/WKrlallBPA="
       }
     },
     "CreatecustomerresourcesLambdaFunction": {
@@ -243,7 +243,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/cw-customers/dev/1574186523223-2019-11-19T18:02:03.223Z/cw-customers.zip"
+          "S3Key": "serverless/cw-customers/dev/1574191425421-2019-11-19T19:23:45.421Z/cw-customers.zip"
         },
         "FunctionName": "cw-customers-dev-createcustomerresources",
         "Handler": "handlers/createcustomerresources.createcustomerresources",
@@ -267,14 +267,14 @@
         "IamRoleLambdaExecution"
       ]
     },
-    "CreatecustomerresourcesLambdaVersionH16GSkyQ0fhViPE7rzTzSpdHdSZzuBALYjCDeIajE": {
+    "CreatecustomerresourcesLambdaVersionTijX05Nocj1P5Mp8tJ6No3dzGsiARQZUKg5DyVE32c": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "CreatecustomerresourcesLambdaFunction"
         },
-        "CodeSha256": "udktNqcBT4/BPQifmtotHS3OpId/uAGCy46pazlySJQ="
+        "CodeSha256": "i8OIy+VcbuHbWAz++4NvXCsq/jcE63DY/WKrlallBPA="
       }
     },
     "UpdatecustomerLambdaFunction": {
@@ -284,7 +284,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/cw-customers/dev/1574186523223-2019-11-19T18:02:03.223Z/cw-customers.zip"
+          "S3Key": "serverless/cw-customers/dev/1574191425421-2019-11-19T19:23:45.421Z/cw-customers.zip"
         },
         "FunctionName": "cw-customers-dev-updatecustomer",
         "Handler": "handlers/updatecustomer.updatecustomer",
@@ -308,14 +308,14 @@
         "IamRoleLambdaExecution"
       ]
     },
-    "UpdatecustomerLambdaVersionTnKwH1A5gRg5lQ2WgaKfR0UN0mnZmFfuZINWGyEPEqw": {
+    "UpdatecustomerLambdaVersioneOeOxoGnD3Sn6M05s2p6y6H607UtKnDEuf7SBA": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "UpdatecustomerLambdaFunction"
         },
-        "CodeSha256": "udktNqcBT4/BPQifmtotHS3OpId/uAGCy46pazlySJQ="
+        "CodeSha256": "i8OIy+VcbuHbWAz++4NvXCsq/jcE63DY/WKrlallBPA="
       }
     },
     "AdmincustomerresourcesLambdaFunction": {
@@ -325,7 +325,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/cw-customers/dev/1574186523223-2019-11-19T18:02:03.223Z/cw-customers.zip"
+          "S3Key": "serverless/cw-customers/dev/1574191425421-2019-11-19T19:23:45.421Z/cw-customers.zip"
         },
         "FunctionName": "cw-customers-dev-admincustomerresources",
         "Handler": "handlers/loaddata.customerresourcesdata",
@@ -349,14 +349,14 @@
         "IamRoleLambdaExecution"
       ]
     },
-    "AdmincustomerresourcesLambdaVersionJsMRnSYNMpuenyTysE25ukgNAIFOUAQAbZ9zfCbryvo": {
+    "AdmincustomerresourcesLambdaVersionGcMGs8CmPmLQ39ppSHpOpZFFs8gJm16oaQT0s330Q": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "AdmincustomerresourcesLambdaFunction"
         },
-        "CodeSha256": "udktNqcBT4/BPQifmtotHS3OpId/uAGCy46pazlySJQ="
+        "CodeSha256": "i8OIy+VcbuHbWAz++4NvXCsq/jcE63DY/WKrlallBPA="
       }
     },
     "ApiGatewayRestApi": {
@@ -620,7 +620,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1574186520013": {
+    "ApiGatewayDeployment1574191405161": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -755,12 +755,20 @@
           {
             "AttributeName": "cid",
             "AttributeType": "S"
+          },
+          {
+            "AttributeName": "cuid",
+            "AttributeType": "S"
           }
         ],
         "KeySchema": [
           {
             "AttributeName": "cid",
             "KeyType": "HASH"
+          },
+          {
+            "AttributeName": "cuid",
+            "KeyType": "RANGE"
           }
         ],
         "BillingMode": "PAY_PER_REQUEST"
@@ -814,31 +822,31 @@
     "GetcustomerbyidLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GetcustomerbyidLambdaVersionbEQn1JxGqUKuPpTURQ4NR8RZUkY9Sr5BLoyQTGM74"
+        "Ref": "GetcustomerbyidLambdaVersionY4Rq4Ogprv8QRVhxp4obO5WBpO20MA1xL6ATohhqzU"
       }
     },
     "CreatecustomerLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "CreatecustomerLambdaVersiondWiDvejQ2gXRCYL4BwXZYnudqRrAdfvt5wJc6FCJ6JE"
+        "Ref": "CreatecustomerLambdaVersionG838oCsPqIBRIpRECU7XJqub7wvm65qs4zGoO6Wom8M"
       }
     },
     "CreatecustomerresourcesLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "CreatecustomerresourcesLambdaVersionH16GSkyQ0fhViPE7rzTzSpdHdSZzuBALYjCDeIajE"
+        "Ref": "CreatecustomerresourcesLambdaVersionTijX05Nocj1P5Mp8tJ6No3dzGsiARQZUKg5DyVE32c"
       }
     },
     "UpdatecustomerLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "UpdatecustomerLambdaVersionTnKwH1A5gRg5lQ2WgaKfR0UN0mnZmFfuZINWGyEPEqw"
+        "Ref": "UpdatecustomerLambdaVersioneOeOxoGnD3Sn6M05s2p6y6H607UtKnDEuf7SBA"
       }
     },
     "AdmincustomerresourcesLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "AdmincustomerresourcesLambdaVersionJsMRnSYNMpuenyTysE25ukgNAIFOUAQAbZ9zfCbryvo"
+        "Ref": "AdmincustomerresourcesLambdaVersionGcMGs8CmPmLQ39ppSHpOpZFFs8gJm16oaQT0s330Q"
       }
     },
     "ServiceEndpoint": {
