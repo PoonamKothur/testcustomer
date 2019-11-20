@@ -50,7 +50,7 @@ exports.createDynamoTable = async (params) => {
 
 exports.createUserPool = async (poolName) => {
     var promise = new Promise(function (resolve, reject) {
-
+        console.log("Started User Pool creation...");
         log.debug("Started User Pool creation...");
         try {
             let params = {

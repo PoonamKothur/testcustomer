@@ -3,6 +3,7 @@ const BaseHandler = require("../common/basehandler");
 const utils = require('../common/utils');
 const Joi = require('joi');
 const AWS = require('aws-sdk');
+const dynamodbClient = new AWS.DynamoDB({ apiVersion: '2012-08-10' });
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 const lambda = new AWS.Lambda();
 
@@ -44,16 +45,20 @@ class AddCustomer extends BaseHandler {
 
     // This function is used to get customer by cid
     async checkIfCustomerExists(cid) {
-
-        let valRes = await dynamodb.get({
+        console.log("in get customer");
+        let params = {
             TableName: `customers-${process.env.STAGE}`,
-            Key: {
-                cid: cid
+            KeyConditionExpression: "#cid = :cidvalue",
+            ExpressionAttributeNames: {
+                "#cid": "cid"
             },
-            ProjectionExpression: 'cid'
-        }).promise();
-
-        if (valRes && 'Item' in valRes && valRes.Item && 'cid' in valRes.Item && valRes.Item.cid) {
+            ExpressionAttributeValues: {
+                ":cidvalue": cid
+            }
+        };
+        let valRes = await dynamodb.query(params).promise();
+    
+        if (valRes && valRes.Count != 0) {
             return true;
         } else {
             return false;
@@ -62,13 +67,13 @@ class AddCustomer extends BaseHandler {
 
     //values insert if customer does not exists
     async createCustomer(data) {
+        console.log("in create customer");
         const cuid = this.generateRandomcuid(2, 6);
         let item = {
-            cid: body.cid,
             cuid: cuid
         }
         const params = {
-            TableName: `customers_test`,
+            TableName: `customers-${process.env.STAGE}`,
             Item: Object.assign(item, data)
         };
         let valRes = await dynamodb.put(params).promise();
@@ -100,10 +105,10 @@ class AddCustomer extends BaseHandler {
                 Payload: JSON.stringify({ cuid: cuid })
             };
 
-            let resp ={
+            let resp = {
                 cid: body.cid,
                 cuid: cuid,
-                message:"Customer Created Successfully"
+                message: "Customer Created Successfully"
             }
 
             await lambda.invoke(params).promise();

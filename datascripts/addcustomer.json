@@ -1,0 +1,10 @@
+{
+    "path": "/",
+    "httpMethod": "POST",
+    "queryStringParameters": null,
+    "pathParameters": {
+        "cuid": "51VJX947"
+    },
+    "body": "{\"cid\":\"0000089\",\"type\":\"Consumer\",\"scope\":\"Direct\",\"customerEmail\":\"poonam@gmail.com\"}",
+    "isBase64Encoded": false
+}
