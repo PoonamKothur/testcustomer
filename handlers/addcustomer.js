@@ -64,6 +64,7 @@ class AddCustomer extends BaseHandler {
     async createCustomer(data) {
         const cuid = this.generateRandomcuid(2, 6);
         let item = {
+            cid: body.cid,
             cuid: cuid
         }
         const params = {
