@@ -13,15 +13,16 @@ class CreateCustomerResources extends BaseHandler {
     // This function gets list of resources to be created for a customer
     async getAdminCustomerResources() {
         this.log.debug("getAdminCustomerResources");
-        const params = {
-            TableName: `admin-customer-resources-${process.env.STAGE}`
-        };
-        let data = await documentClient.scan(params).promise();
+//         const params = {
+//             TableName: `admin-customer-resources-${process.env.STAGE}`
+//         };
+//         let data = await documentClient.scan(params).promise();
 
-        return data.Items.sort((a, b) => (a.sequence > b.sequence) ? 1 : -1);
-        // let file = fs.readFileSync('./datascripts/customerResources.json');
-        // let data = JSON.parse(file);
-        // return data;
+//         let data1 =  data.Items.sort((a, b) => (a.sequence > b.sequence) ? 1 : -1);
+// console.log(JSON.stringify(data1));
+        let file = fs.readFileSync('./datascripts/customerResources.json');
+        let data = JSON.parse(file);
+        return data;
     }
 
     // This function is used to create customer specific resources
@@ -53,7 +54,7 @@ class CreateCustomerResources extends BaseHandler {
                     console.log("in userpool case");
                     let poolResponse = await awsmanager.createUserPool(resourceName);
                     poolId = poolResponse.UserPool.Id;
-                    createdResources.push({ name: resourceName, 'cuid': cuid, type: resource.type, status: "completed", attributes: { "poolid": poolResponse.UserPool.Id } });
+                    createdResources.push({ name: resourceName, 'cuid': cuid, type: resource.type, status: "completed", attributes: { "poolid": poolid} });
                     break;
                 case 'usergroup':
                     //First get pool id from created resources
