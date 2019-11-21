@@ -19,10 +19,11 @@ class CreateCustomerResources extends BaseHandler {
         let data = await documentClient.scan(params).promise();
 
         let data1 = data.Items.sort((a, b) => (a.sequence > b.sequence) ? 1 : -1);
-        return data1;
+        //return data1;
+        console.log(data1);
         // let file = fs.readFileSync('./datascripts/customerResources.json');
         // let data = JSON.parse(file);
-        // return data;
+        // console.log( data);
     }
 
     // This function is used to create customer specific resources
@@ -83,10 +84,10 @@ class CreateCustomerResources extends BaseHandler {
         try {
             // Check if cuid is present
             let resources = await this.getAdminCustomerResources();
-            this.log.debug(resources);
-            if (resources && resources.length > 0) {
-                await this.createResources(resources, event.cuid);
-            }
+            // this.log.debug(resources);
+            // if (resources && resources.length > 0) {
+            //     await this.createResources(resources, event.cuid);
+            // }
         }
         catch (err) {
             //console.log(err);

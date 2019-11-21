@@ -54,14 +54,14 @@
         "type": "dynamodb"
     },
     {
-        "name": "super-admin",
+        "name": "userpool",
         "sequence": 3,
-        "type": "usergroup"
+        "type": "userpool"
     },
     {
-        "name": "userpool",
+        "name":  "super-admin",
         "sequence": 4,
-        "type": "userpool"
+        "type": "usergroup"
     },
     {
         "name": "account-group-manager",
