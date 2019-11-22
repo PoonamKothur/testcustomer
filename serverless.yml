@@ -117,5 +117,5 @@ custom:
         AttributeDataType: String
         DeveloperOnlyAttribute: False
         Mutable: True
-        Name: "custom:another" # this will end up being custom:another
+        Name: "cuid" # this will end up being custom:another
         Required: False
