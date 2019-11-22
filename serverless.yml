@@ -108,3 +108,14 @@ resources:
   
 plugins:
   - serverless-pseudo-parameters
+  - serverless-cognito-add-custom-attributes
+
+custom:
+  CognitoAddCustomAttributes: 
+    CustomAttributes: 
+      - 
+        AttributeDataType: String
+        DeveloperOnlyAttribute: False
+        Mutable: True
+        Name: "custom:another" # this will end up being custom:another
+        Required: False

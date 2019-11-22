@@ -4,8 +4,8 @@ const cognitoidentityserviceprovider = new AWS.CognitoIdentityServiceProvider();
 const log4js = require("log4js");
 const log = log4js.getLogger();
 
-exports.createDynamoTable = async (params) => {           
-  await dynamodb.createTable(params, function (err, data) {
+exports.createDynamoTable = async (params) => {
+    await dynamodb.createTable(params, function (err, data) {
         if (err) {
             console.error("Unable to create table. Error JSON:", JSON.stringify(err, null, 2)); //TODO speific error
         } else {
@@ -54,7 +54,8 @@ exports.createUserPool = async (poolName) => {
         log.debug("Started User Pool creation...");
         try {
             let params = {
-                PoolName: poolName, /* required */
+                "PoolName": poolName, /* required */
+                
             };
             cognitoidentityserviceprovider.createUserPool(params, function (err, data) {
                 if (err) {
@@ -62,6 +63,7 @@ exports.createUserPool = async (poolName) => {
                     log.error(err);
                     reject(err);
                 } else {
+                    
                     log.debug("User Pool created successfully. Pool_Name: " + params.PoolName + ", Pool_Id" + data.UserPool.Id);
                     log.debug("User Pool description JSON:", JSON.stringify(data, null, 2));
                     resolve(data);
