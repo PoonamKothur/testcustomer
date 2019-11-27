@@ -59,7 +59,7 @@ functions:
     handler: handlers/updatecustomer.updatecustomer
     events:
       - http:
-          path: customerid
+          path: /{cuid}
           method: put
           cors: true
 

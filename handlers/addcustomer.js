@@ -48,16 +48,18 @@ class AddCustomer extends BaseHandler {
         console.log("in get customer");
         let params = {
             TableName: `customers-${process.env.STAGE}`,
-            KeyConditionExpression: "#cid = :cidvalue",
+            FilterExpression: "#cid = :cidvalue",
             ExpressionAttributeNames: {
-                "#cid": "cid"
+                "#cid": "cid",
             },
             ExpressionAttributeValues: {
                 ":cidvalue": cid
             }
         };
-        let valRes = await dynamodb.query(params).promise();
-    
+        this.log.debug(params);
+        let valRes = await dynamodb.scan(params).promise();
+        this.log.debug(valRes);
+
         if (valRes && valRes.Count != 0) {
             return true;
         } else {
@@ -111,7 +113,7 @@ class AddCustomer extends BaseHandler {
                 message: "Customer Created Successfully"
             }
 
-            await lambda.invoke(params).promise();
+            //await lambda.invoke(params).promise();
             return responseHandler.callbackRespondWithSimpleMessage(200, resp);
         }
         catch (err) {

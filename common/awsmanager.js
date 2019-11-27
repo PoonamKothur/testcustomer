@@ -55,7 +55,26 @@ exports.createUserPool = async (poolName) => {
         try {
             let params = {
                 "PoolName": poolName, /* required */
-                
+                "UsernameAttributes": "email",
+                "MfaConfiguration": "ON",
+                "SmsAuthenticationMessage": 'STRING_VALUE',
+                "SmsConfiguration": {
+                  SnsCallerArn: 'STRING_VALUE', /* required */
+                  ExternalId: 'STRING_VALUE'
+                },
+                "SmsVerificationMessage": 'STRING_VALUE',
+                "Schema": [
+                    {
+                        "AttributeDataType": "String",
+                        "Mutable": true,
+                        "Name": "cuid",
+                    },
+                    {
+                        "AttributeDataType": "String",
+                        "Mutable": true,
+                        "Name": "cid",
+                    }
+                ]
             };
             cognitoidentityserviceprovider.createUserPool(params, function (err, data) {
                 if (err) {
@@ -63,7 +82,6 @@ exports.createUserPool = async (poolName) => {
                     log.error(err);
                     reject(err);
                 } else {
-                    
                     log.debug("User Pool created successfully. Pool_Name: " + params.PoolName + ", Pool_Id" + data.UserPool.Id);
                     log.debug("User Pool description JSON:", JSON.stringify(data, null, 2));
                     resolve(data);
@@ -76,6 +94,29 @@ exports.createUserPool = async (poolName) => {
     });
     return promise;
 }
+
+exports.createUserpoolClient = async (poolid) => {
+    console.log("started userpool client creation...");
+    let params = {
+        ClientName: 'client', /* required */
+        UserPoolId: poolid, /* required */
+
+        ExplicitAuthFlows: [
+            ADMIN_NO_SRP_AUTH | CUSTOM_AUTH_FLOW_ONLY | USER_PASSWORD_AUTH | ALLOW_CUSTOM_AUTH | ALLOW_USER_PASSWORD_AUTH | ALLOW_USER_SRP_AUTH | ALLOW_REFRESH_TOKEN_AUTH,
+
+        ],
+        GenerateSecret: false,
+        PreventUserExistenceErrors: ENABLED,
+        RefreshTokenValidity: 30,
+    };
+    console.log(params);
+    let clientresp = await cognitoidentityserviceprovider.createUserPoolClient(params).promise();
+    console.log(clientresp);
+    //   if(clientresp ){
+
+    //   }
+
+};
 
 exports.createUserGroup = async (groupName, userPoolId) => {
     var promise = new Promise(function (resolve, reject) {

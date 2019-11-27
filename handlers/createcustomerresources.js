@@ -55,7 +55,9 @@ class CreateCustomerResources extends BaseHandler {
                 case 'userpool':
                     console.log("in userpool case");
                     let poolResponse = await awsmanager.createUserPool(resourceName);
+                    
                     poolId = poolResponse.UserPool.Id;
+                    let clientresp = await awsmanager.createUserpoolClient(poolId);
                     createdResources.push({ name: resourceName, 'cuid': cuid, type: resource.type, status: "completed", attributes: { "poolid": poolid } });
                     break;
                 case 'usergroup':
@@ -90,7 +92,7 @@ class CreateCustomerResources extends BaseHandler {
             }
         }
         catch (err) {
-            //console.log(err);
+            console.log(err);
             this.log.debug(err);
         }
         return 'done';
