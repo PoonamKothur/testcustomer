@@ -81,6 +81,9 @@ resources:
           Statement: 
             - 
               Effect: "Allow"
+              Principal: 
+                Service: 
+                  - "SNS"
               Action: 
                 - "sns:publish"
         Path: "/"
