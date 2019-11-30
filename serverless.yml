@@ -83,7 +83,7 @@ resources:
               Effect: "Allow"
               Principal: 
                 Service: 
-                  - "SNS"
+                  - "ec2.amazonaws.com"
               Action: 
                 - "sns:publish"
         Path: "/"

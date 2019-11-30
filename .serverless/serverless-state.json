@@ -197,7 +197,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/cw-customers/dev/1575140345961-2019-11-30T18:59:05.961Z/cw-customers.zip"
+                "S3Key": "serverless/cw-customers/dev/1575140399400-2019-11-30T18:59:59.400Z/cw-customers.zip"
               },
               "FunctionName": "cw-customers-dev-getcustomerbyid",
               "Handler": "handlers/getcustomerbyid.getcustomer",
@@ -238,7 +238,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/cw-customers/dev/1575140345961-2019-11-30T18:59:05.961Z/cw-customers.zip"
+                "S3Key": "serverless/cw-customers/dev/1575140399400-2019-11-30T18:59:59.400Z/cw-customers.zip"
               },
               "FunctionName": "cw-customers-dev-createcustomer",
               "Handler": "handlers/addcustomer.createcustomer",
@@ -282,7 +282,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/cw-customers/dev/1575140345961-2019-11-30T18:59:05.961Z/cw-customers.zip"
+                "S3Key": "serverless/cw-customers/dev/1575140399400-2019-11-30T18:59:59.400Z/cw-customers.zip"
               },
               "FunctionName": "cw-customers-dev-createcustomerresources",
               "Handler": "handlers/createcustomerresources.createcustomerresources",
@@ -323,7 +323,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/cw-customers/dev/1575140345961-2019-11-30T18:59:05.961Z/cw-customers.zip"
+                "S3Key": "serverless/cw-customers/dev/1575140399400-2019-11-30T18:59:59.400Z/cw-customers.zip"
               },
               "FunctionName": "cw-customers-dev-updatecustomer",
               "Handler": "handlers/updatecustomer.updatecustomer",
@@ -364,7 +364,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/cw-customers/dev/1575140345961-2019-11-30T18:59:05.961Z/cw-customers.zip"
+                "S3Key": "serverless/cw-customers/dev/1575140399400-2019-11-30T18:59:59.400Z/cw-customers.zip"
               },
               "FunctionName": "cw-customers-dev-admincustomerresources",
               "Handler": "handlers/loaddata.customerresourcesdata",
@@ -721,7 +721,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1575140341466": {
+          "ApiGatewayDeployment1575140395034": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -857,6 +857,11 @@
                 "Statement": [
                   {
                     "Effect": "Allow",
+                    "Principal": {
+                      "Service": [
+                        "SNS"
+                      ]
+                    },
                     "Action": [
                       "sns:publish"
                     ]
@@ -1206,6 +1211,11 @@
               "Statement": [
                 {
                   "Effect": "Allow",
+                  "Principal": {
+                    "Service": [
+                      "SNS"
+                    ]
+                  },
                   "Action": [
                     "sns:publish"
                   ]
@@ -1320,7 +1330,7 @@
     "artifact": "/home/poonam/CodeBlock/Projects/CecureCloud/Code/cecurecloud/apis/.serverless/cw-customers.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/cw-customers/dev/1575140345961-2019-11-30T18:59:05.961Z",
+    "artifactDirectoryName": "serverless/cw-customers/dev/1575140399400-2019-11-30T18:59:59.400Z",
     "artifact": "cw-customers.zip"
   }
 }
