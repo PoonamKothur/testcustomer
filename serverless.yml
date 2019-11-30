@@ -84,10 +84,11 @@ resources:
               Resource: '*'
         Description: SMS Role for SNS
         ManagedPolicyArns: 
-          - arn:aws:iam::738146172566:policy/service-role/Cognito-1509099821021
+           - arn:aws:iam::738146172566:policy/service-role/Cognito-1509099821021
         Path: /
         Policies: 
-          - Cognito-1509099821021
+            - 
+               Cognito-1509099821021
         RoleName: PoonamSMSROle
 
     CustomerTable:
