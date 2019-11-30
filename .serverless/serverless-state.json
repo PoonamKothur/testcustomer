@@ -197,7 +197,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/cw-customers/dev/1575143468571-2019-11-30T19:51:08.571Z/cw-customers.zip"
+                "S3Key": "serverless/cw-customers/dev/1575144190001-2019-11-30T20:03:10.001Z/cw-customers.zip"
               },
               "FunctionName": "cw-customers-dev-getcustomerbyid",
               "Handler": "handlers/getcustomerbyid.getcustomer",
@@ -238,7 +238,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/cw-customers/dev/1575143468571-2019-11-30T19:51:08.571Z/cw-customers.zip"
+                "S3Key": "serverless/cw-customers/dev/1575144190001-2019-11-30T20:03:10.001Z/cw-customers.zip"
               },
               "FunctionName": "cw-customers-dev-createcustomer",
               "Handler": "handlers/addcustomer.createcustomer",
@@ -282,7 +282,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/cw-customers/dev/1575143468571-2019-11-30T19:51:08.571Z/cw-customers.zip"
+                "S3Key": "serverless/cw-customers/dev/1575144190001-2019-11-30T20:03:10.001Z/cw-customers.zip"
               },
               "FunctionName": "cw-customers-dev-createcustomerresources",
               "Handler": "handlers/createcustomerresources.createcustomerresources",
@@ -323,7 +323,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/cw-customers/dev/1575143468571-2019-11-30T19:51:08.571Z/cw-customers.zip"
+                "S3Key": "serverless/cw-customers/dev/1575144190001-2019-11-30T20:03:10.001Z/cw-customers.zip"
               },
               "FunctionName": "cw-customers-dev-updatecustomer",
               "Handler": "handlers/updatecustomer.updatecustomer",
@@ -364,7 +364,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/cw-customers/dev/1575143468571-2019-11-30T19:51:08.571Z/cw-customers.zip"
+                "S3Key": "serverless/cw-customers/dev/1575144190001-2019-11-30T20:03:10.001Z/cw-customers.zip"
               },
               "FunctionName": "cw-customers-dev-admincustomerresources",
               "Handler": "handlers/loaddata.customerresourcesdata",
@@ -721,7 +721,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1575143458402": {
+          "ApiGatewayDeployment1575144176004": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -856,11 +856,6 @@
               "Statement": [
                 {
                   "Effect": "Allow",
-                  "Principal": {
-                    "Service": [
-                      "ec2.amazonaws.com;"
-                    ]
-                  },
                   "Action": [
                     "sns:publish"
                   ],
@@ -877,6 +872,71 @@
               "Cognito-1509099821021"
             ],
             "RoleName": "PoonamSMSROle"
+          },
+          "CustomerTable": {
+            "Type": "AWS::DynamoDB::Table",
+            "Properties": {
+              "TableName": "customers-dev",
+              "AttributeDefinitions": [
+                {
+                  "AttributeName": "cid",
+                  "AttributeType": "S"
+                },
+                {
+                  "AttributeName": "cuid",
+                  "AttributeType": "S"
+                }
+              ],
+              "KeySchema": [
+                {
+                  "AttributeName": "cid",
+                  "KeyType": "HASH"
+                },
+                {
+                  "AttributeName": "cuid",
+                  "KeyType": "RANGE"
+                }
+              ],
+              "BillingMode": "PAY_PER_REQUEST"
+            }
+          },
+          "AdminCustomerResourcesTable": {
+            "Type": "AWS::DynamoDB::Table",
+            "Properties": {
+              "TableName": "admin-customer-resources-dev",
+              "AttributeDefinitions": [
+                {
+                  "AttributeName": "name",
+                  "AttributeType": "S"
+                }
+              ],
+              "KeySchema": [
+                {
+                  "AttributeName": "name",
+                  "KeyType": "HASH"
+                }
+              ],
+              "BillingMode": "PAY_PER_REQUEST"
+            }
+          },
+          "CustomerResourcesTable": {
+            "Type": "AWS::DynamoDB::Table",
+            "Properties": {
+              "TableName": "customer-resources-dev",
+              "AttributeDefinitions": [
+                {
+                  "AttributeName": "name",
+                  "AttributeType": "S"
+                }
+              ],
+              "KeySchema": [
+                {
+                  "AttributeName": "name",
+                  "KeyType": "HASH"
+                }
+              ],
+              "BillingMode": "PAY_PER_REQUEST"
+            }
           }
         },
         "Outputs": {
@@ -937,71 +997,6 @@
                 ]
               ]
             }
-          }
-        },
-        "CustomerTable": {
-          "Type": "AWS::DynamoDB::Table",
-          "Properties": {
-            "TableName": "customers-dev",
-            "AttributeDefinitions": [
-              {
-                "AttributeName": "cid",
-                "AttributeType": "S"
-              },
-              {
-                "AttributeName": "cuid",
-                "AttributeType": "S"
-              }
-            ],
-            "KeySchema": [
-              {
-                "AttributeName": "cid",
-                "KeyType": "HASH"
-              },
-              {
-                "AttributeName": "cuid",
-                "KeyType": "RANGE"
-              }
-            ],
-            "BillingMode": "PAY_PER_REQUEST"
-          }
-        },
-        "AdminCustomerResourcesTable": {
-          "Type": "AWS::DynamoDB::Table",
-          "Properties": {
-            "TableName": "admin-customer-resources-dev",
-            "AttributeDefinitions": [
-              {
-                "AttributeName": "name",
-                "AttributeType": "S"
-              }
-            ],
-            "KeySchema": [
-              {
-                "AttributeName": "name",
-                "KeyType": "HASH"
-              }
-            ],
-            "BillingMode": "PAY_PER_REQUEST"
-          }
-        },
-        "CustomerResourcesTable": {
-          "Type": "AWS::DynamoDB::Table",
-          "Properties": {
-            "TableName": "customer-resources-dev",
-            "AttributeDefinitions": [
-              {
-                "AttributeName": "name",
-                "AttributeType": "S"
-              }
-            ],
-            "KeySchema": [
-              {
-                "AttributeName": "name",
-                "KeyType": "HASH"
-              }
-            ],
-            "BillingMode": "PAY_PER_REQUEST"
           }
         }
       },
@@ -1184,11 +1179,6 @@
             "Statement": [
               {
                 "Effect": "Allow",
-                "Principal": {
-                  "Service": [
-                    "ec2.amazonaws.com;"
-                  ]
-                },
                 "Action": [
                   "sns:publish"
                 ],
@@ -1205,71 +1195,71 @@
             "Cognito-1509099821021"
           ],
           "RoleName": "PoonamSMSROle"
-        }
-      },
-      "CustomerTable": {
-        "Type": "AWS::DynamoDB::Table",
-        "Properties": {
-          "TableName": "customers-dev",
-          "AttributeDefinitions": [
-            {
-              "AttributeName": "cid",
-              "AttributeType": "S"
-            },
-            {
-              "AttributeName": "cuid",
-              "AttributeType": "S"
-            }
-          ],
-          "KeySchema": [
-            {
-              "AttributeName": "cid",
-              "KeyType": "HASH"
-            },
-            {
-              "AttributeName": "cuid",
-              "KeyType": "RANGE"
-            }
-          ],
-          "BillingMode": "PAY_PER_REQUEST"
-        }
-      },
-      "AdminCustomerResourcesTable": {
-        "Type": "AWS::DynamoDB::Table",
-        "Properties": {
-          "TableName": "admin-customer-resources-dev",
-          "AttributeDefinitions": [
-            {
-              "AttributeName": "name",
-              "AttributeType": "S"
-            }
-          ],
-          "KeySchema": [
-            {
-              "AttributeName": "name",
-              "KeyType": "HASH"
-            }
-          ],
-          "BillingMode": "PAY_PER_REQUEST"
-        }
-      },
-      "CustomerResourcesTable": {
-        "Type": "AWS::DynamoDB::Table",
-        "Properties": {
-          "TableName": "customer-resources-dev",
-          "AttributeDefinitions": [
-            {
-              "AttributeName": "name",
-              "AttributeType": "S"
-            }
-          ],
-          "KeySchema": [
-            {
-              "AttributeName": "name",
-              "KeyType": "HASH"
-            }
-          ],
-          "BillingMode": "PAY_PER_REQUEST"
+        },
+        "CustomerTable": {
+          "Type": "AWS::DynamoDB::Table",
+          "Properties": {
+            "TableName": "customers-dev",
+            "AttributeDefinitions": [
+              {
+                "AttributeName": "cid",
+                "AttributeType": "S"
+              },
+              {
+                "AttributeName": "cuid",
+                "AttributeType": "S"
+              }
+            ],
+            "KeySchema": [
+              {
+                "AttributeName": "cid",
+                "KeyType": "HASH"
+              },
+              {
+                "AttributeName": "cuid",
+                "KeyType": "RANGE"
+              }
+            ],
+            "BillingMode": "PAY_PER_REQUEST"
+          }
+        },
+        "AdminCustomerResourcesTable": {
+          "Type": "AWS::DynamoDB::Table",
+          "Properties": {
+            "TableName": "admin-customer-resources-dev",
+            "AttributeDefinitions": [
+              {
+                "AttributeName": "name",
+                "AttributeType": "S"
+              }
+            ],
+            "KeySchema": [
+              {
+                "AttributeName": "name",
+                "KeyType": "HASH"
+              }
+            ],
+            "BillingMode": "PAY_PER_REQUEST"
+          }
+        },
+        "CustomerResourcesTable": {
+          "Type": "AWS::DynamoDB::Table",
+          "Properties": {
+            "TableName": "customer-resources-dev",
+            "AttributeDefinitions": [
+              {
+                "AttributeName": "name",
+                "AttributeType": "S"
+              }
+            ],
+            "KeySchema": [
+              {
+                "AttributeName": "name",
+                "KeyType": "HASH"
+              }
+            ],
+            "BillingMode": "PAY_PER_REQUEST"
+          }
         }
       },
       "Outputs": {}
@@ -1279,7 +1269,7 @@
     "artifact": "/home/poonam/CodeBlock/Projects/CecureCloud/Code/cecurecloud/apis/.serverless/cw-customers.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/cw-customers/dev/1575143468571-2019-11-30T19:51:08.571Z",
+    "artifactDirectoryName": "serverless/cw-customers/dev/1575144190001-2019-11-30T20:03:10.001Z",
     "artifact": "cw-customers.zip"
   }
 }

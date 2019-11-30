@@ -72,6 +72,7 @@ functions:
 
 resources:
   Resources:
+    SMSRole:
     Type: AWS::IAM::Role
     Properties: 
       AssumeRolePolicyDocument: 
