@@ -93,7 +93,7 @@ resources:
                 Effect: "Allow"
                 Action: "*"
                 Resource: "*"
-        RoleName: String
+        RoleName: PoonamSMS-Role
       CustomerTable:
         Type: AWS::DynamoDB::Table
         Properties:
