@@ -197,7 +197,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/cw-customers/dev/1575140582791-2019-11-30T19:03:02.791Z/cw-customers.zip"
+                "S3Key": "serverless/cw-customers/dev/1575143252123-2019-11-30T19:47:32.123Z/cw-customers.zip"
               },
               "FunctionName": "cw-customers-dev-getcustomerbyid",
               "Handler": "handlers/getcustomerbyid.getcustomer",
@@ -221,14 +221,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "GetcustomerbyidLambdaVersionG7csNbD6wLdBP44wGRD4L6cAOtwVv7yayEc5z7pDiJk": {
+          "GetcustomerbyidLambdaVersionRzgsqviq2YsrCxhiqTb6WNKSnFLcNdXl0rAy1j0NTM": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GetcustomerbyidLambdaFunction"
               },
-              "CodeSha256": "Ye4KFVLvkemRZYl0QV+UvJhtQ1ksXYV50GugKr+Di5s="
+              "CodeSha256": "kgLiVzBAYwpvA/dM78NSqFq0QJSPw0j0pQFKS6pTtyM="
             }
           },
           "CreatecustomerLambdaFunction": {
@@ -238,7 +238,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/cw-customers/dev/1575140582791-2019-11-30T19:03:02.791Z/cw-customers.zip"
+                "S3Key": "serverless/cw-customers/dev/1575143252123-2019-11-30T19:47:32.123Z/cw-customers.zip"
               },
               "FunctionName": "cw-customers-dev-createcustomer",
               "Handler": "handlers/addcustomer.createcustomer",
@@ -265,14 +265,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "CreatecustomerLambdaVersionrwTQWdAMaRZGbMjMFqX6SFeyNB1IUr93cia2VjLtNYM": {
+          "CreatecustomerLambdaVersionUieFl7EzlHN9jI1shaR0KpRnh9ZUwvbFoAzSjZdHE": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "CreatecustomerLambdaFunction"
               },
-              "CodeSha256": "Ye4KFVLvkemRZYl0QV+UvJhtQ1ksXYV50GugKr+Di5s="
+              "CodeSha256": "kgLiVzBAYwpvA/dM78NSqFq0QJSPw0j0pQFKS6pTtyM="
             }
           },
           "CreatecustomerresourcesLambdaFunction": {
@@ -282,7 +282,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/cw-customers/dev/1575140582791-2019-11-30T19:03:02.791Z/cw-customers.zip"
+                "S3Key": "serverless/cw-customers/dev/1575143252123-2019-11-30T19:47:32.123Z/cw-customers.zip"
               },
               "FunctionName": "cw-customers-dev-createcustomerresources",
               "Handler": "handlers/createcustomerresources.createcustomerresources",
@@ -306,14 +306,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "CreatecustomerresourcesLambdaVersionZES6ew0pGP84YG1t76k3uBWLYyW8shqt05nbdJEho": {
+          "CreatecustomerresourcesLambdaVersion2JlZa4lTRtsAc2KlIfMyxKSBEZROsr6aCmR2SsvGjys": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "CreatecustomerresourcesLambdaFunction"
               },
-              "CodeSha256": "Ye4KFVLvkemRZYl0QV+UvJhtQ1ksXYV50GugKr+Di5s="
+              "CodeSha256": "kgLiVzBAYwpvA/dM78NSqFq0QJSPw0j0pQFKS6pTtyM="
             }
           },
           "UpdatecustomerLambdaFunction": {
@@ -323,7 +323,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/cw-customers/dev/1575140582791-2019-11-30T19:03:02.791Z/cw-customers.zip"
+                "S3Key": "serverless/cw-customers/dev/1575143252123-2019-11-30T19:47:32.123Z/cw-customers.zip"
               },
               "FunctionName": "cw-customers-dev-updatecustomer",
               "Handler": "handlers/updatecustomer.updatecustomer",
@@ -347,14 +347,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "UpdatecustomerLambdaVersionXWekQ0VqQHXO5EyfHwwY989BDJ3lcjx82KKNHDHby70": {
+          "UpdatecustomerLambdaVersionGfnIi2iOzJiGSR3hiGrpaCAX2XgMGhJlsg9eHViqEIc": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "UpdatecustomerLambdaFunction"
               },
-              "CodeSha256": "Ye4KFVLvkemRZYl0QV+UvJhtQ1ksXYV50GugKr+Di5s="
+              "CodeSha256": "kgLiVzBAYwpvA/dM78NSqFq0QJSPw0j0pQFKS6pTtyM="
             }
           },
           "AdmincustomerresourcesLambdaFunction": {
@@ -364,7 +364,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/cw-customers/dev/1575140582791-2019-11-30T19:03:02.791Z/cw-customers.zip"
+                "S3Key": "serverless/cw-customers/dev/1575143252123-2019-11-30T19:47:32.123Z/cw-customers.zip"
               },
               "FunctionName": "cw-customers-dev-admincustomerresources",
               "Handler": "handlers/loaddata.customerresourcesdata",
@@ -388,14 +388,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "AdmincustomerresourcesLambdaVersiongh53zSiyh9ognJJZGuwOhHjGqpXknNvLrhYz05nsfI": {
+          "AdmincustomerresourcesLambdaVersionsfC4ylXHo3efnYRqH4JerKa6gm1gmcNLCkUOyAeF5go": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "AdmincustomerresourcesLambdaFunction"
               },
-              "CodeSha256": "Ye4KFVLvkemRZYl0QV+UvJhtQ1ksXYV50GugKr+Di5s="
+              "CodeSha256": "kgLiVzBAYwpvA/dM78NSqFq0QJSPw0j0pQFKS6pTtyM="
             }
           },
           "ApiGatewayRestApi": {
@@ -721,7 +721,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1575140578355": {
+          "ApiGatewayDeployment1575143230848": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -849,124 +849,33 @@
               }
             }
           },
-          "RootRole": {
-            "Type": "AWS::IAM::Role",
-            "Properties": {
-              "AssumeRolePolicyDocument": {
-                "Version": "2012-10-17",
-                "Statement": [
-                  {
-                    "Effect": "Allow",
-                    "Principal": {
-                      "Service": [
-                        "ec2.amazonaws.com"
-                      ]
-                    },
-                    "Action": [
-                      "sts:AssumeRole"
+          "Type": "AWS::IAM::Role",
+          "Properties": {
+            "AssumeRolePolicyDocument": {
+              "Version": "2012-10-17T00:00:00.000Z",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Principal": {
+                    "Service": [
+                      "ec2.amazonaws.com;"
                     ]
-                  }
-                ]
-              },
-              "Path": "/"
-            }
-          },
-          "RolePolicies": {
-            "Type": "AWS::IAM::Policy",
-            "Properties": {
-              "PolicyName": "Cognito-1509099821021",
-              "PolicyDocument": {
-                "Version": "2012-10-17",
-                "Statement": [
-                  {
-                    "Effect": "Allow",
-                    "Action": "*",
-                    "Resource": "*"
-                  }
-                ]
-              },
-              "Roles": [
-                {
-                  "Ref": "RootRole"
+                  },
+                  "Action": [
+                    "sns:publish"
+                  ]
                 }
               ]
-            }
-          },
-          "RootInstanceProfile": {
-            "Type": "AWS::IAM::InstanceProfile",
-            "Properties": {
-              "Path": "/",
-              "Roles": [
-                {
-                  "Ref": "RootRole"
-                }
-              ]
-            }
-          },
-          "CustomerTable": {
-            "Type": "AWS::DynamoDB::Table",
-            "Properties": {
-              "TableName": "customers-dev",
-              "AttributeDefinitions": [
-                {
-                  "AttributeName": "cid",
-                  "AttributeType": "S"
-                },
-                {
-                  "AttributeName": "cuid",
-                  "AttributeType": "S"
-                }
-              ],
-              "KeySchema": [
-                {
-                  "AttributeName": "cid",
-                  "KeyType": "HASH"
-                },
-                {
-                  "AttributeName": "cuid",
-                  "KeyType": "RANGE"
-                }
-              ],
-              "BillingMode": "PAY_PER_REQUEST"
-            }
-          },
-          "AdminCustomerResourcesTable": {
-            "Type": "AWS::DynamoDB::Table",
-            "Properties": {
-              "TableName": "admin-customer-resources-dev",
-              "AttributeDefinitions": [
-                {
-                  "AttributeName": "name",
-                  "AttributeType": "S"
-                }
-              ],
-              "KeySchema": [
-                {
-                  "AttributeName": "name",
-                  "KeyType": "HASH"
-                }
-              ],
-              "BillingMode": "PAY_PER_REQUEST"
-            }
-          },
-          "CustomerResourcesTable": {
-            "Type": "AWS::DynamoDB::Table",
-            "Properties": {
-              "TableName": "customer-resources-dev",
-              "AttributeDefinitions": [
-                {
-                  "AttributeName": "name",
-                  "AttributeType": "S"
-                }
-              ],
-              "KeySchema": [
-                {
-                  "AttributeName": "name",
-                  "KeyType": "HASH"
-                }
-              ],
-              "BillingMode": "PAY_PER_REQUEST"
-            }
+            },
+            "Description": "SMS Role for SNS",
+            "ManagedPolicyArns": [
+              "arn:aws:iam::738146172566:policy/service-role/Cognito-1509099821021"
+            ],
+            "Path": "/",
+            "Policies": [
+              "Cognito-1509099821021"
+            ],
+            "RoleName": "PoonamSMSROle"
           }
         },
         "Outputs": {
@@ -978,31 +887,31 @@
           "GetcustomerbyidLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetcustomerbyidLambdaVersionG7csNbD6wLdBP44wGRD4L6cAOtwVv7yayEc5z7pDiJk"
+              "Ref": "GetcustomerbyidLambdaVersionRzgsqviq2YsrCxhiqTb6WNKSnFLcNdXl0rAy1j0NTM"
             }
           },
           "CreatecustomerLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "CreatecustomerLambdaVersionrwTQWdAMaRZGbMjMFqX6SFeyNB1IUr93cia2VjLtNYM"
+              "Ref": "CreatecustomerLambdaVersionUieFl7EzlHN9jI1shaR0KpRnh9ZUwvbFoAzSjZdHE"
             }
           },
           "CreatecustomerresourcesLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "CreatecustomerresourcesLambdaVersionZES6ew0pGP84YG1t76k3uBWLYyW8shqt05nbdJEho"
+              "Ref": "CreatecustomerresourcesLambdaVersion2JlZa4lTRtsAc2KlIfMyxKSBEZROsr6aCmR2SsvGjys"
             }
           },
           "UpdatecustomerLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "UpdatecustomerLambdaVersionXWekQ0VqQHXO5EyfHwwY989BDJ3lcjx82KKNHDHby70"
+              "Ref": "UpdatecustomerLambdaVersionGfnIi2iOzJiGSR3hiGrpaCAX2XgMGhJlsg9eHViqEIc"
             }
           },
           "AdmincustomerresourcesLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "AdmincustomerresourcesLambdaVersiongh53zSiyh9ognJJZGuwOhHjGqpXknNvLrhYz05nsfI"
+              "Ref": "AdmincustomerresourcesLambdaVersionsfC4ylXHo3efnYRqH4JerKa6gm1gmcNLCkUOyAeF5go"
             }
           },
           "ServiceEndpoint": {
@@ -1027,6 +936,71 @@
                 ]
               ]
             }
+          }
+        },
+        "CustomerTable": {
+          "Type": "AWS::DynamoDB::Table",
+          "Properties": {
+            "TableName": "customers-dev",
+            "AttributeDefinitions": [
+              {
+                "AttributeName": "cid",
+                "AttributeType": "S"
+              },
+              {
+                "AttributeName": "cuid",
+                "AttributeType": "S"
+              }
+            ],
+            "KeySchema": [
+              {
+                "AttributeName": "cid",
+                "KeyType": "HASH"
+              },
+              {
+                "AttributeName": "cuid",
+                "KeyType": "RANGE"
+              }
+            ],
+            "BillingMode": "PAY_PER_REQUEST"
+          }
+        },
+        "AdminCustomerResourcesTable": {
+          "Type": "AWS::DynamoDB::Table",
+          "Properties": {
+            "TableName": "admin-customer-resources-dev",
+            "AttributeDefinitions": [
+              {
+                "AttributeName": "name",
+                "AttributeType": "S"
+              }
+            ],
+            "KeySchema": [
+              {
+                "AttributeName": "name",
+                "KeyType": "HASH"
+              }
+            ],
+            "BillingMode": "PAY_PER_REQUEST"
+          }
+        },
+        "CustomerResourcesTable": {
+          "Type": "AWS::DynamoDB::Table",
+          "Properties": {
+            "TableName": "customer-resources-dev",
+            "AttributeDefinitions": [
+              {
+                "AttributeName": "name",
+                "AttributeType": "S"
+              }
+            ],
+            "KeySchema": [
+              {
+                "AttributeName": "name",
+                "KeyType": "HASH"
+              }
+            ],
+            "BillingMode": "PAY_PER_REQUEST"
           }
         }
       },
@@ -1201,126 +1175,99 @@
       }
     },
     "resources": {
-      "AWSTemplateFormatVersion": "2010-09-09",
       "Resources": {
-        "RootRole": {
-          "Type": "AWS::IAM::Role",
-          "Properties": {
-            "AssumeRolePolicyDocument": {
-              "Version": "2012-10-17",
-              "Statement": [
-                {
-                  "Effect": "Allow",
-                  "Principal": {
-                    "Service": [
-                      "ec2.amazonaws.com"
-                    ]
-                  },
-                  "Action": [
-                    "sts:AssumeRole"
+        "Type": "AWS::IAM::Role",
+        "Properties": {
+          "AssumeRolePolicyDocument": {
+            "Version": "2012-10-17T00:00:00.000Z",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Principal": {
+                  "Service": [
+                    "ec2.amazonaws.com;"
                   ]
-                }
-              ]
-            },
-            "Path": "/"
-          }
-        },
-        "RolePolicies": {
-          "Type": "AWS::IAM::Policy",
-          "Properties": {
-            "PolicyName": "Cognito-1509099821021",
-            "PolicyDocument": {
-              "Version": "2012-10-17",
-              "Statement": [
-                {
-                  "Effect": "Allow",
-                  "Action": "*",
-                  "Resource": "*"
-                }
-              ]
-            },
-            "Roles": [
-              {
-                "Ref": "RootRole"
+                },
+                "Action": [
+                  "sns:publish"
+                ]
               }
             ]
-          }
-        },
-        "RootInstanceProfile": {
-          "Type": "AWS::IAM::InstanceProfile",
-          "Properties": {
-            "Path": "/",
-            "Roles": [
-              {
-                "Ref": "RootRole"
-              }
-            ]
-          }
-        },
-        "CustomerTable": {
-          "Type": "AWS::DynamoDB::Table",
-          "Properties": {
-            "TableName": "customers-dev",
-            "AttributeDefinitions": [
-              {
-                "AttributeName": "cid",
-                "AttributeType": "S"
-              },
-              {
-                "AttributeName": "cuid",
-                "AttributeType": "S"
-              }
-            ],
-            "KeySchema": [
-              {
-                "AttributeName": "cid",
-                "KeyType": "HASH"
-              },
-              {
-                "AttributeName": "cuid",
-                "KeyType": "RANGE"
-              }
-            ],
-            "BillingMode": "PAY_PER_REQUEST"
-          }
-        },
-        "AdminCustomerResourcesTable": {
-          "Type": "AWS::DynamoDB::Table",
-          "Properties": {
-            "TableName": "admin-customer-resources-dev",
-            "AttributeDefinitions": [
-              {
-                "AttributeName": "name",
-                "AttributeType": "S"
-              }
-            ],
-            "KeySchema": [
-              {
-                "AttributeName": "name",
-                "KeyType": "HASH"
-              }
-            ],
-            "BillingMode": "PAY_PER_REQUEST"
-          }
-        },
-        "CustomerResourcesTable": {
-          "Type": "AWS::DynamoDB::Table",
-          "Properties": {
-            "TableName": "customer-resources-dev",
-            "AttributeDefinitions": [
-              {
-                "AttributeName": "name",
-                "AttributeType": "S"
-              }
-            ],
-            "KeySchema": [
-              {
-                "AttributeName": "name",
-                "KeyType": "HASH"
-              }
-            ],
-            "BillingMode": "PAY_PER_REQUEST"
-          }
+          },
+          "Description": "SMS Role for SNS",
+          "ManagedPolicyArns": [
+            "arn:aws:iam::738146172566:policy/service-role/Cognito-1509099821021"
+          ],
+          "Path": "/",
+          "Policies": [
+            "Cognito-1509099821021"
+          ],
+          "RoleName": "PoonamSMSROle"
+        }
+      },
+      "CustomerTable": {
+        "Type": "AWS::DynamoDB::Table",
+        "Properties": {
+          "TableName": "customers-dev",
+          "AttributeDefinitions": [
+            {
+              "AttributeName": "cid",
+              "AttributeType": "S"
+            },
+            {
+              "AttributeName": "cuid",
+              "AttributeType": "S"
+            }
+          ],
+          "KeySchema": [
+            {
+              "AttributeName": "cid",
+              "KeyType": "HASH"
+            },
+            {
+              "AttributeName": "cuid",
+              "KeyType": "RANGE"
+            }
+          ],
+          "BillingMode": "PAY_PER_REQUEST"
+        }
+      },
+      "AdminCustomerResourcesTable": {
+        "Type": "AWS::DynamoDB::Table",
+        "Properties": {
+          "TableName": "admin-customer-resources-dev",
+          "AttributeDefinitions": [
+            {
+              "AttributeName": "name",
+              "AttributeType": "S"
+            }
+          ],
+          "KeySchema": [
+            {
+              "AttributeName": "name",
+              "KeyType": "HASH"
+            }
+          ],
+          "BillingMode": "PAY_PER_REQUEST"
+        }
+      },
+      "CustomerResourcesTable": {
+        "Type": "AWS::DynamoDB::Table",
+        "Properties": {
+          "TableName": "customer-resources-dev",
+          "AttributeDefinitions": [
+            {
+              "AttributeName": "name",
+              "AttributeType": "S"
+            }
+          ],
+          "KeySchema": [
+            {
+              "AttributeName": "name",
+              "KeyType": "HASH"
+            }
+          ],
+          "BillingMode": "PAY_PER_REQUEST"
         }
       },
       "Outputs": {}
@@ -1330,7 +1277,7 @@
     "artifact": "/home/poonam/CodeBlock/Projects/CecureCloud/Code/cecurecloud/apis/.serverless/cw-customers.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/cw-customers/dev/1575140582791-2019-11-30T19:03:02.791Z",
+    "artifactDirectoryName": "serverless/cw-customers/dev/1575143252123-2019-11-30T19:47:32.123Z",
     "artifact": "cw-customers.zip"
   }
 }
