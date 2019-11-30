@@ -69,9 +69,10 @@ functions:
 
    admincustomerresources:
     handler: handlers/loaddata.customerresourcesdata
-AWSTemplateFormatVersion: "2010-09-09"
+
 resources:
   Resources:
+  AWSTemplateFormatVersion: "2010-09-09"
     RootRole:
       Type: 'AWS::IAM::Role'
       Properties:
