@@ -75,10 +75,11 @@ resources:
     SMSRole:
       Type: AWS::IAM::Role
       Properties: 
-        AssumeRolePolicyDocument: 
+        AssumeRolePolicyDocument:
           - Version: 2012-10-17
             Statement:
-              - Effect: Allow
+              - 
+                Effect: Allow
                 Action:
                   - 'sns:publish'
                 Resource: '*'
