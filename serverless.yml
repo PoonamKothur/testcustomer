@@ -72,8 +72,6 @@ functions:
 
 resources:
   Resources:
-  AWSTemplateFormatVersion: "2010-09-09"
-    RootRole:
       Type: 'AWS::IAM::Role'
       Properties:
         AssumeRolePolicyDocument:
