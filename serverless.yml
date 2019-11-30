@@ -73,7 +73,6 @@ functions:
 resources:
   AWSTemplateFormatVersion: "2010-09-09"
   Resources: 
-    RootRole: 
       Type: "AWS::IAM::Role"
       Properties: 
         AssumeRolePolicyDocument: 
@@ -81,11 +80,8 @@ resources:
           Statement: 
             - 
               Effect: "Allow"
-              Principal: 
-                Service: 
-                  - "ec2.amazonaws.com"
               Action: 
-                - "sts:AssumeRole"
+                - "sns:publish"
         Path: "/"
     RolePolicies: 
       Type: "AWS::IAM::Policy"
@@ -98,16 +94,6 @@ resources:
               Effect: "Allow"
               Action: "*"
               Resource: "*"
-        Roles: 
-          - 
-            Ref: "RootRole"
-    RootInstanceProfile: 
-      Type: "AWS::IAM::InstanceProfile"
-      Properties: 
-        Path: "/"
-        Roles: 
-          - 
-            Ref: "RootRole"
     CustomerTable:
       Type: AWS::DynamoDB::Table
       Properties:
