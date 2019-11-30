@@ -12,19 +12,19 @@ class CreateCustomerResources extends BaseHandler {
 
     // This function gets list of resources to be created for a customer
     async getAdminCustomerResources() {
-        // this.log.debug("getAdminCustomerResources");
-        // const params = {
-        //     TableName: `admin-customer-resources-${process.env.STAGE}`
-        // };
-        // let data = await documentClient.scan(params).promise();
+        this.log.debug("getAdminCustomerResources");
+        const params = {
+            TableName: `admin-customer-resources-${process.env.STAGE}`
+        };
+        let data = await documentClient.scan(params).promise();
 
-        // let data1 = data.Items.sort((a, b) => (a.sequence > b.sequence) ? 1 : -1);
-        // //return data1;
+        let data1 = data.Items.sort((a, b) => (a.sequence > b.sequence) ? 1 : -1);
+        return data1;
         // console.log(data1);
-        let file = fs.readFileSync('./datascripts/customerResources.json');
-        let data = JSON.parse(file);
-        //console.log( data);
-        return data;
+        // let file = fs.readFileSync('./datascripts/customerResources.json');
+        // let data = JSON.parse(file);
+        // //console.log( data);
+        // return data;
     }
 
     // This function is used to create customer specific resources
@@ -39,7 +39,7 @@ class CreateCustomerResources extends BaseHandler {
             console.log(resourceName);
             switch (resource.type) {
                 // case 'dynamodb':
-                    
+
                 //     if ('attributes' in resource && resource.attributes && 'dynamodbparams' in resource.attributes && resource.attributes.dynamodbparams) {
                 //         let dynamodbparams = resource.attributes.dynamodbparams;
                 //         let tablename = dynamodbparams.TableName;
@@ -55,10 +55,14 @@ class CreateCustomerResources extends BaseHandler {
                 case 'userpool':
                     console.log("in userpool case");
                     let poolResponse = await awsmanager.createUserPool(resourceName);
-                    
+
                     poolId = poolResponse.UserPool.Id;
                     let clientresp = await awsmanager.createUserpoolClient(poolId);
-                    createdResources.push({ name: resourceName, 'cuid': cuid, type: resource.type, status: "completed", attributes: { "poolid": poolid } });
+                    console.log("pool id");
+                    console.log(poolId);
+                    console.log("client resp" + JSON.stringify(clientresp));
+                    createdResources.push({ name: resourceName, 'cuid': cuid, type: resource.type, status: "completed", attributes: { "poolid": poolId ,"clientid": clientresp.UserPoolClient.ClientId} });
+                    console.log(createdResources);
                     break;
                 case 'usergroup':
                     //First get pool id from created resources

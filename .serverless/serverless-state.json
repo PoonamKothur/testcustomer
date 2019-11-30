@@ -43,6 +43,13 @@
             "cognito-idp:*"
           ],
           "Resource": "*"
+        },
+        {
+          "Effect": "Allow",
+          "Action": [
+            "sns:Publish"
+          ],
+          "Resource": "*"
         }
       ],
       "versionFunctions": true,
@@ -159,6 +166,9 @@
                       },
                       {
                         "$ref": "$[\"service\"][\"provider\"][\"iamRoleStatements\"][2]"
+                      },
+                      {
+                        "$ref": "$[\"service\"][\"provider\"][\"iamRoleStatements\"][3]"
                       }
                     ]
                   }
@@ -187,7 +197,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/cw-customers/dev/1574413890266-2019-11-22T09:11:30.266Z/cw-customers.zip"
+                "S3Key": "serverless/cw-customers/dev/1575138824967-2019-11-30T18:33:44.967Z/cw-customers.zip"
               },
               "FunctionName": "cw-customers-dev-getcustomerbyid",
               "Handler": "handlers/getcustomerbyid.getcustomer",
@@ -211,14 +221,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "GetcustomerbyidLambdaVersionYvK1SESpJYXMDuHj7BsEc0cs1s1kWwOZsp2mmsBNhk": {
+          "GetcustomerbyidLambdaVersionG7csNbD6wLdBP44wGRD4L6cAOtwVv7yayEc5z7pDiJk": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GetcustomerbyidLambdaFunction"
               },
-              "CodeSha256": "nBIa8+5sYpX3ZXE06oghxTTIaxfW+G1m4GDcDibC44M="
+              "CodeSha256": "Ye4KFVLvkemRZYl0QV+UvJhtQ1ksXYV50GugKr+Di5s="
             }
           },
           "CreatecustomerLambdaFunction": {
@@ -228,7 +238,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/cw-customers/dev/1574413890266-2019-11-22T09:11:30.266Z/cw-customers.zip"
+                "S3Key": "serverless/cw-customers/dev/1575138824967-2019-11-30T18:33:44.967Z/cw-customers.zip"
               },
               "FunctionName": "cw-customers-dev-createcustomer",
               "Handler": "handlers/addcustomer.createcustomer",
@@ -255,14 +265,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "CreatecustomerLambdaVersionfPYp5Hkd4fTMjwrRhaGjyfbz11ANmVJNFkP8wtNY": {
+          "CreatecustomerLambdaVersionrwTQWdAMaRZGbMjMFqX6SFeyNB1IUr93cia2VjLtNYM": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "CreatecustomerLambdaFunction"
               },
-              "CodeSha256": "nBIa8+5sYpX3ZXE06oghxTTIaxfW+G1m4GDcDibC44M="
+              "CodeSha256": "Ye4KFVLvkemRZYl0QV+UvJhtQ1ksXYV50GugKr+Di5s="
             }
           },
           "CreatecustomerresourcesLambdaFunction": {
@@ -272,7 +282,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/cw-customers/dev/1574413890266-2019-11-22T09:11:30.266Z/cw-customers.zip"
+                "S3Key": "serverless/cw-customers/dev/1575138824967-2019-11-30T18:33:44.967Z/cw-customers.zip"
               },
               "FunctionName": "cw-customers-dev-createcustomerresources",
               "Handler": "handlers/createcustomerresources.createcustomerresources",
@@ -296,14 +306,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "CreatecustomerresourcesLambdaVersionjONvFPjmUi8phAgjvepmqFi2lYNr3IfXo1iQQcFa0": {
+          "CreatecustomerresourcesLambdaVersionZES6ew0pGP84YG1t76k3uBWLYyW8shqt05nbdJEho": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "CreatecustomerresourcesLambdaFunction"
               },
-              "CodeSha256": "nBIa8+5sYpX3ZXE06oghxTTIaxfW+G1m4GDcDibC44M="
+              "CodeSha256": "Ye4KFVLvkemRZYl0QV+UvJhtQ1ksXYV50GugKr+Di5s="
             }
           },
           "UpdatecustomerLambdaFunction": {
@@ -313,7 +323,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/cw-customers/dev/1574413890266-2019-11-22T09:11:30.266Z/cw-customers.zip"
+                "S3Key": "serverless/cw-customers/dev/1575138824967-2019-11-30T18:33:44.967Z/cw-customers.zip"
               },
               "FunctionName": "cw-customers-dev-updatecustomer",
               "Handler": "handlers/updatecustomer.updatecustomer",
@@ -337,14 +347,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "UpdatecustomerLambdaVersion7wSXUr4ImIfLuPtrZiw97yCBK7BirdD7q9PTC38A": {
+          "UpdatecustomerLambdaVersionXWekQ0VqQHXO5EyfHwwY989BDJ3lcjx82KKNHDHby70": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "UpdatecustomerLambdaFunction"
               },
-              "CodeSha256": "nBIa8+5sYpX3ZXE06oghxTTIaxfW+G1m4GDcDibC44M="
+              "CodeSha256": "Ye4KFVLvkemRZYl0QV+UvJhtQ1ksXYV50GugKr+Di5s="
             }
           },
           "AdmincustomerresourcesLambdaFunction": {
@@ -354,7 +364,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/cw-customers/dev/1574413890266-2019-11-22T09:11:30.266Z/cw-customers.zip"
+                "S3Key": "serverless/cw-customers/dev/1575138824967-2019-11-30T18:33:44.967Z/cw-customers.zip"
               },
               "FunctionName": "cw-customers-dev-admincustomerresources",
               "Handler": "handlers/loaddata.customerresourcesdata",
@@ -378,14 +388,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "AdmincustomerresourcesLambdaVersionxPCyMyQ4hXTNoQDUXHg7EHS3WkGsmbKnXChrIBEBA": {
+          "AdmincustomerresourcesLambdaVersiongh53zSiyh9ognJJZGuwOhHjGqpXknNvLrhYz05nsfI": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "AdmincustomerresourcesLambdaFunction"
               },
-              "CodeSha256": "nBIa8+5sYpX3ZXE06oghxTTIaxfW+G1m4GDcDibC44M="
+              "CodeSha256": "Ye4KFVLvkemRZYl0QV+UvJhtQ1ksXYV50GugKr+Di5s="
             }
           },
           "ApiGatewayRestApi": {
@@ -421,6 +431,21 @@
                 "Ref": "ApiGatewayResourceCustomerid"
               },
               "PathPart": "{cid}",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayResourceCuidVar": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Fn::GetAtt": [
+                  "ApiGatewayRestApi",
+                  "RootResourceId"
+                ]
+              },
+              "PathPart": "{cuid}",
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
               }
@@ -503,7 +528,7 @@
                     "ResponseParameters": {
                       "method.response.header.Access-Control-Allow-Origin": "'*'",
                       "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
-                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,PUT,POST'",
+                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'",
                       "method.response.header.Access-Control-Allow-Credentials": "'false'"
                     },
                     "ResponseTemplates": {
@@ -514,6 +539,53 @@
               },
               "ResourceId": {
                 "Ref": "ApiGatewayResourceCustomerid"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayMethodCuidVarOptions": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "AuthorizationType": "NONE",
+              "HttpMethod": "OPTIONS",
+              "MethodResponses": [
+                {
+                  "StatusCode": "200",
+                  "ResponseParameters": {
+                    "method.response.header.Access-Control-Allow-Origin": true,
+                    "method.response.header.Access-Control-Allow-Headers": true,
+                    "method.response.header.Access-Control-Allow-Methods": true,
+                    "method.response.header.Access-Control-Allow-Credentials": true
+                  },
+                  "ResponseModels": {}
+                }
+              ],
+              "RequestParameters": {},
+              "Integration": {
+                "Type": "MOCK",
+                "RequestTemplates": {
+                  "application/json": "{statusCode:200}"
+                },
+                "ContentHandling": "CONVERT_TO_TEXT",
+                "IntegrationResponses": [
+                  {
+                    "StatusCode": "200",
+                    "ResponseParameters": {
+                      "method.response.header.Access-Control-Allow-Origin": "'*'",
+                      "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,PUT'",
+                      "method.response.header.Access-Control-Allow-Credentials": "'false'"
+                    },
+                    "ResponseTemplates": {
+                      "application/json": "#set($origin = $input.params(\"Origin\"))\n#if($origin == \"\") #set($origin = $input.params(\"origin\")) #end\n#if($origin.matches(\".*\")) #set($context.responseOverride.header.Access-Control-Allow-Origin = $origin) #end"
+                    }
+                  }
+                ]
+              },
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceCuidVar"
               },
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
@@ -606,13 +678,13 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayMethodCustomeridPut": {
+          "ApiGatewayMethodCuidVarPut": {
             "Type": "AWS::ApiGateway::Method",
             "Properties": {
               "HttpMethod": "PUT",
               "RequestParameters": {},
               "ResourceId": {
-                "Ref": "ApiGatewayResourceCustomerid"
+                "Ref": "ApiGatewayResourceCuidVar"
               },
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
@@ -649,7 +721,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1574413868188": {
+          "ApiGatewayDeployment1575138819929": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -660,9 +732,10 @@
             "DependsOn": [
               "ApiGatewayMethodCustomeridCidVarOptions",
               "ApiGatewayMethodCustomeridOptions",
+              "ApiGatewayMethodCuidVarOptions",
               "ApiGatewayMethodCustomeridCidVarGet",
               "ApiGatewayMethodCustomeridPost",
-              "ApiGatewayMethodCustomeridPut"
+              "ApiGatewayMethodCuidVarPut"
             ]
           },
           "GetcustomerbyidLambdaPermissionApiGateway": {
@@ -851,31 +924,31 @@
           "GetcustomerbyidLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetcustomerbyidLambdaVersionYvK1SESpJYXMDuHj7BsEc0cs1s1kWwOZsp2mmsBNhk"
+              "Ref": "GetcustomerbyidLambdaVersionG7csNbD6wLdBP44wGRD4L6cAOtwVv7yayEc5z7pDiJk"
             }
           },
           "CreatecustomerLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "CreatecustomerLambdaVersionfPYp5Hkd4fTMjwrRhaGjyfbz11ANmVJNFkP8wtNY"
+              "Ref": "CreatecustomerLambdaVersionrwTQWdAMaRZGbMjMFqX6SFeyNB1IUr93cia2VjLtNYM"
             }
           },
           "CreatecustomerresourcesLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "CreatecustomerresourcesLambdaVersionjONvFPjmUi8phAgjvepmqFi2lYNr3IfXo1iQQcFa0"
+              "Ref": "CreatecustomerresourcesLambdaVersionZES6ew0pGP84YG1t76k3uBWLYyW8shqt05nbdJEho"
             }
           },
           "UpdatecustomerLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "UpdatecustomerLambdaVersion7wSXUr4ImIfLuPtrZiw97yCBK7BirdD7q9PTC38A"
+              "Ref": "UpdatecustomerLambdaVersionXWekQ0VqQHXO5EyfHwwY989BDJ3lcjx82KKNHDHby70"
             }
           },
           "AdmincustomerresourcesLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "AdmincustomerresourcesLambdaVersionxPCyMyQ4hXTNoQDUXHg7EHS3WkGsmbKnXChrIBEBA"
+              "Ref": "AdmincustomerresourcesLambdaVersiongh53zSiyh9ognJJZGuwOhHjGqpXknNvLrhYz05nsfI"
             }
           },
           "ServiceEndpoint": {
@@ -1043,7 +1116,7 @@
         "events": [
           {
             "http": {
-              "path": "customerid",
+              "path": "{cuid}",
               "method": "put",
               "cors": {
                 "origins": [
@@ -1161,7 +1234,7 @@
     "artifact": "/home/poonam/CodeBlock/Projects/CecureCloud/Code/cecurecloud/apis/.serverless/cw-customers.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/cw-customers/dev/1574413890266-2019-11-22T09:11:30.266Z",
+    "artifactDirectoryName": "serverless/cw-customers/dev/1575138824967-2019-11-30T18:33:44.967Z",
     "artifact": "cw-customers.zip"
   }
 }

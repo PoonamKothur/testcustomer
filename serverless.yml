@@ -32,6 +32,10 @@ provider:
       Action: 
         - cognito-idp:*
       Resource: '*'
+    - Effect: Allow
+      Action: 
+        - sns:Publish
+      Resource: '*'
 
 functions:
    getcustomerbyid:
@@ -110,12 +114,19 @@ plugins:
   - serverless-pseudo-parameters
   - serverless-cognito-add-custom-attributes
 
-custom:
-  CognitoAddCustomAttributes: 
-    CustomAttributes: 
-      - 
-        AttributeDataType: String
-        DeveloperOnlyAttribute: False
-        Mutable: True
-        Name: "cuid" # this will end up being custom:another
-        Required: False
+Type: AWS::IAM::Role
+Properties: 
+  AssumeRolePolicyDocument:
+    Version: 2012-10-17
+    Statement: 
+     -
+       Effect: Allow
+       Action:
+         - sns:publish
+       Resource: '*'
+  Description: IAM role for send SMS using AWS SNS
+  ManagedPolicyArns: 
+    - arn:aws:iam::738146172566:policy/service-role/Cognito-1509099821021
+  Policies: 
+    - SNS
+  RoleName: PoonamSMS-Role-test

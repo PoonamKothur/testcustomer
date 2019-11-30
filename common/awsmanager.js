@@ -53,17 +53,31 @@ exports.createUserPool = async (poolName) => {
         console.log("Started User Pool creation...");
         log.debug("Started User Pool creation...");
         try {
+            let testrole = `000003userpool-SMS-Role`;
             let params = {
-                "PoolName": poolName, /* required */
-                "UsernameAttributes": "email",
-                "MfaConfiguration": "ON",
-                "SmsAuthenticationMessage": 'STRING_VALUE',
-                "SmsConfiguration": {
-                  SnsCallerArn: 'STRING_VALUE', /* required */
-                  ExternalId: 'STRING_VALUE'
+                PoolName: poolName, /* required */
+                AutoVerifiedAttributes: [
+                    "email"
+                ],
+                EmailConfiguration: {
+                    EmailSendingAccount: "COGNITO_DEFAULT",
                 },
-                "SmsVerificationMessage": 'STRING_VALUE',
-                "Schema": [
+                EmailVerificationMessage: 'Your username is {username}_emailverify and temporary password is {####}',
+                EmailVerificationSubject: 'Your temporary password',
+                VerificationMessageTemplate: {
+                    DefaultEmailOption: 'CONFIRM_WITH_LINK',
+                    //EmailMessage: `Your username is {####} and temporary password is {####}`,
+                    EmailMessageByLink: `Your username is {####} and temporary password is{####}`,
+                    //EmailSubject: 'Your temporary password',
+                    EmailSubjectByLink: 'Your temporary password',
+                },
+                MfaConfiguration: "ON",
+                SmsConfiguration: {
+                    SnsCallerArn: 'arn:aws:iam::738146172566:role/service-role/aws-SMS-Role', /* required */
+                    ExternalId: "f99c3ec1-63b4-425c-9099-20f560f528f5"
+                },
+                SmsVerificationMessage: `Your username is {####} and temporary password is {####}`,
+                Schema: [
                     {
                         "AttributeDataType": "String",
                         "Mutable": true,
@@ -98,24 +112,22 @@ exports.createUserPool = async (poolName) => {
 exports.createUserpoolClient = async (poolid) => {
     console.log("started userpool client creation...");
     let params = {
-        ClientName: 'client', /* required */
-        UserPoolId: poolid, /* required */
-
-        ExplicitAuthFlows: [
-            ADMIN_NO_SRP_AUTH | CUSTOM_AUTH_FLOW_ONLY | USER_PASSWORD_AUTH | ALLOW_CUSTOM_AUTH | ALLOW_USER_PASSWORD_AUTH | ALLOW_USER_SRP_AUTH | ALLOW_REFRESH_TOKEN_AUTH,
-
+        "ClientName": "newclient", /* required */
+        "UserPoolId": poolid, /* required */
+        "ExplicitAuthFlows": [
+            "ALLOW_CUSTOM_AUTH",
+            "ALLOW_USER_PASSWORD_AUTH",
+            "ALLOW_USER_SRP_AUTH",
+            "ALLOW_REFRESH_TOKEN_AUTH",
         ],
-        GenerateSecret: false,
-        PreventUserExistenceErrors: ENABLED,
-        RefreshTokenValidity: 30,
+        "GenerateSecret": false,
+        //"PreventUserExistenceErrors": "Enabled",
+        "RefreshTokenValidity": 30,
     };
     console.log(params);
     let clientresp = await cognitoidentityserviceprovider.createUserPoolClient(params).promise();
     console.log(clientresp);
-    //   if(clientresp ){
-
-    //   }
-
+    return (clientresp);
 };
 
 exports.createUserGroup = async (groupName, userPoolId) => {
