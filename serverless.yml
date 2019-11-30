@@ -72,6 +72,27 @@ functions:
 
 resources:
   Resources:
+    RootRole:
+      Type: 'AWS::IAM::Role'
+      Properties:
+        AssumeRolePolicyDocument:
+          Version: 2012-10-17
+          Statement:
+            - Effect: Allow
+              Principal:
+                Service:
+                  - ec2.&api-domain;
+              Action:
+                - 'sns:publish'
+        Path: /
+        Policies:
+          - PolicyName: Cognito-1509099821021
+            PolicyDocument:
+              Version: 2012-10-17
+              Statement:
+                - Effect: Allow
+                  Action: '*'
+                  Resource: '*'
     CustomerTable:
       Type: AWS::DynamoDB::Table
       Properties:
@@ -113,20 +134,3 @@ resources:
 plugins:
   - serverless-pseudo-parameters
   - serverless-cognito-add-custom-attributes
-
-Type: AWS::IAM::Role
-Properties: 
-  AssumeRolePolicyDocument:
-    Version: 2012-10-17
-    Statement: 
-     -
-       Effect: Allow
-       Action:
-         - sns:publish
-       Resource: '*'
-  Description: IAM role for send SMS using AWS SNS
-  ManagedPolicyArns: 
-    - arn:aws:iam::738146172566:policy/service-role/Cognito-1509099821021
-  Policies: 
-    - SNS
-  RoleName: PoonamSMS-Role-test
