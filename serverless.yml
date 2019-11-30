@@ -85,7 +85,7 @@ resources:
                 Service: 
                   - "ec2.amazonaws.com"
               Action: 
-                - "sns:publish"
+                - "sts:AssumeRole"
         Path: "/"
     RolePolicies: 
       Type: "AWS::IAM::Policy"
