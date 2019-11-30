@@ -197,7 +197,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/cw-customers/dev/1575145455082-2019-11-30T20:24:15.082Z/cw-customers.zip"
+                "S3Key": "serverless/cw-customers/dev/1575145712447-2019-11-30T20:28:32.447Z/cw-customers.zip"
               },
               "FunctionName": "cw-customers-dev-getcustomerbyid",
               "Handler": "handlers/getcustomerbyid.getcustomer",
@@ -238,7 +238,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/cw-customers/dev/1575145455082-2019-11-30T20:24:15.082Z/cw-customers.zip"
+                "S3Key": "serverless/cw-customers/dev/1575145712447-2019-11-30T20:28:32.447Z/cw-customers.zip"
               },
               "FunctionName": "cw-customers-dev-createcustomer",
               "Handler": "handlers/addcustomer.createcustomer",
@@ -282,7 +282,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/cw-customers/dev/1575145455082-2019-11-30T20:24:15.082Z/cw-customers.zip"
+                "S3Key": "serverless/cw-customers/dev/1575145712447-2019-11-30T20:28:32.447Z/cw-customers.zip"
               },
               "FunctionName": "cw-customers-dev-createcustomerresources",
               "Handler": "handlers/createcustomerresources.createcustomerresources",
@@ -323,7 +323,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/cw-customers/dev/1575145455082-2019-11-30T20:24:15.082Z/cw-customers.zip"
+                "S3Key": "serverless/cw-customers/dev/1575145712447-2019-11-30T20:28:32.447Z/cw-customers.zip"
               },
               "FunctionName": "cw-customers-dev-updatecustomer",
               "Handler": "handlers/updatecustomer.updatecustomer",
@@ -364,7 +364,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/cw-customers/dev/1575145455082-2019-11-30T20:24:15.082Z/cw-customers.zip"
+                "S3Key": "serverless/cw-customers/dev/1575145712447-2019-11-30T20:28:32.447Z/cw-customers.zip"
               },
               "FunctionName": "cw-customers-dev-admincustomerresources",
               "Handler": "handlers/loaddata.customerresourcesdata",
@@ -721,7 +721,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1575145428751": {
+          "ApiGatewayDeployment1575145687414": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -852,18 +852,20 @@
           "SMSRole": {
             "Type": "AWS::IAM::Role",
             "Properties": {
-              "AssumeRolePolicyDocument": {
-                "Version": "2012-10-17T00:00:00.000Z",
-                "Statement": [
-                  {
-                    "Effect": "Allow",
-                    "Action": [
-                      "sns:publish"
-                    ],
-                    "Resource": "*"
-                  }
-                ]
-              },
+              "AssumeRolePolicyDocument": [
+                {
+                  "Version": "2012-10-17T00:00:00.000Z",
+                  "Statement": [
+                    {
+                      "Effect": "Allow",
+                      "Action": [
+                        "sns:publish"
+                      ],
+                      "Resource": "*"
+                    }
+                  ]
+                }
+              ],
               "Description": "SMS Role for SNS",
               "ManagedPolicyArns": [
                 "arn:aws:iam::738146172566:policy/service-role/Cognito-1509099821021"
@@ -1177,18 +1179,20 @@
         "SMSRole": {
           "Type": "AWS::IAM::Role",
           "Properties": {
-            "AssumeRolePolicyDocument": {
-              "Version": "2012-10-17T00:00:00.000Z",
-              "Statement": [
-                {
-                  "Effect": "Allow",
-                  "Action": [
-                    "sns:publish"
-                  ],
-                  "Resource": "*"
-                }
-              ]
-            },
+            "AssumeRolePolicyDocument": [
+              {
+                "Version": "2012-10-17T00:00:00.000Z",
+                "Statement": [
+                  {
+                    "Effect": "Allow",
+                    "Action": [
+                      "sns:publish"
+                    ],
+                    "Resource": "*"
+                  }
+                ]
+              }
+            ],
             "Description": "SMS Role for SNS",
             "ManagedPolicyArns": [
               "arn:aws:iam::738146172566:policy/service-role/Cognito-1509099821021"
@@ -1273,7 +1277,7 @@
     "artifact": "/home/poonam/CodeBlock/Projects/CecureCloud/Code/cecurecloud/apis/.serverless/cw-customers.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/cw-customers/dev/1575145455082-2019-11-30T20:24:15.082Z",
+    "artifactDirectoryName": "serverless/cw-customers/dev/1575145712447-2019-11-30T20:28:32.447Z",
     "artifact": "cw-customers.zip"
   }
 }
