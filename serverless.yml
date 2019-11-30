@@ -71,9 +71,8 @@ functions:
     handler: handlers/loaddata.customerresourcesdata
 
 resources:
-  AWSTemplateFormatVersion: "2010-09-09"
-  Resources: 
-      Type: "AWS::IAM::Role"
+  Resources:
+    Type: "AWS::IAM::Role"
       Properties: 
         AssumeRolePolicyDocument: 
           Version: "2012-10-17"
@@ -83,55 +82,56 @@ resources:
               Action: 
                 - "sns:publish"
         Path: "/"
-    RolePolicies: 
-      Type: "AWS::IAM::Policy"
-      Properties: 
-        PolicyName: "Cognito-1509099821021"
-        PolicyDocument: 
-          Version: "2012-10-17"
-          Statement: 
-            - 
-              Effect: "Allow"
-              Action: "*"
-              Resource: "*"
-    CustomerTable:
-      Type: AWS::DynamoDB::Table
-      Properties:
-        TableName: customers-${opt:stage}
-        AttributeDefinitions:
-          - AttributeName: cid
-            AttributeType: S
-          - AttributeName: cuid
-            AttributeType: S
-        KeySchema:
-          - AttributeName: cid
-            KeyType: HASH
-          - AttributeName: cuid
-            KeyType: RANGE
-        BillingMode: PAY_PER_REQUEST
-    AdminCustomerResourcesTable:
-      Type: AWS::DynamoDB::Table
-      Properties:
-        TableName: admin-customer-resources-${opt:stage}
-        AttributeDefinitions:
-          - AttributeName: name
-            AttributeType: S
-        KeySchema:
-          - AttributeName: name
-            KeyType: HASH
-        BillingMode: PAY_PER_REQUEST
-    CustomerResourcesTable:
-      Type: AWS::DynamoDB::Table
-      Properties:
-        TableName: customer-resources-${opt:stage}
-        AttributeDefinitions:
-          - AttributeName: name
-            AttributeType: S          
-        KeySchema:
-          - AttributeName: name
-            KeyType: HASH
-        BillingMode: PAY_PER_REQUEST
-  
+        RolePolicies: 
+        Type: "AWS::IAM::Policy"
+        Properties: 
+          PolicyName: "Cognito-1509099821021"
+          PolicyDocument: 
+            Version: "2012-10-17"
+            Statement: 
+              - 
+                Effect: "Allow"
+                Action: "*"
+                Resource: "*"
+        RoleName: String
+      CustomerTable:
+        Type: AWS::DynamoDB::Table
+        Properties:
+          TableName: customers-${opt:stage}
+          AttributeDefinitions:
+            - AttributeName: cid
+              AttributeType: S
+            - AttributeName: cuid
+              AttributeType: S
+          KeySchema:
+            - AttributeName: cid
+              KeyType: HASH
+            - AttributeName: cuid
+              KeyType: RANGE
+          BillingMode: PAY_PER_REQUEST
+      AdminCustomerResourcesTable:
+        Type: AWS::DynamoDB::Table
+        Properties:
+          TableName: admin-customer-resources-${opt:stage}
+          AttributeDefinitions:
+            - AttributeName: name
+              AttributeType: S
+          KeySchema:
+            - AttributeName: name
+              KeyType: HASH
+          BillingMode: PAY_PER_REQUEST
+      CustomerResourcesTable:
+        Type: AWS::DynamoDB::Table
+        Properties:
+          TableName: customer-resources-${opt:stage}
+          AttributeDefinitions:
+            - AttributeName: name
+              AttributeType: S          
+          KeySchema:
+            - AttributeName: name
+              KeyType: HASH
+          BillingMode: PAY_PER_REQUEST
+    
 plugins:
   - serverless-pseudo-parameters
   - serverless-cognito-add-custom-attributes
