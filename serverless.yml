@@ -82,7 +82,7 @@ resources:
             Action: 
               - "sns:publish"
         Path: "/"
-        RolePolicies: 
+    RolePolicies: 
     Type: "AWS::IAM::Policy"
     Properties: 
       PolicyName: "Cognito-1509099821021"
