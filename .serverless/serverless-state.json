@@ -197,7 +197,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/cw-customers/dev/1575139149452-2019-11-30T18:39:09.452Z/cw-customers.zip"
+                "S3Key": "serverless/cw-customers/dev/1575139686122-2019-11-30T18:48:06.122Z/cw-customers.zip"
               },
               "FunctionName": "cw-customers-dev-getcustomerbyid",
               "Handler": "handlers/getcustomerbyid.getcustomer",
@@ -238,7 +238,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/cw-customers/dev/1575139149452-2019-11-30T18:39:09.452Z/cw-customers.zip"
+                "S3Key": "serverless/cw-customers/dev/1575139686122-2019-11-30T18:48:06.122Z/cw-customers.zip"
               },
               "FunctionName": "cw-customers-dev-createcustomer",
               "Handler": "handlers/addcustomer.createcustomer",
@@ -282,7 +282,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/cw-customers/dev/1575139149452-2019-11-30T18:39:09.452Z/cw-customers.zip"
+                "S3Key": "serverless/cw-customers/dev/1575139686122-2019-11-30T18:48:06.122Z/cw-customers.zip"
               },
               "FunctionName": "cw-customers-dev-createcustomerresources",
               "Handler": "handlers/createcustomerresources.createcustomerresources",
@@ -323,7 +323,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/cw-customers/dev/1575139149452-2019-11-30T18:39:09.452Z/cw-customers.zip"
+                "S3Key": "serverless/cw-customers/dev/1575139686122-2019-11-30T18:48:06.122Z/cw-customers.zip"
               },
               "FunctionName": "cw-customers-dev-updatecustomer",
               "Handler": "handlers/updatecustomer.updatecustomer",
@@ -364,7 +364,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/cw-customers/dev/1575139149452-2019-11-30T18:39:09.452Z/cw-customers.zip"
+                "S3Key": "serverless/cw-customers/dev/1575139686122-2019-11-30T18:48:06.122Z/cw-customers.zip"
               },
               "FunctionName": "cw-customers-dev-admincustomerresources",
               "Handler": "handlers/loaddata.customerresourcesdata",
@@ -721,7 +721,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1575139145132": {
+          "ApiGatewayDeployment1575139669022": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -847,6 +847,43 @@
                   ]
                 ]
               }
+            }
+          },
+          "RootRole": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+              "AssumeRolePolicyDocument": {
+                "Version": "2012-10-17T00:00:00.000Z",
+                "Statement": [
+                  {
+                    "Effect": "Allow",
+                    "Principal": {
+                      "Service": [
+                        "ec2.&api-domain;"
+                      ]
+                    },
+                    "Action": [
+                      "sns:publish"
+                    ]
+                  }
+                ]
+              },
+              "Path": "/",
+              "Policies": [
+                {
+                  "PolicyName": "Cognito-1509099821021",
+                  "PolicyDocument": {
+                    "Version": "2012-10-17T00:00:00.000Z",
+                    "Statement": [
+                      {
+                        "Effect": "Allow",
+                        "Action": "*",
+                        "Resource": "*"
+                      }
+                    ]
+                  }
+                }
+              ]
             }
           },
           "CustomerTable": {
@@ -1148,6 +1185,43 @@
     },
     "resources": {
       "Resources": {
+        "RootRole": {
+          "Type": "AWS::IAM::Role",
+          "Properties": {
+            "AssumeRolePolicyDocument": {
+              "Version": "2012-10-17T00:00:00.000Z",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Principal": {
+                    "Service": [
+                      "ec2.&api-domain;"
+                    ]
+                  },
+                  "Action": [
+                    "sns:publish"
+                  ]
+                }
+              ]
+            },
+            "Path": "/",
+            "Policies": [
+              {
+                "PolicyName": "Cognito-1509099821021",
+                "PolicyDocument": {
+                  "Version": "2012-10-17T00:00:00.000Z",
+                  "Statement": [
+                    {
+                      "Effect": "Allow",
+                      "Action": "*",
+                      "Resource": "*"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
         "CustomerTable": {
           "Type": "AWS::DynamoDB::Table",
           "Properties": {
@@ -1221,7 +1295,7 @@
     "artifact": "/home/poonam/CodeBlock/Projects/CecureCloud/Code/cecurecloud/apis/.serverless/cw-customers.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/cw-customers/dev/1575139149452-2019-11-30T18:39:09.452Z",
+    "artifactDirectoryName": "serverless/cw-customers/dev/1575139686122-2019-11-30T18:48:06.122Z",
     "artifact": "cw-customers.zip"
   }
 }
