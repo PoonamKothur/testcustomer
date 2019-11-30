@@ -73,22 +73,22 @@ functions:
 resources:
   Resources:
     SMSRole:
-    Type: AWS::IAM::Role
-    Properties: 
-      AssumeRolePolicyDocument: 
-        Version: 2012-10-17
-        Statement:
-          - Effect: Allow
-            Action:
-              - 'sns:publish'
-            Resource: '*'
-      Description: SMS Role for SNS
-      ManagedPolicyArns: 
-        - arn:aws:iam::738146172566:policy/service-role/Cognito-1509099821021
-      Path: /
-      Policies: 
-        - Cognito-1509099821021
-      RoleName: PoonamSMSROle
+      Type: AWS::IAM::Role
+      Properties: 
+        AssumeRolePolicyDocument: 
+          Version: 2012-10-17
+          Statement:
+            - Effect: Allow
+              Action:
+                - 'sns:publish'
+              Resource: '*'
+        Description: SMS Role for SNS
+        ManagedPolicyArns: 
+          - arn:aws:iam::738146172566:policy/service-role/Cognito-1509099821021
+        Path: /
+        Policies: 
+          - Cognito-1509099821021
+        RoleName: PoonamSMSROle
 
     CustomerTable:
       Type: AWS::DynamoDB::Table
