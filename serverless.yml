@@ -82,7 +82,7 @@ resources:
               - Effect: Allow
                 Principal:
                   Service:
-                    - cognito-idp
+                    - cognito-idp:*
                 Action: sts:AssumeRole
         MaxSessionDuration: 3600
         Policies:
@@ -95,7 +95,7 @@ resources:
                       - "sns:publish"
                     Resource: "*"
         Description: SMS Role for SNS
-        Path: /
+        Path: /service-role/
 
     CustomerTable:
       Type: AWS::DynamoDB::Table

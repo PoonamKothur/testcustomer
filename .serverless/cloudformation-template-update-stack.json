@@ -165,7 +165,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/cw-customers/dev/1575193012177-2019-12-01T09:36:52.177Z/cw-customers.zip"
+          "S3Key": "serverless/cw-customers/dev/1575193094833-2019-12-01T09:38:14.833Z/cw-customers.zip"
         },
         "FunctionName": "cw-customers-dev-getcustomerbyid",
         "Handler": "handlers/getcustomerbyid.getcustomer",
@@ -206,7 +206,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/cw-customers/dev/1575193012177-2019-12-01T09:36:52.177Z/cw-customers.zip"
+          "S3Key": "serverless/cw-customers/dev/1575193094833-2019-12-01T09:38:14.833Z/cw-customers.zip"
         },
         "FunctionName": "cw-customers-dev-createcustomer",
         "Handler": "handlers/addcustomer.createcustomer",
@@ -250,7 +250,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/cw-customers/dev/1575193012177-2019-12-01T09:36:52.177Z/cw-customers.zip"
+          "S3Key": "serverless/cw-customers/dev/1575193094833-2019-12-01T09:38:14.833Z/cw-customers.zip"
         },
         "FunctionName": "cw-customers-dev-createcustomerresources",
         "Handler": "handlers/createcustomerresources.createcustomerresources",
@@ -291,7 +291,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/cw-customers/dev/1575193012177-2019-12-01T09:36:52.177Z/cw-customers.zip"
+          "S3Key": "serverless/cw-customers/dev/1575193094833-2019-12-01T09:38:14.833Z/cw-customers.zip"
         },
         "FunctionName": "cw-customers-dev-updatecustomer",
         "Handler": "handlers/updatecustomer.updatecustomer",
@@ -332,7 +332,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/cw-customers/dev/1575193012177-2019-12-01T09:36:52.177Z/cw-customers.zip"
+          "S3Key": "serverless/cw-customers/dev/1575193094833-2019-12-01T09:38:14.833Z/cw-customers.zip"
         },
         "FunctionName": "cw-customers-dev-admincustomerresources",
         "Handler": "handlers/loaddata.customerresourcesdata",
@@ -689,7 +689,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1575193007870": {
+    "ApiGatewayDeployment1575193090418": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -820,7 +820,7 @@
     "SMSRole": {
       "Type": "AWS::IAM::Role",
       "Properties": {
-        "RoleName": "Poonam-SMS1-Role1",
+        "RoleName": "Poonam1-SMS1-Role1",
         "AssumeRolePolicyDocument": {
           "Version": "2012-10-17",
           "Statement": [
