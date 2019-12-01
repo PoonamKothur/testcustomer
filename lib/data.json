@@ -2,7 +2,7 @@
     "path": "/", 
     "httpMethod": "POST",    
     "queryStringParameters": null,
-    "pathParameters": "{\"cid\":\"000001\"}",    
-    "body": "{\"cid\":\"000002\",\"scope\":\"Reseller\",\"type\":\"Enterprise\",\"customerEmail\":\"poonam_test@gmail.com\"}",
+    "pathParameters": "{\"cid\":\"000030\"}",    
+    "body": "{\"cid\":\"000030\",\"scope\":\"Reseller\",\"type\":\"Enterprise\",\"customerEmail\":\"poonam_test@gmail.com\"}",
     "isBase64Encoded": false
 }

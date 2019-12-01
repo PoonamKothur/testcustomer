@@ -58,10 +58,15 @@ class CreateCustomerResources extends BaseHandler {
 
                     poolId = poolResponse.UserPool.Id;
                     let clientresp = await awsmanager.createUserpoolClient(poolId);
-                    console.log("pool id");
-                    console.log(poolId);
+                    console.log("pool id :" + poolId);
                     console.log("client resp" + JSON.stringify(clientresp));
-                    createdResources.push({ name: resourceName, 'cuid': cuid, type: resource.type, status: "completed", attributes: { "poolid": poolId ,"clientid": clientresp.UserPoolClient.ClientId} });
+
+                    let domainName = "domain-" + cuid.toLowerCase();
+                    let domainresp = await awsmanager.createUserPoolDomain(domainName, poolId);
+                    console.log("domain name :" + domainName);
+                    console.log("domain resp" + JSON.stringify(domainresp));
+
+                    createdResources.push({ name: resourceName, 'cuid': cuid, type: resource.type, status: "completed", attributes: { "poolid": poolId, "clientid": clientresp.UserPoolClient.ClientId, "domain": domainName } });
                     console.log(createdResources);
                     break;
                 case 'usergroup':

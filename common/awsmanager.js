@@ -67,9 +67,9 @@ exports.createUserPool = async (poolName) => {
                 VerificationMessageTemplate: {
                     DefaultEmailOption: 'CONFIRM_WITH_LINK',
                     //EmailMessage: `Your username is {####} and temporary password is {####}`,
-                    EmailMessageByLink: `Your username is {####} and temporary password is{####}`,
+                    EmailMessageByLink: `Please click the link below to verify your email address. {##Verify Email##} `,
                     //EmailSubject: 'Your temporary password',
-                    EmailSubjectByLink: 'Your temporary password',
+                    EmailSubjectByLink: 'Your verification link',
                 },
                 MfaConfiguration: "ON",
                 SmsConfiguration: {
@@ -87,6 +87,16 @@ exports.createUserPool = async (poolName) => {
                         "AttributeDataType": "String",
                         "Mutable": true,
                         "Name": "cid",
+                    }
+                    {
+                        "AttributeDataType": "String",
+                        "Mutable": true,
+                        "Name": "eid",
+                    },
+                    {
+                        "AttributeDataType": "String",
+                        "Mutable": true,
+                        "Name": "euid",
                     }
                 ]
             };
@@ -147,6 +157,35 @@ exports.createUserGroup = async (groupName, userPoolId) => {
                 } else {
                     log.debug("User Group created successfully. Pool_Name: " + params.GroupName);
                     log.debug("User Group description JSON:", JSON.stringify(data, null, 2));
+                    resolve(data);
+                }
+            });
+        } catch (cupE) {
+            log.error(cupE);
+            reject(cupE);
+        }
+    });
+    return promise;
+}
+
+exports.createUserPoolDomain = async (domainName, userPoolId) => {
+    var promise = new Promise(function (resolve, reject) {
+
+        log.debug("Started User Group creation...");
+        try {
+            let params = {
+                Domain: domainName, /* required */
+                UserPoolId: userPoolId       /* required */
+            };
+            cognitoidentityserviceprovider.createUserPoolDomain(params, function (err, data) {
+                if (err) {
+                    console.error(err);
+                    log.error(err);
+                    reject(err);
+                } else {
+                    console.error(data);
+                    log.debug("User Pool Domain created successfully. Domain Name: " + params.domainName);
+                    log.debug("User Pool Domain JSON:", JSON.stringify(data, null, 2));
                     resolve(data);
                 }
             });
