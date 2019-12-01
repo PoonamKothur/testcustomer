@@ -74,23 +74,37 @@ resources:
   Resources:
     SMSRole:
       Type: AWS::IAM::Role
-      Properties: 
+      Properties:
+        RoleName: PoonamSMSROle
         AssumeRolePolicyDocument:
-          - 
-              Version: 2012-10-17
-              Statement:
-                - 
-                  Effect: Allow
-                  Action:
-                    - 'sns:publish'
-                  Resource: '*'
+          Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Principal:
+                  Service:
+                    - lambda.amazonaws.com
+                Action: sts:AssumeRole
+        Policies:
+            - PolicyName: Cognito-1509099821021
+              PolicyDocument:
+                Version: '2012-10-17'
+                Statement:
+                  - Effect: Allow
+                    Action:
+                      - "sns:publish"
+                    Resource: "*"
+                    Resource: !Join
+                      - ""
+                      - - "arn:aws:s3:::"
+                        - !Ref ServerlessDeploymentBucket
+
         Description: SMS Role for SNS
         ManagedPolicyArns: 
            - arn:aws:iam::738146172566:policy/service-role/Cognito-1509099821021
         Path: /
         Policies: 
           - Cognito-1509099821021
-        RoleName: PoonamSMSROle
+        
 
     CustomerTable:
       Type: AWS::DynamoDB::Table
