@@ -84,7 +84,7 @@ resources:
                   Service:
                   - cognito-idp
                 Action: sts:AssumeRole
-        MaxSessionDuration: 1
+        MaxSessionDuration: 3600
         Policies:
             - PolicyName: Cognito-1509099821021
               PolicyDocument:
