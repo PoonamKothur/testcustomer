@@ -82,7 +82,7 @@ resources:
               - Effect: Allow
                 Principal:
                   Service:
-                      - cognito-idp
+                      - cognito-identity.amazonaws.com
                 Action: sts:AssumeRole
         MaxSessionDuration: 3600
         Policies:
