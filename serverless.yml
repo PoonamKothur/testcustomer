@@ -97,8 +97,6 @@ resources:
         ManagedPolicyArns: 
            - arn:aws:iam::738146172566:policy/service-role/Cognito-1509099821021
         Path: /
-        Policies: 
-          - Cognito-1509099821021
 
     CustomerTable:
       Type: AWS::DynamoDB::Table
