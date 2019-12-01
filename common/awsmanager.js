@@ -53,7 +53,6 @@ exports.createUserPool = async (poolName) => {
         console.log("Started User Pool creation...");
         log.debug("Started User Pool creation...");
         try {
-            let testrole = `000003userpool-SMS-Role`;
             let params = {
                 PoolName: poolName, /* required */
                 AutoVerifiedAttributes: [
@@ -73,8 +72,8 @@ exports.createUserPool = async (poolName) => {
                 },
                 MfaConfiguration: "ON",
                 SmsConfiguration: {
-                    SnsCallerArn: 'arn:aws:iam::738146172566:role/service-role/aws-SMS-Role', /* required */
-                    ExternalId: "f99c3ec1-63b4-425c-9099-20f560f528f5"
+                    SnsCallerArn: process.env.CREATE_CR_ROLE_ARN
+                    //ExternalId: "f99c3ec1-63b4-425c-9099-20f560f528f5"
                 },
                 SmsVerificationMessage: `Your username is {####} and temporary password is {####}`,
                 Schema: [
@@ -87,7 +86,7 @@ exports.createUserPool = async (poolName) => {
                         "AttributeDataType": "String",
                         "Mutable": true,
                         "Name": "cid",
-                    }
+                    },
                     {
                         "AttributeDataType": "String",
                         "Mutable": true,

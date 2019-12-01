@@ -113,7 +113,7 @@ class AddCustomer extends BaseHandler {
                 message: "Customer Created Successfully"
             }
 
-            //await lambda.invoke(params).promise();
+            await lambda.invoke(params).promise();
             return responseHandler.callbackRespondWithSimpleMessage(200, resp);
         }
         catch (err) {

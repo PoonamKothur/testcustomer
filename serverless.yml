@@ -58,6 +58,8 @@ functions:
 
    createcustomerresources:
     handler: handlers/createcustomerresources.createcustomerresources
+    environment:
+      CREATE_CR_ROLE_ARN: arn:aws:iam::#{AWS::AccountId}:role/service-role/Poonam1-SMS1-Role1
 
    updatecustomer:
     handler: handlers/updatecustomer.updatecustomer
