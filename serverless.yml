@@ -56,11 +56,14 @@ functions:
           method: post
           cors: true
 
-   createcustomerresources:
-    handler: handlers/createcustomerresources.createcustomerresources
+   awsmanager:
+    handler: handlers/awsmanager.createUserPool
     environment:
       CREATE_CR_ROLE_ARN: arn:aws:iam::#{AWS::AccountId}:role/service-role/Poonam1-SMS1-Role1
 
+   createcustomerresources:
+    handler: handlers/createcustomerresources.createcustomerresources
+    
    updatecustomer:
     handler: handlers/updatecustomer.updatecustomer
     events:

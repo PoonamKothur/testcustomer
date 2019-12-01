@@ -52,6 +52,7 @@ exports.createUserPool = async (poolName) => {
     var promise = new Promise(function (resolve, reject) {
         console.log("Started User Pool creation...");
         log.debug("Started User Pool creation...");
+        console.log("process.env.CREATE_CR_ROLE_ARN----------" + process.env.CREATE_CR_ROLE_ARN)
         try {
             let params = {
                 PoolName: poolName, /* required */
