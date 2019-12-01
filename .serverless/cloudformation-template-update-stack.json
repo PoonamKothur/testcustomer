@@ -165,7 +165,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/cw-customers/dev/1575190632342-2019-12-01T08:57:12.342Z/cw-customers.zip"
+          "S3Key": "serverless/cw-customers/dev/1575191722730-2019-12-01T09:15:22.730Z/cw-customers.zip"
         },
         "FunctionName": "cw-customers-dev-getcustomerbyid",
         "Handler": "handlers/getcustomerbyid.getcustomer",
@@ -206,7 +206,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/cw-customers/dev/1575190632342-2019-12-01T08:57:12.342Z/cw-customers.zip"
+          "S3Key": "serverless/cw-customers/dev/1575191722730-2019-12-01T09:15:22.730Z/cw-customers.zip"
         },
         "FunctionName": "cw-customers-dev-createcustomer",
         "Handler": "handlers/addcustomer.createcustomer",
@@ -250,7 +250,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/cw-customers/dev/1575190632342-2019-12-01T08:57:12.342Z/cw-customers.zip"
+          "S3Key": "serverless/cw-customers/dev/1575191722730-2019-12-01T09:15:22.730Z/cw-customers.zip"
         },
         "FunctionName": "cw-customers-dev-createcustomerresources",
         "Handler": "handlers/createcustomerresources.createcustomerresources",
@@ -291,7 +291,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/cw-customers/dev/1575190632342-2019-12-01T08:57:12.342Z/cw-customers.zip"
+          "S3Key": "serverless/cw-customers/dev/1575191722730-2019-12-01T09:15:22.730Z/cw-customers.zip"
         },
         "FunctionName": "cw-customers-dev-updatecustomer",
         "Handler": "handlers/updatecustomer.updatecustomer",
@@ -332,7 +332,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/cw-customers/dev/1575190632342-2019-12-01T08:57:12.342Z/cw-customers.zip"
+          "S3Key": "serverless/cw-customers/dev/1575191722730-2019-12-01T09:15:22.730Z/cw-customers.zip"
         },
         "FunctionName": "cw-customers-dev-admincustomerresources",
         "Handler": "handlers/loaddata.customerresourcesdata",
@@ -689,7 +689,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1575190622730": {
+    "ApiGatewayDeployment1575191717179": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -820,29 +820,43 @@
     "SMSRole": {
       "Type": "AWS::IAM::Role",
       "Properties": {
-        "AssumeRolePolicyDocument": [
+        "RoleName": "PoonamSMSROle",
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "lambda.amazonaws.com"
+                ]
+              },
+              "Action": "sts:AssumeRole"
+            }
+          ]
+        },
+        "Policies": [
           {
-            "Version": "2012-10-17T00:00:00.000Z",
-            "Statement": [
-              {
-                "Effect": "Allow",
-                "Action": [
-                  "sns:publish"
-                ],
-                "Resource": "*"
-              }
-            ]
+            "PolicyName": "Cognito-1509099821021",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "sns:publish"
+                  ],
+                  "Resource": "*"
+                }
+              ]
+            }
           }
         ],
         "Description": "SMS Role for SNS",
         "ManagedPolicyArns": [
           "arn:aws:iam::738146172566:policy/service-role/Cognito-1509099821021"
         ],
-        "Path": "/",
-        "Policies": [
-          "Cognito-1509099821021"
-        ],
-        "RoleName": "PoonamSMSROle"
+        "Path": "/"
       }
     },
     "CustomerTable": {
