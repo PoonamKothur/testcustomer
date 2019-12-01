@@ -75,7 +75,7 @@ resources:
     SMSRole:
       Type: AWS::IAM::Role
       Properties:
-        RoleName: PoonamSMSROle
+        RoleName: Poonam-SMS-Role
         AssumeRolePolicyDocument:
           Version: '2012-10-17'
           Statement:
