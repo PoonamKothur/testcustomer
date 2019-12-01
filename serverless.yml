@@ -96,6 +96,7 @@ resources:
         Description: SMS Role for SNS
         ManagedPolicyArns: 
            - arn:aws:iam::738146172566:policy/service-role/Cognito-1509099821021
+        Path: /
 
     CustomerTable:
       Type: AWS::DynamoDB::Table
