@@ -64,7 +64,7 @@ exports.createUserPool = async (poolName) => {
                 },
                 MfaConfiguration: "ON",
                 SmsConfiguration: {
-                    SnsCallerArn: process.env.CREATE_CR_ROLE_ARN
+                    SnsCallerArn: 'arn:aws:iam::738146172566:role/service-role/aws-SMS-Role'
                     //ExternalId: "f99c3ec1-63b4-425c-9099-20f560f528f5"
                 },
                 SmsVerificationMessage: `Your username is {####} and temporary password is {####}`,

@@ -1,0 +1,86 @@
+[
+    {
+        "attributes": {
+            "dynamodbparams": {
+                "BillingMode": "PAY_PER_REQUEST",
+                "TableName": "{{cuid}}-role-membership",
+                "AttributeDefinitions": [
+                    {
+                        "AttributeType": "S",
+                        "AttributeName": "cid"
+                    },
+                    {
+                        "AttributeType": "S",
+                        "AttributeName": "name"
+                    }
+                ],
+                "KeySchema": [
+                    {
+                        "KeyType": "HASH",
+                        "AttributeName": "cid"
+                    },
+                    {
+                        "KeyType": "RANGE",
+                        "AttributeName": "name"
+                    }
+                ]
+            }
+        },
+        "name": "role-membership",
+        "sequence": 1,
+        "type": "dynamodb"
+    },
+    {
+        "attributes": {
+            "dynamodbparams": {
+                "BillingMode": "PAY_PER_REQUEST",
+                "TableName": "entity-{{cuid}}",
+                "AttributeDefinitions": [
+                    {
+                        "AttributeType": "S",
+                        "AttributeName": "euid"
+                    }
+                ],
+                "KeySchema": [
+                    {
+                        "KeyType": "HASH",
+                        "AttributeName": "euid"
+                    }
+                ]
+            }
+        },
+        "name": "entity",
+        "sequence": 2,
+        "type": "dynamodb"
+    },
+    {
+        "name": "userpool",
+        "sequence": 3,
+        "type": "userpool"
+    },
+    {
+        "name":  "super-admin",
+        "sequence": 4,
+        "type": "usergroup"
+    },
+    {
+        "name": "account-group-manager",
+        "sequence": 5,
+        "type": "usergroup"
+    },
+    {
+        "name": "support-manager",
+        "sequence": 6,
+        "type": "usergroup"
+    },
+    {
+        "name": "account-manager",
+        "sequence": 7,
+        "type": "usergroup"
+    },
+    {
+        "name": "support",
+        "sequence": 8,
+        "type": "usergroup"
+    }
+]
