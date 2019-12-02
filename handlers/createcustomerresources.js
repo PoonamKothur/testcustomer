@@ -35,23 +35,21 @@ class CreateCustomerResources extends BaseHandler {
         for (let resource of resources) {
             this.log.debug("resource.type:" + resource.type);
             let resourceName = `${cuid}-${resource.name}`;
-
             console.log(resourceName);
             switch (resource.type) {
-                // case 'dynamodb':
-
-                //     if ('attributes' in resource && resource.attributes && 'dynamodbparams' in resource.attributes && resource.attributes.dynamodbparams) {
-                //         let dynamodbparams = resource.attributes.dynamodbparams;
-                //         let tablename = dynamodbparams.TableName;
-                //         dynamodbparams.TableName = tablename.replace("{{cuid}}", cuid);
-                //         await awsmanager.createDynamoTable(dynamodbparams);
-                //     }
-                //     else {
-                //         //console.log("table schema not defined ");
-                //         return responseHandler.callbackRespondWithSimpleMessage('404', 'Table schema not defined');
-                //     }
-                //     createdResources.push({ name: resourceName, 'cuid': cuid, type: resource.type, status: "completed" });
-                //     break;
+                case 'dynamodb':
+                    if ('attributes' in resource && resource.attributes && 'dynamodbparams' in resource.attributes && resource.attributes.dynamodbparams) {
+                        let dynamodbparams = resource.attributes.dynamodbparams;
+                        let tablename = dynamodbparams.TableName;
+                        dynamodbparams.TableName = tablename.replace("{{cuid}}", cuid);
+                        await awsmanager.createDynamoTable(dynamodbparams);
+                    }
+                    else {
+                        //console.log("table schema not defined ");
+                        return responseHandler.callbackRespondWithSimpleMessage('404', 'Table schema not defined');
+                    }
+                    createdResources.push({ name: resourceName, 'cuid': cuid, type: resource.type, status: "completed" });
+                    break;
                 case 'userpool':
                     console.log("in userpool case");
                     let poolResponse = await awsmanager.createUserPool(resourceName);
