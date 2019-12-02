@@ -12,19 +12,19 @@ class CreateCustomerResources extends BaseHandler {
 
     // This function gets list of resources to be created for a customer
     async getAdminCustomerResources() {
-        this.log.debug("getAdminCustomerResources");
-        const params = {
-            TableName: `admin-customer-resources-${process.env.STAGE}`
-        };
-        let data = await documentClient.scan(params).promise();
+        // this.log.debug("getAdminCustomerResources");
+        // const params = {
+        //     TableName: `admin-customer-resources-${process.env.STAGE}`
+        // };
+        // let data = await documentClient.scan(params).promise();
 
-        let data1 = data.Items.sort((a, b) => (a.sequence > b.sequence) ? 1 : -1);
-        return data1;
-        // console.log(data1);
-        // let file = fs.readFileSync('./datascripts/customerResources.json');
-        // let data = JSON.parse(file);
-        // //console.log( data);
-        // return data;
+        // let data1 = data.Items.sort((a, b) => (a.sequence > b.sequence) ? 1 : -1);
+        // return data1;
+        console.log(data1);
+        let file = fs.readFileSync('./datascripts/customerResources.json');
+        let data = JSON.parse(file);
+        //console.log( data);
+        return data;
     }
 
     // This function is used to create customer specific resources
